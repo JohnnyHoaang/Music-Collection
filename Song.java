@@ -1,10 +1,10 @@
 public class Song {
     private String songId;
     private String name;
-    private int songOffset;
+    private double songOffset;
     private int durationUsed;
 
-    public Song(String songId, String name, int songOffset, int durationUsed){
+    public Song(String songId, String name, double songOffset, int durationUsed){
         this.songId = songId;
         this.name = name;
         this.songOffset = songOffset;
@@ -21,7 +21,7 @@ public class Song {
     }
 
 
-    public int getSongOffset() {
+    public double getSongOffset() {
         return songOffset;
     }
 
@@ -38,7 +38,7 @@ public class Song {
         this.name = name;
     }
 
-    
+
     public String getSongId() {
         return songId;
     }
