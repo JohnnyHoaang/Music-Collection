@@ -1,0 +1,35 @@
+
+
+{
+    "acousticGuitar" : ["Bruce Welch"],
+    "violin" : [
+        "Tony Gilbert",
+        "Sidney Sax"
+    ],
+    "viola" : ["viola"],
+    "cello" : [
+        "Peter Halling",
+        "Francisco Gabarró"
+    ],
+    "drum" : ["organ"],
+    "duratopn" : ["2:03"],
+    "lyricist" : [
+        "Paul McCartney",
+        "Lennon–McCartney"
+    ],
+    "engineer" : ["Norman Smith"],
+    "market" : ["Chamber pop"],
+    "producer" : ["George Martin"],
+    "Label" : ["Capitol"],
+    "collective" : ["The Beatles"],
+    "leadVoice" : [
+        "John Lennon",
+        "Paul McCartney",
+        "George Harrison",
+        "Ringo Starr"
+    ],
+    "album" : ["Help"],
+    "recorded" : ["1965-06-17"],
+    "releaseDate" : ["1965-08-06"],
+    "title" : ["Yesterday"]
+}

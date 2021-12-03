@@ -1,0 +1,29 @@
+{
+  "acousticGuitar": ["Yeri Kang"],
+  "assistantEngineer": ["Michael Park"],
+  "assistantMixingEngineer": ["Adora"],
+  "bassGuitar": ["Kim Subin","Lee Sun Kyoung”,“Park Jun Tae"],
+  "composer" : ["Melanie Fontana"],
+  "guitar": ["Lee Taewook"],
+  "duration": ["4:12"],
+  "engineer": ["Park Jin Hee", "Alex Williams", "RM"],
+  "singers": ["V", "Jungkook","RM","J-hope", "Jin","Suga", "Jimin"],
+  "label": ["BigHit Entertainment"],
+  "leadVoice": ["BTS", "Halsey"],
+  "lyricist": ["Jungkook"],
+  "market": ["worldwide"],
+  "songwriter": ["Pdogg","Hitman Bang","Suga","Emily Weisband"],
+
+ "mixingEngineer": ["Hyunwoo Nam"],
+  "producer": [
+   "YongSeok Choi",
+   "Jihye Yoon",
+   "HyeJeong Park"
+  ],
+
+ "recorded": ["2019-03-15 23:59:59"],
+  "releaseDate": ["2019-04-12 00:00:00"],
+  "album": ["Persona: Map Of The Soul"],
+  "title": ["Boy With Luv"]
+}
+

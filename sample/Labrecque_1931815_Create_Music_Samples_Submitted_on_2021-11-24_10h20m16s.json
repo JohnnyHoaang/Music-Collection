@@ -1,0 +1,49 @@
+{
+	"title": ["Ain't No Rest For The Wicked"],
+	"recorded": ["2007-06-16 23:59:59"],
+	"releaseDate": ["2008-06-16 00:00:00"],
+	"duration": ["2:55"],
+	"market":["worldwide"],
+	"label" : ["Relentless"],
+	"writer": [
+		"Daniel Tichenor",
+		"Matt Shultz",
+		"Brad Shultz",
+		"Lincoln Parish",
+		"Jared Champion"
+	],
+	"collective": ["Cage The Elephant"],
+	"mastering": ["Randy Merrill"],
+	"recordingEngineer" :["Ben Baptie"],
+	"mixing": ["Ben Baptie"],
+	"percussion" : ["Kyle Davis", "Matthan Minster"],
+	"vibraphone" : ["Matthan Minster"],
+	"keyboard": ["Matthan Minster"],
+	"backgroundVoice": ["Matthan Minster", "Nick Bockrath"],
+	"bass": ["Daniel Tichenor"],
+	"drum": ["Jared Champion"],
+	"leadVoice": ["Matt Shultz"],
+	"acousticGuitar":[
+		"Nick Bockrath", 
+		"Daniel Tichenor", 
+		"Brad Shultz", 
+		"Matt Shultz"
+	],
+	"strings": [
+		"Nick Bockrath",
+		"Charles Callahan",
+		"Kaitlin Moreno",
+		"Michael Polonchak",
+		"Natalie Spehar",
+		"Preston Barbare",
+		"Ryan Knotl",
+		"Andrea Vogt",
+		"Austin Hoke",
+		"Kristin Weber",
+		"Alexander Grimes",
+		"Emily Nelson",
+		"Avery Bright",
+		"Carl Larson",
+		"Gina Corso"
+	]
+}

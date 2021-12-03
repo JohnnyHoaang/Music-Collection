@@ -1,0 +1,16 @@
+{
+    "leadVoice": ["Michael Jackson"],
+    "rhythmGuitar": ["Paul Jackson Jr."],
+    "bassGuitar": ["Steve Lukather"],
+    "electricGuitar": ["Eddie Van Halen"],
+    "synthesizer": ["Steve Porcaro", "Greg Philinganes", "Greg Smith"],
+    "keyboard": ["Bill Wolfer"],
+    "synclavier": ["tom Bahler"],
+    "drum": ["Jeff Porcaro"],
+    "duration": ["4:18"],
+    "production": ["Quincy Jones"],
+    "lyricist": ["Michael Jackson"],
+    "releaseDate": ["2008-02-08 00:00:00"],
+    "title": ["Beat it"],
+    "label": ["Epic"]
+}

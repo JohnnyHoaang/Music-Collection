@@ -1,0 +1,31 @@
+{
+    "acousticGuitar": ["Mike Meadows"],
+    "backgroundVoice": [
+      "Mike Meadows",
+      "Caitilin Evanson",
+      "Paul Sidoti"
+    ],
+    "bassGuitar": ["Amos Heller"],
+    "electricGuitar": ["Paul Sidoti", "Max Bernstein"],
+    "composer": ["Ryan Tedder"],
+    "drum": ["Matt Billingslea"],
+    "mandolin": ["Mike Meadows"],
+    "fiddle": ["John Yudkin"],
+    "duration": ["4:01"],
+    "engineer": ["Derek Garten", "John Hanes", "Lowell Reynolds"],
+    "label": ["Big Machine"],
+    "leadVoice": ["Taylor Swift"],
+    "lyricist": ["Taylor Swift", "Liz Rose", "Hillary Lindsey"],
+    "market": ["iHeartMedia"],
+    "mastering": ["Randy Merril"],
+    "mixingEngineer": ["Serben Ghenea"],
+    "recording": ["Lowell Reynolds", "David Payne"],
+    "producer": [
+      "Christopher Rowe",
+      "Taylor Swift"
+    ],
+    "recorded": ["2008-12-31 23:59:59"],
+    "releaseDate": ["20010-1-04 00:00:00"],
+    "vocalEngineering": ["Christopher Rowe"],
+    "title": ["Fearless"]
+  }

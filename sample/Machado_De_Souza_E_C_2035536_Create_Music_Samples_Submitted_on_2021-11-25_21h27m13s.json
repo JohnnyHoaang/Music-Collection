@@ -1,0 +1,21 @@
+{
+    "acousticGuitar": ["Jimmy Page"],
+    "bassGuitar": ["John Paul jones"],
+    "composer": ["Jimmy Page", "Robert Plant"],
+    "drums": ["John Bonhman"],
+    "keyboard": ["John Paul Jones"],
+    "rythmGuitar": ["Jimmy Page"],
+    "producer": ["Jimmy Page"],
+    "engineer": ["Andy Johns", "Diggs"],
+    "duration": ["8:02"],
+    "releaseDate": ["1971-11-08 23:59:59"],
+    "title": ["Stairway To Heaven"],
+    "genre": [
+        "Progressive rock",
+        "Folk rock",
+        "Hard rock"
+    ],
+    "label": "Atlantic",
+    "studio": "Island Studios",
+    "recorded": ["1970-11-05 23:59:59"]
+}

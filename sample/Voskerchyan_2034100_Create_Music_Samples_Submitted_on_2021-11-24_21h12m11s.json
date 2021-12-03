@@ -1,0 +1,50 @@
+{
+    "assistantEngineer": [
+        "Ryan McCormick",
+        "Darren Mora",
+        "Al Sanderson"
+    ],
+    "engineer": [
+        "Greg Collins",
+        "Doug  Hnederson",
+        "Darren Mora"
+    ],
+    "composer": [
+        "Daron Malakian",
+        "Shavo Odadjian"
+    ],
+    "conductor":["Mark Mann"],
+    "stringArangements":["Mark Mann"],
+    "piano": ["Rick Rubin"],
+    "drum": ["John Dolmayan"],
+    "bassGuitar":["Shavo Odadjian"],
+    "electricGuitar":  ["Daron Malkaian"],
+    "leadSingers": [
+        "Serj tankian",
+        "Daron Malkaian"
+    ],
+    "mixingEngineer": [
+        "Greg Gordon",
+        "dave Sardy"
+    ],
+    "director": ["Marcos Siega"],
+    "producer": [
+        "Daron Malkaian",
+        "Rick Rubin",
+        "Serj Tankian",
+        "Dave Sardy"
+    ],
+    "mastering": [
+        "Chris Gehringer",
+        "Will Quinnell",
+        "Vladmimir Meller"
+    ],
+    "duration": ["3:30"],
+    "label": ["American Recordings"],
+    "market": ["worldwide"],
+    "recorded": ["2001-03-10 23:59:59"],
+    "releaseDate": ["2001-08-13 00:00:00"],
+    "artist": ["System of a Down"],
+    "collective": ["System of a Down"],
+    "title": ["Chop Suey!"]
+}

@@ -1,0 +1,30 @@
+{
+    "backgroundVoice": [
+        "Demi Lovato",
+        "Jaden Michaels"
+    ],
+    "composer": ["Demi Lovato"],
+    "drum": ["Josh Alexander"],
+    "duration": ["3:25"],
+    "engineer": [
+        "Josh Alexander",
+        "Chris Garcia"
+        ],
+    "label": ["Hollywood Records"],
+    "leadVoice": ["Demi Lovato"],
+    "lyricist": [    
+        "Josh Alexander",
+        "Billy Steinberg"
+        ],
+    "market": ["worldwide"],
+    "mastering": ["Robert Vosgien"],
+    "mixingEngineer": ["Josh Alexander"],
+    "percussion": ["Josh Alexander"],
+    "producer": [    
+    "Josh Alexander",
+    "Billy Steinberg"
+    ],
+    "recorded": ["2011-12-31 23:59:59"],
+    "releaseDate": ["2012-01-23 23:59:59"],
+    "title": ["Give Your Heart a Break"]
+   }

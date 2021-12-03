@@ -1,0 +1,30 @@
+{
+    "duration": ["3:16"],
+    "engineer": [
+        "Matt Green",
+        "Nate Hertweck", 
+        "Jason Agel",
+        "Bram Tobey"
+    ],
+    "keyboard": ["Andy Chatterley"],
+    "label": [
+        "Roc-A-Fella Reccords",
+        "Def Jam Recordings"
+    ],
+    "performer": [
+        "Kanye West",
+        "JAY-Z"
+    ],
+    "market": ["worldwide"],
+    "recordingPlace": [
+        "The Record Plant, Hollywood, CA",
+        "Sony Music Studios, NYC"
+    ],
+    "releaseDate": ["2007-09-11"],
+    "writter": [
+        "JAY-Z",
+        "Bernie Taupin",
+        "Elton John",
+        "Kanye West"
+    ]
+}

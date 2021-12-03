@@ -1,0 +1,70 @@
+{
+    "additionalVoice": ["Mike Posner"],
+    "assistantEngineer": [
+        "John Armstrong",
+        "Eric Eylands",
+        "Rachael Findlen",
+        "Cameron Montgomery"
+    ],
+    "bassGuitar": ["Mickey Madden"],
+    "collective": ["Maroon 5"],
+    "composer": [
+        "Adam Levine",
+        "Joshua Coleman",
+        "Lukasz Gottwald",
+        "Jacob Hindlin",
+        "Mike Posner",
+        "Henry Walter"
+    ],
+    "drum": [
+        "Matt Flynn",
+        "Cirkut"
+    ],
+    "duration": ["3:55"],
+    "engineer": [
+        "Doug McKean",
+        "Clint Gibbs",
+        "Noah Passovoy",
+        "Jonathan Sher"
+    ],
+    "guitar": [
+        "James Valentine",
+        "Dr. Luke",
+        "Jesse Carmichael"
+    ],
+    "instrumentTechnician": ["Artie Smith"],
+    "keyboard": [
+        "Jesse Carmichael",
+        "PJ Morton",
+        "Dr. Luke",
+        "Ammo",
+        "Cirkut"
+    ],
+    "label": ["222 Records"],
+    "leadVoice": ["Adam Levine"],
+    "lyricist": [
+        "Adam Levine",
+        "Joshua Coleman",
+        "Lukasz Gottwald",
+        "Jacob Hindlin",
+        "Mike Posner",
+        "Henry Walter"
+    ],
+    "market": ["worldwide"],
+    "mixingEngineer": ["John Hanes"],
+    "producer": [
+        "Ammo",
+        "Cirkut"
+    ],
+    "recorded": ["2014-07-31 23:59:59"],
+    "releaseDate": ["2014-01-13 00:00:00"],
+    "synthBass": ["Dr. Luke"],
+    "synthesizer": [
+        "Jesse Carmichael",
+        "PJ Morton",
+        "Dr. Luke",
+        "Ammo",
+        "Cirkut"
+    ],
+    "title": ["Sugar"]
+}

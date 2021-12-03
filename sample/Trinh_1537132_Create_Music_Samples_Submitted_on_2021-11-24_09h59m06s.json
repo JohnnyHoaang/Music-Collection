@@ -1,0 +1,32 @@
+{
+    "composer" : ["Bruno Mars"],
+    "lyricist" : ["Bruno Mars"],
+    "songwriter" : [
+        "Bruno Mars",
+        "Philip Lawrence", 
+        "Ari Levine",
+        "Khalil Walton",
+        "Khari Cain"
+    ],
+    "instrumentation" : [ 
+        "Bruno Mars",
+        "Ari Levine" 
+    ],
+    "engineer" : ["Ari Levine"],
+    "mixingEngineer" : ["Manny Marroquin"],
+    "assistantMixingEngineer" : [
+        "Christian Plata",
+        "Erik Madrid"
+    ],
+    "mastering" : ["Stepehn Marcussen"],
+    "distribution" : ["album"],
+    "label" : ["Elektra Records"],
+    "producer" : [
+        "The Smeezingtons", 
+        "Needlz"
+    ],
+    "recorded" : ["2010-05-20 23:59:59"],
+    "releaseDate" : ["2010-07-20 00:00:00"],
+    "duration" : ["3:41"],
+    "title" : ["Just the Way You Are"]
+}

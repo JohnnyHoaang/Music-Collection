@@ -1,0 +1,41 @@
+{
+    "assistantOrchestraContractor": ["Charlotte Matthews"],
+    "bassGuitar": ["Tom Herbert"],
+    "choir": ["Metro Voices"],
+    "choirArrangement": ["Paul Epworth"],
+    "choirMaster": ["Jenny O'Grady"],
+    "composer": [
+        "Adele Adkins", 
+        "Paul Epworth"
+    ],
+    "drum": ["Leo Taylor"],
+    "duration": ["4:46"],
+    "engineer": ["Matt Wiggins"],
+    "guitar": ["James Reid"],
+    "label": ["XL Recordings"],
+    "leadVoice": ["Adele Adkins"],
+    "lyricist": ["Adele Adkins"],
+    "mastering": ["Tom Coyne"],
+    "market": ["worldwide"],
+    "mixingEngineer": ["Tom Elmhirst"],
+    "orchestralArrangement": [
+        "Paul Epworth", 
+        "J.A.C Redford"
+    ],
+    "orchestraContractor": [
+        "Isobel Griffiths",
+        "Charlotte Matthews"
+    ],
+    "orchestraLeader": ["Thomas Bowes"],
+    "orchestraRecording": ["Simon Rhodes"],
+    "percussion": ["Paul Epworth"],
+    "piano": ["Nikolaj Torp Larsen"],
+    "producer": [
+        "Paul Epworth", 
+        "Pete Hutchings",
+        "Joe Hartwell Jones"
+    ],
+    "recorded": ["2012-09-31 23:59:59"],
+    "releaseDate": ["2012-10-5 00:00:00"],
+    "title": ["Skyfall"]
+}

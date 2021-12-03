@@ -1,0 +1,48 @@
+{
+    "acousticGuitar": [
+        "Vic Fuentes",
+        "Tony Perry"],
+    "bassGuitar": ["Jaime Preciado"],
+    "collective": ["Pierce The Veil (ft. Kellin Quiin)"],
+    "composer": [
+            "Ralf Scheepers",
+            "Magnus Karlsson",
+            "Mat Sinner"
+        ],
+    "drum": ["Mike Fuentes"],
+    "duration": ["3:56"],
+    "engineer": [
+        "Brian Robbins",
+        "John Bender",
+        "Jim Romano"
+        ],
+    "keyboard": ["Dave Yaden"],
+    "label": ["Fearless Records"],
+    "leadVoice": [
+        "Vic Fuentes",
+        "Kellin Quinn"],
+    "lyricist": [
+            "Mike Fuentes",
+            "Vic Fuentes",
+            "Steven S Miller",
+            "Curtis Peoples",
+            "Tony Perry",
+            "Jaime Preciado",
+            "Kellin Quinn"
+        ],
+    "market": ["worldwide"],
+    "mastering": ["Ted Jensen"],
+    "digitalEditing": [
+            "Brian Robbins",
+            "Jim Romano",
+            "Alex Prieto"
+        ],
+    "percussion": ["Eddie Fisher"],
+    "producer": [
+        "Dan Korneff",
+        "Kato Khandwala"
+    ],
+    "recorded": ["2012-06-10 23:59:59"],
+    "releaseDate": ["2012-07-17 00:00:00"],
+    "title": ["King for a Day"]
+   }

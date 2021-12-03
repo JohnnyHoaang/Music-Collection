@@ -1,0 +1,29 @@
+{
+    "label": [
+        "Rostrum Records",
+        "Atlantic Records",
+        "Taylor Gang"
+    ],
+    "title": ["Black and Yellow"],
+    "duration": ["3:37"],
+    "market": "worldwide",
+    "recorded": ["2010-07-22 00:00:00"],
+    "releaseDate": "2010-09-14 00:00:00",
+    "producer": "Stargate",
+    "lyricist": [
+        "Wiz Khalifa",
+        "Mikkel Storleer Eriksen",
+        "Tor Erik Hermansen"
+    ],
+    "recordingEngineer": [
+        "Stargate",
+        "Miles Walker"
+    ],
+    "mixingEngineer": ["Phil Tan"],
+    "masteringEngineer": ["Chris Gehringer"],
+    "assistantEngineer": ["Damien Lewis"],
+    "audioEngineer": [
+        "Stargate",
+        "Miles Walker"
+    ]
+}

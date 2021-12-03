@@ -1,0 +1,31 @@
+{
+ "collective": ["Hybrid"],
+ "songwriters": [
+     "Mike Truman",
+     "Chris Healings",
+     "Lee Mullin"
+ ],
+ "drum": ["Lee Mullin"],
+ "duration": ["9:31"],
+ "engineer": ["Mike Truman"],
+ "keyboard": [
+     "Mike Truman",
+     "Chris Healings"
+ ],
+ "soundDesign": ["Chris Healings"],
+ "label": ["Distinct'ive Breaks"],
+ "market": ["worldwide"],
+ "mastering": [
+     "Mike Truman"
+ ],
+ "mixingEngineer": ["Mike Truman"],
+ "percussion": ["Lee Mullin"],
+ "producer": [
+     "Hybrid"
+ ],
+ "strings":["Russian Federal Orchestra"],
+ "brass":["Russian Federal Orchestra"],
+ "recorded": ["1999-00-00 23:59:59"],
+ "releaseDate": ["1999-06-28 00:00:00"],
+ "title": ["Finished Symphony"]
+}

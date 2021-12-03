@@ -1,0 +1,45 @@
+{
+    "acousticGuitar": ["Jack Antonoff"],
+    "bassGuitar": ["Jack Antonoff"],
+    "collective": ["Taylor Swift"],
+    "composer": [
+    "Taylor Swift",
+    "Liz Rose"
+    ],
+    "drum": [
+    "Jack Antonoff",
+    "Sean Hutchinson"],
+    "duration": ["10:13"],
+    "engineer": [
+    "Jon Gautier",
+    "Ex Reyes",
+    "Michael Riddleberger",
+    "Laura Sisk",
+    "Sean Hutchinson",
+    "John Rooney",
+    "Evan Smith",
+    "Jack Antonoff",
+    "David Hart"
+    ],
+    "keyboard": ["Ex Reyes"],
+    "label": ["Republic Records"],
+    "leadVoice": ["Taylor Swift"],
+    "lyricist": ["Taylor Swift"],
+    "market": ["worldwide"],
+    "mastering": ["Randy Merrill"],
+    "mixingEngineer": ["Bryce Bordone",
+    "Serban Ghenea"
+    ],
+    "percussion": ["Jack Antonoff",
+    "Sean Hutchinson",
+    "Michael Riddleberger"
+    ],
+    "producer": [
+    "Jack Antonoff",
+    "Taylor Swift",
+    "Christopher Rowe"
+    ],
+    "recorded": ["2021-07-17 23:59:59"],
+    "releaseDate": ["2021-10-12 00:00:00"],
+    "title": ["All Too Well (10 Minute Version)(Taylor's Version)[From The Vault]"]
+   }

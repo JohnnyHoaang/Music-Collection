@@ -1,0 +1,44 @@
+{
+    "acousticGuitar": ["Shellback"],
+    "violin":["Mattias Johansson"],
+    "cello":["David Bukovinszky "],
+    "backgroundVoice": ["Taylor Swift"],
+    "bassGuitar": ["Paul Sidoti"],
+    "electricGuitar": ["Shellback"],
+    "composer": [
+      "Taylor Swift", 
+      "Shellback", 
+      "Max Martin"
+    ],
+    "drum": ["Matt Billingslea"],
+    "duration": ["3:40"],
+    "engineer": [
+      "John Hanes", 
+      "Christopher Rowe", 
+      "Randy Merrill"
+    ],
+    "keyboard": ["Max Martin"],
+    "label": ["Big Machine"],
+    "leadVoice": ["Taylor Swift"],
+    "lyricist": [
+      "Taylor Swift", 
+      "Shellback", 
+      "Max Martin"
+    ],
+    "mastering": ["RTom Coyne"],
+    "mixingEngineer": ["John Hanes"],
+    "percussion": ["Matt Billingslea"],
+    "recording": [
+      "Michael Ilbert", 
+      "Sam Holland",
+      "Mattias Bylund"
+    ],
+    "producer": [
+      "Shellback", 
+      "Max Martin"
+    ],
+    "recorded": ["2021-09-17 23:59:59"],
+    "releaseDate": ["2015-08-31 00:00:00"],
+    "vocalEngineering": ["Christopher Rowe"],
+    "title": ["Wildest Dreams"]
+  }

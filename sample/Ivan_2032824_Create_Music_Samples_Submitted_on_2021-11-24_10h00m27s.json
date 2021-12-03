@@ -1,0 +1,27 @@
+{
+	"additionalKeyboards": ["Greg Camp"],
+	"backingVocals": ["Greg Camp"],
+	"bass": ["Paul De Lisle"],
+	"composer": ["Greg Camp"],
+	"collective": ["Smash Mouth"],
+	"drums": ["Micheal Urbano"],
+	"duration": ["3:21"],
+	"engineering": [
+		"Eric Valentine", 
+		"Trevor Adkinson"
+	],
+	"guitars": ["Greg Camp"],
+	"label": ["Interscope"],
+	"lyricist": ["Greg Camp"],
+	"mastering": ["Brian Gardner"],
+	"mixing": ["Eric Valentine"],
+	"producer": ["Eric Valentine"],
+	"recorded": ["1999-01-1 23:59:59"],
+	"releaseDate": ["1999-05-04 00:00:00"],
+	"studio": ["H.O.S"],
+	"title": ["All Star"],
+	"vocals": [
+		"Steve Harwell", 
+		"Paul De Lisle"
+	]
+}

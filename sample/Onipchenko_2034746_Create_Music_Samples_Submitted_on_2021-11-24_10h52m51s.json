@@ -1,0 +1,26 @@
+{
+    "additionalEngineer": [ "Ron Champagne" ],
+    "assistantEngineer" : [
+        "Bob Lacivita",
+        "Leslie Ann Jones"
+    ],
+    "collective": [ "Alice in Chains" ],
+    "backingVoice": [
+        "Jerry Cantrell",
+        "Kevin Shuss",
+        "Sean Kinney"
+    ],
+    "bass": [ "Mike Starr" ],
+    "duration": [ "2:32" ],
+    "guitar": [ "Jerry Cantrell" ],
+    "label": [ "Columbia" ],
+    "leadVoice": [ "Layne Staley" ],
+    "market": [ "worldwide" ],
+    "masteringEngineer": [ "Eddy Schreyer" ],
+    "mixingEngineer": [ "Dave Jerden" ],
+    "percussion": [ "Sean Kinney" ],
+    "producer": [ "Dave Jerden" ],
+    "recorded": [ "1989-12-01 23:59:59" ],
+    "releaseDate": [ "1990-08-21 00:00:00" ],
+    "title": [ "We Die Young" ]
+}
