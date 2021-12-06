@@ -4,14 +4,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Connections {
+public class MusicStudio {
     private Credentials creds;
     private Connection con;
 
-    public Connections(Credentials creds) throws SQLException{
+    public MusicStudio(Credentials creds) throws SQLException{
         this.creds = creds;
         this.con = getConnection(creds.getUser(), creds.getPassword());
-    }    
+    }
 
     public Credentials getCreds() {
         return creds;
