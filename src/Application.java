@@ -10,14 +10,18 @@ public class Application {
     public static void main(String[] args) throws SQLException {
         Console console = System.console();
 
-        String user = console.readLine("Gimme yo damn username: ");
-        String password = new String(console.readPassword("Gimme yo passward: "));
+        String user = console.readLine("Username: ");
+        String password = new String(console.readPassword("Password: "));
 
         try
         {
             Credentials creds = new Credentials(user, password);
             MusicStudio muS = new MusicStudio(creds);
-            Connection con = null;
+
+            //Testing the LOGS
+            Logs gimmeLogs = muS.getUserLogs();
+            System.out.println(gimmeLogs);
+
             System.out.println("entered db");
     
         }catch(

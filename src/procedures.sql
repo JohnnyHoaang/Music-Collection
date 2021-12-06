@@ -63,3 +63,5 @@ AS
 BEGIN
     INSERT INTO COMPILATION VALUES (rec_id,vdate, album_id);   
 END;
+
+-- Use cursors to retrive data
