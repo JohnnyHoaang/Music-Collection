@@ -12,7 +12,9 @@ public class Logs {
     public String getUsername() {
         return username;
     }
-
+    public void addTrack(String log){
+        this.changeTrack += '\n'  + log;
+    }
     public String getChangeTrack() {
         return changeTrack;
     }
