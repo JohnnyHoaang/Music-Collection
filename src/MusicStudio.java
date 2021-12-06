@@ -32,9 +32,7 @@ public class MusicStudio {
         
         String retrieveLogs = "SELECT * FROM USER_LOGS WHERE USERNAME = ?";
         PreparedStatement prep = this.con.prepareStatement(retrieveLogs);
-
-        System.out.println(this.creds.getUser());
-
+        // System.out.println(this.creds.getUser());
         prep.setString(1, this.creds.getUser());
 
         ResultSet rs = prep.executeQuery();

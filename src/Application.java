@@ -17,16 +17,16 @@ public class Application {
         {
             Credentials creds = new Credentials(user, password);
             MusicStudio muS = new MusicStudio(creds);
+            System.out.println("entered db");
 
             //Testing the LOGS
             Logs gimmeLogs = muS.getUserLogs();
             System.out.println(gimmeLogs);
 
-            System.out.println("entered db");
-    
-        }catch(
-        Exception e)
-        {
+            //Calling Procedures
+            //Getting the contributor object
+        }
+        catch(Exception e){
             e.printStackTrace();
         }
         finally{
