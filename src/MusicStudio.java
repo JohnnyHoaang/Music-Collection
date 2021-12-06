@@ -10,7 +10,7 @@ public class MusicStudio {
 
     public MusicStudio(Credentials creds) throws SQLException{
         this.creds = creds;
-        this.con = getConnections(creds.getUser(), creds.getPassword());
+        this.con = connectToDB(creds.getUser(), creds.getPassword());
         
     }
 
@@ -18,7 +18,7 @@ public class MusicStudio {
         return creds;
     }
 
-    public Connection getConnections(String username, String password) throws SQLException {
+    public Connection connectToDB(String username, String password) throws SQLException {
         return DriverManager.getConnection("jdbc:oracle:thin:@198.168.52.211:1521/pdbora19c.dawsoncollege.qc.ca",
                 username, password );
     }

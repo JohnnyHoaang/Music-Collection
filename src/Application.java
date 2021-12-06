@@ -12,12 +12,12 @@ public class Application {
 
         String user = console.readLine("Gimme yo damn username: ");
         String password = new String(console.readPassword("Gimme yo passward: "));
-        // Credentials creds = new Credentials(user, password);
-        // MusicStudio muS = new MusicStudio(creds);
-        Connection con = null;
+
         try
         {
-            con = getConnections(user, password);
+            Credentials creds = new Credentials(user, password);
+            MusicStudio muS = new MusicStudio(creds);
+            Connection con = null;
             System.out.println("entered db");
     
         }catch(
@@ -29,9 +29,6 @@ public class Application {
             //muS.closeConnection();
         }
     }
-    public static Connection getConnections(String username, String password) throws SQLException {
-        return DriverManager.getConnection("jdbc:oracle:thin:@198.168.52.211:1521/pdbora19c.dawsoncollege.qc.ca",
-                username, password );
-    }
+   
   
 }
