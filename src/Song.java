@@ -30,7 +30,6 @@ public class Song {
         this.songOffset = songOffset;
     }
 
-
     public String getName() {
         return name;
     }
