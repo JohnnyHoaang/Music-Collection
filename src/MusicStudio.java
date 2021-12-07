@@ -85,60 +85,80 @@ public class MusicStudio {
 
 
     //Inserting the tables (Not Testing bc VPN sucks)
-    public void insertRecContributor() throws SQLException{
-        String insertContributors = "INSERT INTO CONTRIBUTORS VALUES(?,?,?)";
-        PreparedStatement prep = this.con.prepareStatement(insertContributors);
-        prep.setString(1, "123");
-        prep.setString(2, "BigDennie");
-        prep.setString(3, "Freedman");
-
-        prep.executeUpdate();
-    }
+    
     public void insertRecording() throws SQLException{
-        Date date = new Date(20);
 
-        String insertRecording = "INSERT INTO RECORDING VALUES(?,?,?,?)";
-        PreparedStatement prep = this.con.prepareStatement(insertRecording);
-        prep.setString(1, "123");
-        prep.setDate(2, date);
-        prep.setDouble(3, 23.3);
-        prep.setDouble(4, 565.3);
-
-        prep.executeUpdate();
     }
-    public void insertCollection() throws SQLException{
-        String insertCollection = "INSERT INTO COLLECTION VALUES(?,?)";
-        PreparedStatement prep = this.con.prepareStatement(insertCollection);
-        prep.setString(1, "123");
-        prep.setString(2, "Lonely Child");
+ 
+   
 
-        prep.executeUpdate();
-    }
-    public void insertAlbums() throws SQLException{
-        Date date = new Date(20);
 
-        String insertAlbums = "INSERT INTO ALBUM VALUES(?,?,?,?,?,?,?)";
-        PreparedStatement prep = this.con.prepareStatement(insertAlbums);
-        prep.setString(1, "Album");
-        prep.setDouble(2, 345);
-        prep.setString(3, "EP");
-        prep.setDate(4, date);
-        prep.setDouble(5, 555);
-        prep.setString(6, "world");
-        prep.setString(7, "Place of Planet");
-        
-        prep.executeUpdate();
-    }
-    public void insertContributorRole() throws SQLException{
-        String insertConRole = "INSERT INTO CONTIBUTOR_ROLE VALUES(?,?)";
-        PreparedStatement prep = this.con.prepareStatement(insertConRole);
-        prep.setString(1, "553");
-        prep.setString(2, "Singer");
 
-        prep.executeUpdate();
-    }
+    //PROCEDURE READING
 
-    //sample execution to add contributor: EXECUTE create_CONTRIBUTOR('JOHNNY','HOANG','COO1','R001','RE001');
+//     public void testCreateContributor() throws SQLException{
+// 	String callProcedure = "{call CREATE_CONTRIBUTOR(?,?,?,?,?)}";
+// 	CallableStatement statementCall = this.con.prepareCall(callProcedure);
+	
+// 	statementCall.setString();
+// 	statementCall.setString();
+// 	statementCall.setString();
+// 	statementCall.setString();
+// 	statementCall.setString();
+	
+// 	statementCall.execute();
+// }
+
+public void testcreateContributor(String name, String lname, String cid, String roleid, String recid) throws SQLException{
+	String callProcedure = "{call CREATE_CONTRIBUTOR(?,?,?,?,?)}";
+	CallableStatement statementCall = this.con.prepareCall(callProcedure);
+	
+	statementCall.setString(1,name);
+	statementCall.setString(2,lname);
+	statementCall.setString(3, cid);
+    statementCall.setString(4, roleid);
+    statementCall.setString(5, recid);
+	statementCall.execute();
+}
+
+// public void testCreateCollection() throws SQLException{
+// 	String callProcedure = "{call UPDATE_RECORDING(?,?)}";
+// 	CallableStatement statementCall = this.con.prepareCall(callProcedure);
+	
+// 	statementCall.setString();
+// 	statementCall.setString();
+	
+// 	statementCall.execute();
+// }
+
+// public void testCreateAlbum() throws SQLException{
+// 	String callProcedure = "{call UPDATE_RECORDING(?,?,?,?,?,?,?)}";
+// 	CallableStatement statementCall = this.con.prepareCall(callProcedure);
+	
+// 	statementCall.setString();
+// 	statementCall.setString();
+// 	statementCall.setString();
+// 	statementCall.setDate();
+// 	statementCall.setString();
+// 	statementCall.setString();
+// 	statementCall.setString();
+	
+// 	statementCall.execute();
+// }
+
+// public void testCreateCompilation() throws SQLException{
+// 	String callProcedure = "{call UPDATE_RECORDING(?,?,?)}";
+// 	CallableStatement statementCall = this.con.prepareCall(callProcedure);
+	
+// 	statementCall.setString();
+// 	statementCall.setDate();
+// 	statementCall.setString();
+	
+// 	statementCall.execute();
+// }
+
+
+
     public void closeConnection() throws SQLException{
         this.con.close();
     }

@@ -12,30 +12,29 @@ public class Application {
 
         String user = console.readLine("Username: ");
         String password = new String(console.readPassword("Password: "));
-        // String user ="A2036759";
-        // String password = "Cow4life";
+        //sample to use your password /username, DONT GIVE it TO DIRK
+        // String user ="";
+        // String password = "";
+        MusicStudio muS = null;
         try
         {
             Credentials creds = new Credentials(user, password);
-            MusicStudio muS = new MusicStudio(creds);
+            muS = new MusicStudio(creds);
             System.out.println("entered db");
-
-            //Testing the LOGS
-            // Logs gimmeLogs = muS.getUserLogs();
-            // System.out.println(gimmeLogs);
+;
+            
+            muS.testcreateContributor("Dom", "cuna", "C003", "R002", "RE04");
             muS.printAllRecContributor();
             //Calling Procedures
             //Getting the contributor object
-
-
-            //Testing the insert statements
-            // muS.insertRecContributor();
+            Logs logs = muS.getUserLogs();
+            System.out.println(logs);
         }
         catch(Exception e){
             e.printStackTrace();
         }
         finally{
-            //muS.closeConnection();
+            muS.closeConnection();
         }
     }
    
