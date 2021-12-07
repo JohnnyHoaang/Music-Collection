@@ -138,7 +138,7 @@ public class MusicStudio {
         prep.executeUpdate();
     }
 
-
+    //sample execution to add contributor: EXECUTE create_CONTRIBUTOR('JOHNNY','HOANG','COO1','R001','RE001');
     public void closeConnection() throws SQLException{
         this.con.close();
     }
