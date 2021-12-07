@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 
+import javax.naming.spi.DirStateFactory.Result;
+
 import oracle.jdbc.logging.annotations.Log;
 import oracle.jdbc.proxy.annotation.Pre;
 
@@ -76,13 +78,66 @@ public class MusicStudio {
             System.out.println("Album Id: " + rs.getString("albumid")+ "Name: " + rs.getString("name") +" Category: " + rs.getString("category") + " pubdate: " + rs.getDate("pubdate") + " collection ID: " + rs.getString("collectionid"));
         }
     }
-
-
-
     public void printRecContributor() throws SQLException{
         String contributors = "SELECT * FROM USER_LOGS WHERE USERNAME = ?";
         PreparedStatement prep = this.con.prepareStatement(contributors);
     }
+
+
+    //Inserting the tables (Not Testing bc VPN sucks)
+    public void insertRecContributor() throws SQLException{
+        String insertContributors = "INSERT INTO CONTRIBUTORS VALUES(?,?,?)";
+        PreparedStatement prep = this.con.prepareStatement(insertContributors);
+        prep.setString(1, "123");
+        prep.setString(2, "BigDennie");
+        prep.setString(3, "Freedman");
+
+        prep.executeUpdate();
+    }
+    public void insertRecording() throws SQLException{
+        Date date = new Date(20);
+
+        String insertRecording = "INSERT INTO RECORDING VALUES(?,?,?,?)";
+        PreparedStatement prep = this.con.prepareStatement(insertRecording);
+        prep.setString(1, "123");
+        prep.setDate(2, date);
+        prep.setDouble(3, 23.3);
+        prep.setDouble(4, 565.3);
+
+        prep.executeUpdate();
+    }
+    public void insertCollection() throws SQLException{
+        String insertCollection = "INSERT INTO COLLECTION VALUES(?,?)";
+        PreparedStatement prep = this.con.prepareStatement(insertCollection);
+        prep.setString(1, "123");
+        prep.setString(2, "Lonely Child");
+
+        prep.executeUpdate();
+    }
+    public void insertAlbums() throws SQLException{
+        Date date = new Date(20);
+
+        String insertAlbums = "INSERT INTO ALBUM VALUES(?,?,?,?,?,?,?)";
+        PreparedStatement prep = this.con.prepareStatement(insertAlbums);
+        prep.setString(1, "Album");
+        prep.setDouble(2, 345);
+        prep.setString(3, "EP");
+        prep.setDate(4, date);
+        prep.setDouble(5, 555);
+        prep.setString(6, "world");
+        prep.setString(7, "Place of Planet");
+        
+        prep.executeUpdate();
+    }
+    public void insertContributorRole() throws SQLException{
+        String insertConRole = "INSERT INTO CONTIBUTOR_ROLE VALUES(?,?)";
+        PreparedStatement prep = this.con.prepareStatement(insertConRole);
+        prep.setString(1, "553");
+        prep.setString(2, "Singer");
+
+        prep.executeUpdate();
+    }
+
 
     public void closeConnection() throws SQLException{
         this.con.close();
