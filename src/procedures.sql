@@ -35,8 +35,8 @@ AS
 BEGIN
     UPDATE RECORDING 
     SET rec_date = vdate, 
-    rec_duration = vduration,
-    rec_offset = voffset
+    duration = vduration,
+    offset = voffset
     WHERE recid = rec_id;
 END;
 /
