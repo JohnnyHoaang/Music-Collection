@@ -139,6 +139,73 @@ public class MusicStudio {
     }
 
 
+
+
+    //PROCEDURE READING
+
+    public void testCreateContributor() throws SQLException{
+	String callProcedure = "{call CREATE_CONTRIBUTOR(?,?,?,?,?)}";
+	CallabableStatement statementCall = this.con.prepareCall(callProcedure);
+	
+	statementCall.setString();
+	statementCall.setString();
+	statementCall.setString();
+	statementCall.setString();
+	statementCall.setString();
+	
+	statementCall.execute();
+}
+
+public void testUpdateRecording() throws SQLException{
+	String callProcedure = "{call UPDATE_RECORDING(?,?,?,?)}";
+	CallabableStatement statementCall = this.con.prepareCall(callProcedure);
+	
+	statementCall.setString();
+	statementCall.setDate();
+	statementCall.setDouble();
+	statementCall.setDouble();
+	
+	statementCall.execute();
+}
+
+public void testCreateCollection() throws SQLException{
+	String callProcedure = "{call UPDATE_RECORDING(?,?)}";
+	CallabableStatement statementCall = this.con.prepareCall(callProcedure);
+	
+	statementCall.setString();
+	statementCall.setString();
+	
+	statementCall.execute();
+}
+
+public void testCreateAlbum() throws SQLException{
+	String callProcedure = "{call UPDATE_RECORDING(?,?,?,?,?,?,?)}";
+	CallabableStatement statementCall = this.con.prepareCall(callProcedure);
+	
+	statementCall.setString();
+	statementCall.setString();
+	statementCall.setString();
+	statementCall.setDate();
+	statementCall.setString();
+	statementCall.setString();
+	statementCall.setString();
+	
+	statementCall.execute();
+}
+
+public void testCreateCompilation() throws SQLException{
+	String callProcedure = "{call UPDATE_RECORDING(?,?,?)}";
+	CallabableStatement statementCall = this.con.prepareCall(callProcedure);
+	
+	statementCall.setString();
+	statementCall.setDate();
+	statementCall.setString();
+	
+	statementCall.execute();
+}
+
+
+
     public void closeConnection() throws SQLException{
         this.con.close();
     }
