@@ -2,5 +2,6 @@
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
         "c:\\Users\\cuscu\\Desktop\\ojdbc10.jar"
-    ]
+    ],
+    "liveServer.settings.port": 5501
 }

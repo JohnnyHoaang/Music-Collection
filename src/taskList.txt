@@ -1,0 +1,42 @@
+for ashley, make the ui and what the menu woud look like (choices) for clearer view
+    of what functions/procedures to implement in java
+
+for domenico: test procedures, we test adding information on compilation and hows its going to layout
+
+for johnny: can do delete procedures (ashley can do it if she wants), implementing procedures to java
+//to use delete, use a cursor to go through all info
+
+What initial data should be shown? JSON or directly insert in table set up
+
+Together: SOMEHOW USE JAVA OBJECTS FOR THE PROJECT
+
+UI Ideas:
+LOGIN
+----
+WELCOME
+CHOOSE YOUR OPTIONS
+1.VIEW data
+    ->VIEW CONTRIBUTORS
+    ->VIEW RECORDINGS (GIVE CID)
+    -> ...
+2.ADD data
+    ->ADD CONTRIBUTORS
+    ->ADD RECORDINGS
+    -> ...
+3.UPDATE DATA 
+    ->UPDATE CONTRIBUTORS
+    ->UPDATE RECORDINGS
+    -> ...
+4.DELETE DATA
+    ->DELETE CONTRIBUTORS
+    ->DELETE ALBUM
+    ->...
+5.EXIT
+
+
+AT THE END, SAVE LOGS AND PRINT
+
+
+test if many people can have the same rec Idea.
+test function
+test procedure delete
