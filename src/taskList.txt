@@ -35,3 +35,8 @@ CHOOSE YOUR OPTIONS
 
 
 AT THE END, SAVE LOGS AND PRINT
+
+
+test if many people can have the same rec Idea.
+test function
+test procedure delete

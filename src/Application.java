@@ -10,11 +10,11 @@ public class Application {
     public static void main(String[] args) throws SQLException {
         Console console = System.console();
 
-        String user = console.readLine("Username: ");
-        String password = new String(console.readPassword("Password: "));
+        // String user = console.readLine("Username: ");
+        // String password = new String(console.readPassword("Password: "));
         //sample to use your password /username, DONT GIVE it TO DIRK
-        // String user ="";
-        // String password = "";
+        String user ="";
+        String password = "";
         MusicStudio muS = null;
         try
         {

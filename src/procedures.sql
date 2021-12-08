@@ -19,16 +19,6 @@ BEGIN
 END;
 /
 
---delete contributor 
---CREATE OR REPLACE PROCEDURE DELETE_CONTRIBUTOR(contributor_id IN VARCHAR2)
---AS
-----use varray to access every recording and delete them
---recording_id recording.recid%type;
---BEGIN
---    SELECT 
---    DELETE FROM CONTRIBUTOR WHERE contributorid = contributor_id;
---END;
-
 --update recording
 CREATE OR REPLACE PROCEDURE UPDATE_RECORDING (rec_id IN VARCHAR2, vdate DATE, vduration IN NUMBER, voffset IN NUMBER)
 AS
@@ -65,3 +55,59 @@ BEGIN
 END;
 
 -- Use cursors to retrive data
+--create a function that counts recid,used for deletes, if recid = 0, 
+--no need to delete all the relations
+CREATE OR REPLACE FUNCTION COUNT_RECID(contributor_id IN VARCHAR2)
+RETURN NUMBER
+IS 
+countRecs NUMBER;
+BEGIN 
+    SELECT COUNT(rec_id) into countRecs 
+    FROM CONTRIBUTOR 
+    JOIN CONTRIBUTOR_REC USING(rec_id)
+    WHERE contributorid = contributor_id;
+    RETURN countRecs;
+
+    exception
+      when others then
+        raise_application_error(-20001, 'Invalid Recid' || ' ' || SQLERRM);
+END;
+
+CREATE OR REPLACE PROCEDURE DELETE_CONTRIBUTOR (contributor_id IN VARCHAR2)
+AS
+begin
+  if count_recid(contributor_id) = 0 then
+  delete from contributor where contributorid = contributor_id;
+  else
+  --delete all relations
+  delete from contributor_rec where contributorid = contributor_id;
+  delete from contributor where contributorid = contributor_id;
+end;
+
+--asumming album is one song
+CREATE OR REPLACE PROCEDURE DELETE_SONG(album_id IN VARCHAR2)
+AS
+begin
+  FOR arow in (SELECT * FROM compilation where albumid = album_id) 
+  loop
+    delete from compilation where recid = arow.recid;
+  end loop
+      delete from album where albumid = album_id;
+end;
+
+--deletes everything from compilation then will delete all its albums then the collection
+CREATE OR REPLACE PROCEDURE DELETE_COLLECTION(collection_id IN VARCHAR2)
+AS
+album_id compilation.albumid%type;
+begin
+  for arow in (SELECT albumid FROM album JOIN COMPILATION 
+  USING (albumid) where collectionid = collection_id)
+  loop
+    delete from compilation where albumid = arow.albumid;
+  end loop
+      for vrow IN (SELECT albumid FROM album where collectionid = collection_id)
+      loop
+        delete from album where albumid = vrow.albumid;
+      end loop
+    delete from collection where collectionid = collection_id;
+end;

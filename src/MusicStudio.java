@@ -90,29 +90,9 @@ public class MusicStudio {
 
     }
  
-   
-
-
-
-    //PROCEDURE READING
-
-//     public void testCreateContributor() throws SQLException{
-// 	String callProcedure = "{call CREATE_CONTRIBUTOR(?,?,?,?,?)}";
-// 	CallableStatement statementCall = this.con.prepareCall(callProcedure);
-	
-// 	statementCall.setString();
-// 	statementCall.setString();
-// 	statementCall.setString();
-// 	statementCall.setString();
-// 	statementCall.setString();
-	
-// 	statementCall.execute();
-// }
-
 public void testcreateContributor(String name, String lname, String cid, String roleid, String recid) throws SQLException{
 	String callProcedure = "{call CREATE_CONTRIBUTOR(?,?,?,?,?)}";
 	CallableStatement statementCall = this.con.prepareCall(callProcedure);
-	
 	statementCall.setString(1,name);
 	statementCall.setString(2,lname);
 	statementCall.setString(3, cid);
@@ -121,43 +101,23 @@ public void testcreateContributor(String name, String lname, String cid, String 
 	statementCall.execute();
 }
 
-// public void testCreateCollection() throws SQLException{
-// 	String callProcedure = "{call UPDATE_RECORDING(?,?)}";
-// 	CallableStatement statementCall = this.con.prepareCall(callProcedure);
-	
-// 	statementCall.setString();
-// 	statementCall.setString();
-	
-// 	statementCall.execute();
-// }
+public void updateRecording(String recid, Date date, double duration, double offset) throws SQLException{
+	String callProcedure = "{call UPDATE_RECORDING(?,?)}";
+	CallableStatement statementCall = this.con.prepareCall(callProcedure);
+	statementCall.setString(1,recid);
+	statementCall.setDate(2, date);
+	statementCall.setDouble(3, duration);
+	statementCall.setDouble(4, offset);
+	statementCall.execute();
+}
 
-// public void testCreateAlbum() throws SQLException{
-// 	String callProcedure = "{call UPDATE_RECORDING(?,?,?,?,?,?,?)}";
-// 	CallableStatement statementCall = this.con.prepareCall(callProcedure);
-	
-// 	statementCall.setString();
-// 	statementCall.setString();
-// 	statementCall.setString();
-// 	statementCall.setDate();
-// 	statementCall.setString();
-// 	statementCall.setString();
-// 	statementCall.setString();
-	
-// 	statementCall.execute();
-// }
-
-// public void testCreateCompilation() throws SQLException{
-// 	String callProcedure = "{call UPDATE_RECORDING(?,?,?)}";
-// 	CallableStatement statementCall = this.con.prepareCall(callProcedure);
-	
-// 	statementCall.setString();
-// 	statementCall.setDate();
-// 	statementCall.setString();
-	
-// 	statementCall.execute();
-// }
-
-
+public void createCollection(String collectionid, String albumname) throws SQLException{
+    String callProcedure = "{call CREATE_COLLECTION(?,?)}";
+    CallableStatement statementCall = this.con.prepareCall(callProcedure);
+    statementCall.setString(1, collectionid);
+    statementCall.setString(2, albumname);
+    statementCall.execute();
+}
 
     public void closeConnection() throws SQLException{
         this.con.close();
