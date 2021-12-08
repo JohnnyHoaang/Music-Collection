@@ -63,3 +63,8 @@ AS
 BEGIN
     INSERT INTO COMPILATION VALUES (rec_id,vdate, album_id);   
 END;
+CREATE OR REPLACE PROCEDURE DELETE_COMPILATION (vrec_id IN VARCHAR2, vdate IN DATE, valbum_id IN VARCHAR2)
+AS
+BEGIN
+    DELETE FROM COMPILATION WHERE rec_id = vrec_id AND date = vdate AND album_id = valbum_id;
+END ;
