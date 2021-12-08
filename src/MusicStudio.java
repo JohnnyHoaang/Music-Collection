@@ -131,12 +131,19 @@ public class MusicStudio {
         statementCall.setString(1, albumId);
         statementCall.execute();
     }
-    public void deleteContributor(String collectionId) throws SQLException{
+    public void deleteContributor(String contributorId) throws SQLException{
         String delContr = "{call DELETE_CONTRIBUTOR(?)}";
         CallableStatement statementCall = this.con.prepareCall(delContr);
+        statementCall.setString(1, contributorId);
+        statementCall.execute();
+    }
+    public void deleteCollection(String collectionId) throws SQLException{
+        String delColl = "{call DELETE_COLLECTION(?)}";
+        CallableStatement statementCall = this.con.prepareCall(delColl);
         statementCall.setString(1, collectionId);
         statementCall.execute();
     }
+    
 
     public void closeConnection() throws SQLException{
         this.con.close();
