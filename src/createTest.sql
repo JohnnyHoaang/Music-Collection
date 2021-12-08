@@ -66,16 +66,19 @@ VALUES('RE002', SYSDATE, 'AL004');
 INSERT INTO COMPILATION
 VALUES('RE003', SYSDATE, 'AL004');
 
-select (c_first || ' ' || c_last) AS FULLNAME, title, recid, offset, duration from album JOIN COMPILATION USING(albumid) 
-JOIN RECORDING USING (recid) JOIN CONTRIBUTOR_REC USING(recid) JOIN CONTRIBUTOR
-USING(contributorid) where albumid = 'AL004';
+--select (c_first || ' ' || c_last) AS FULLNAME, title, recid, offset, duration from album JOIN COMPILATION USING(albumid) 
+--JOIN RECORDING USING (recid) JOIN CONTRIBUTOR_REC USING(recid) JOIN CONTRIBUTOR
+--USING(contributorid) where albumid = 'AL004';
 
 select * from album JOIN COMPILATION USING(albumid) 
 JOIN RECORDING USING (recid) JOIN CONTRIBUTOR_REC USING(recid) JOIN CONTRIBUTOR
 USING(contributorid) where albumid = 'AL004';
 
-execute delete_song('AL004');
-select * from album;
+select * from collection;
+execute delete_collection('COL04');
+
+--execute delete_song('AL004');
+--select * from album;
 --Trigger for User Logs
 
 --ON INSERT
@@ -108,4 +111,4 @@ SELECT * FROM USER_LOGS;
 --select c_first, rolename from contributor_role JOIN CONTRIBUTOR_REC 
 --USING(roleid) JOIN CONTRIBUTOR USING(contributorid);
 
-select user from dual;
+

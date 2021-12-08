@@ -28,7 +28,7 @@ public class MusicStudio {
         return DriverManager.getConnection("jdbc:oracle:thin:@198.168.52.211:1521/pdbora19c.dawsoncollege.qc.ca",
                 username, password );
     }
-
+    //PLEASE FIX THAT DOMENICO OR ASHLEY IM TOO LAZY AND DONE WITH LIFE
     public Logs getUserLogs() throws SQLException{
         Logs logMessage = new Logs(this.creds.getUser());
         

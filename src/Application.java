@@ -42,6 +42,8 @@ public class Application {
                  else if(result.equals("2")){
                     System.out.println("Please fill all the information of the song you wanna add:");
                     //loop through the song prop arrays here
+                    //muS.createContributor();
+                    //muS.updateRecording();
                     
                  }
                  else if(result.equals("3")){
@@ -67,10 +69,10 @@ public class Application {
             System.out.println("entered db");
 
             
-            muS.testcreateContributor("NICO", "LAS", "C002", "R004", "RE06");
+            //muS.testcreateContributor("NICO", "LAS", "C002", "R004", "RE06");
             muS.printAllRecContributor();
 
-            muS.deleteSong();
+            //muS.deleteSong();
             //Calling Procedures
             //Getting the contributor object
             Logs logs = muS.getUserLogs();
