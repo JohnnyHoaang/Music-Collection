@@ -62,9 +62,9 @@ RETURN NUMBER
 IS 
 countRecs NUMBER;
 BEGIN 
-    SELECT COUNT(rec_id) into countRecs 
+    SELECT COUNT(recid) into countRecs 
     FROM CONTRIBUTOR 
-    JOIN CONTRIBUTOR_REC USING(rec_id)
+    JOIN CONTRIBUTOR_REC USING(contributorid)
     WHERE contributorid = contributor_id;
     RETURN countRecs;
 
@@ -105,10 +105,10 @@ begin
   USING (albumid) where collectionid = collection_id)
   loop
     delete from compilation where albumid = arow.albumid;
-  end loop
+  end loop;
       for vrow IN (SELECT albumid FROM album where collectionid = collection_id)
       loop
         delete from album where albumid = vrow.albumid;
-      end loop
+      end loop;
     delete from collection where collectionid = collection_id;
 end;
