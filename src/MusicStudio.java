@@ -102,7 +102,7 @@ public void testcreateContributor(String name, String lname, String cid, String 
 }
 
 public void updateRecording(String recid, Date date, double duration, double offset) throws SQLException{
-	String callProcedure = "{call UPDATE_RECORDING(?,?)}";
+	String callProcedure = "{call UPDATE_RECORDING(?,?,?,?)}";
 	CallableStatement statementCall = this.con.prepareCall(callProcedure);
 	statementCall.setString(1,recid);
 	statementCall.setDate(2, date);
