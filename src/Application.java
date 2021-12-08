@@ -25,6 +25,8 @@ public class Application {
             
             muS.testcreateContributor("NICO", "LAS", "C002", "R004", "RE06");
             muS.printAllRecContributor();
+
+            muS.deleteSong();
             //Calling Procedures
             //Getting the contributor object
             Logs logs = muS.getUserLogs();

@@ -84,40 +84,59 @@ public class MusicStudio {
     }
 
 
+
+ 
+
     //Inserting the tables (Not Testing bc VPN sucks)
     
     public void insertRecording() throws SQLException{
 
     }
- 
-public void testcreateContributor(String name, String lname, String cid, String roleid, String recid) throws SQLException{
-	String callProcedure = "{call CREATE_CONTRIBUTOR(?,?,?,?,?)}";
-	CallableStatement statementCall = this.con.prepareCall(callProcedure);
-	statementCall.setString(1,name);
-	statementCall.setString(2,lname);
-	statementCall.setString(3, cid);
-    statementCall.setString(4, roleid);
-    statementCall.setString(5, recid);
-	statementCall.execute();
-}
+    
+    //Testing the Procedures
+    public void testcreateContributor(String name, String lname, String cid, String roleid, String recid) throws SQLException{
+        String callProcedure = "{call CREATE_CONTRIBUTOR(?,?,?,?,?)}";
+        CallableStatement statementCall = this.con.prepareCall(callProcedure);
+        statementCall.setString(1,name);
+        statementCall.setString(2,lname);
+        statementCall.setString(3, cid);
+        statementCall.setString(4, roleid);
+        statementCall.setString(5, recid);
+        statementCall.execute();
+    }
 
-public void updateRecording(String recid, Date date, double duration, double offset) throws SQLException{
-	String callProcedure = "{call UPDATE_RECORDING(?,?,?,?)}";
-	CallableStatement statementCall = this.con.prepareCall(callProcedure);
-	statementCall.setString(1,recid);
-	statementCall.setDate(2, date);
-	statementCall.setDouble(3, duration);
-	statementCall.setDouble(4, offset);
-	statementCall.execute();
-}
+    public void updateRecording(String recid, Date date, double duration, double offset) throws SQLException{
+        String callProcedure = "{call UPDATE_RECORDING(?,?,?,?)}";
+        CallableStatement statementCall = this.con.prepareCall(callProcedure);
+        statementCall.setString(1,recid);
+        statementCall.setDate(2, date);
+        statementCall.setDouble(3, duration);
+        statementCall.setDouble(4, offset);
+        statementCall.execute();
+    }
 
-public void createCollection(String collectionid, String albumname) throws SQLException{
-    String callProcedure = "{call CREATE_COLLECTION(?,?)}";
-    CallableStatement statementCall = this.con.prepareCall(callProcedure);
-    statementCall.setString(1, collectionid);
-    statementCall.setString(2, albumname);
-    statementCall.execute();
-}
+    public void createCollection(String collectionid, String albumname) throws SQLException{
+        String callProcedure = "{call CREATE_COLLECTION(?,?)}";
+        CallableStatement statementCall = this.con.prepareCall(callProcedure);
+        statementCall.setString(1, collectionid);
+        statementCall.setString(2, albumname);
+        statementCall.execute();
+    }
+
+
+    //Delete data from the table
+    public void deleteSong(String albumId) throws SQLException{
+        String delSong = "{call DELETE_SONG(?)}";
+        CallableStatement statementCall = this.con.prepareCall(delSong);
+        statementCall.setString(1, albumId);
+        statementCall.execute();
+    }
+    public void deleteContributor(String collectionId) throws SQLException{
+        String delContr = "{call DELETE_CONTRIBUTOR(?)}";
+        CallableStatement statementCall = this.con.prepareCall(delContr);
+        statementCall.setString(1, collectionId);
+        statementCall.execute();
+    }
 
     public void closeConnection() throws SQLException{
         this.con.close();
