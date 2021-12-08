@@ -72,7 +72,7 @@ BEGIN
       when others then
         raise_application_error(-20001, 'Invalid Recid' || ' ' || SQLERRM);
 END;
-
+/
 CREATE OR REPLACE PROCEDURE DELETE_CONTRIBUTOR (contributor_id IN VARCHAR2)
 AS
 begin
@@ -82,8 +82,9 @@ begin
   --delete all relations
   delete from contributor_rec where contributorid = contributor_id;
   delete from contributor where contributorid = contributor_id;
+  end if;
 end;
-
+/
 --asumming album is one song
 CREATE OR REPLACE PROCEDURE DELETE_SONG(album_id IN VARCHAR2)
 AS
@@ -91,10 +92,10 @@ begin
   FOR arow in (SELECT * FROM compilation where albumid = album_id) 
   loop
     delete from compilation where recid = arow.recid;
-  end loop
+  end loop;
       delete from album where albumid = album_id;
 end;
-
+/
 --deletes everything from compilation then will delete all its albums then the collection
 CREATE OR REPLACE PROCEDURE DELETE_COLLECTION(collection_id IN VARCHAR2)
 AS
