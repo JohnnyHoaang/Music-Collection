@@ -37,6 +37,19 @@ CHOOSE YOUR OPTIONS
 AT THE END, SAVE LOGS AND PRINT
 
 
-test if many people can have the same rec Idea.
-test function
-test procedure delete
+test if many people can have the same rec Idea - not yet
+--test function
+--test procedure delete
+
+DONE : 
+create CONTRIBUTORS,
+create collection
+count_rec
+delete_contributor
+delete_song
+delete_collection
+
+to do : 
+
+
+

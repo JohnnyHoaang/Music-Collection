@@ -78,9 +78,7 @@ execute delete_song('AL004');
 select * from album;
 --Trigger for User Logs
 
---ON INSERT-
-
-
+--ON INSERT
 
 SELECT * FROM USER_LOGS;
 
