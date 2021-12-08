@@ -1,5 +1,6 @@
 package src;
 
+import src.entities.*;
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;

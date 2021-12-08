@@ -1,4 +1,4 @@
-package src;
+package src.entities;
 public class Role {
     private String roleId;
     private String rolename;

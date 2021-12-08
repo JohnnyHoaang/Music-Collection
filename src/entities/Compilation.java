@@ -1,5 +1,7 @@
-package src;
+package src.entities;
 import java.sql.Date;
+
+import src.entities.Album;
 
 public class Compilation {
     

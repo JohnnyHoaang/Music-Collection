@@ -1,5 +1,6 @@
 package src;
 
+import src.entities.*;
 import java.io.Console;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,10 +17,11 @@ public class Application {
         // String user ="";
         // String password = "";
         MusicStudio muS = null;
+        Scanner scanner = null;
         try
         {
             Credentials creds = new Credentials(user, password);
-            Scanner scanner = new Scanner(System.in);
+            scanner = new Scanner(System.in);
             boolean open = true;
             while(open){
                  System.out.println("Welcome to our program");
@@ -79,8 +81,6 @@ public class Application {
             
             //muS.createContributor("NICO", "LAS", "C002", "R004", "RE06");
             muS.printAllRecContributor();
-
-            //muS.deleteSong();
             //Calling Procedures
             //Getting the contributor object
             Logs logs = muS.getUserLogs();
@@ -90,6 +90,7 @@ public class Application {
             e.printStackTrace();
         }
         finally{
+            scanner.close();
             muS.closeConnection();
         }
     }
