@@ -36,14 +36,17 @@ public class Application {
                     var song = scanner.next();
                     System.out.println("Here is the information of the song you chose");
                    //print all informantion of the song here
-   
+                    //muS.printAllRecContributors();
+                    //muS.printAllRecordings();
+                    //muS.printAllCollection();
+                    //mus.printAllAlbums();
 
                  }
                  else if(result.equals("2")){
                     System.out.println("Please fill all the information of the song you wanna add:");
                     //loop through the song prop arrays here
-                    //muS.createContributor();
-                    //muS.updateRecording();
+                    //muS.createContributor(fname,lname,cid,roleid,recid);
+                    //muS.updateRecording(recid,date,duration,offset);
                     
                  }
                  else if(result.equals("3")){
@@ -58,6 +61,11 @@ public class Application {
                     System.out.println("Which song do you want to delete :");
                     var answer = scanner.next();
                     //Log all the change here
+                    //muS.deleteSong(albumid);
+                    //which contributor to delete
+                    //muS.deleteContributor(contributorid);
+                    //which collection to delete
+                    //muS.deleteCollection(collectionid)
                  }
                  else if(result.equals("5")){
                      //Print all user log 
@@ -69,7 +77,7 @@ public class Application {
             System.out.println("entered db");
 
             
-            //muS.testcreateContributor("NICO", "LAS", "C002", "R004", "RE06");
+            //muS.createContributor("NICO", "LAS", "C002", "R004", "RE06");
             muS.printAllRecContributor();
 
             //muS.deleteSong();

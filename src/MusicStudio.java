@@ -94,7 +94,7 @@ public class MusicStudio {
     }
     
     //Testing the Procedures
-    public void testcreateContributor(String name, String lname, String cid, String roleid, String recid) throws SQLException{
+    public void createContributor(String name, String lname, String cid, String roleid, String recid) throws SQLException{
         String callProcedure = "{call CREATE_CONTRIBUTOR(?,?,?,?,?)}";
         CallableStatement statementCall = this.con.prepareCall(callProcedure);
         statementCall.setString(1,name);
