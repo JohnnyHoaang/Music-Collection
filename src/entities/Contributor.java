@@ -17,7 +17,7 @@ public class Contributor {
         return cFirst;
     }
 
-    public String getcLast() {
+    public String getClast() {
         return cLast;
     }
 
