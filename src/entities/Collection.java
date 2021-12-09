@@ -8,6 +8,7 @@ public class Collection {
     private String label;
     private String market;
   
+    public Connection
     public Collection(String collectionId, String name, Date releaseDate, String label, String market){
         this.collectionId = collectionId;
         this.name = name;

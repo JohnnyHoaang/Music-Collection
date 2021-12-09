@@ -6,11 +6,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 
-import javax.naming.spi.DirStateFactory.Result;
-
-import oracle.jdbc.logging.annotations.Log;
-import oracle.jdbc.proxy.annotation.Pre;
-
 public class MusicStudio {
     private Credentials creds;
     private Connection con;
@@ -18,7 +13,9 @@ public class MusicStudio {
     public MusicStudio(Credentials creds) throws SQLException{
         this.creds = creds;
         this.con = connectToDB(creds.getUser(), creds.getPassword());
-        
+        if (this.con == null){
+            throw new IllegalArgumentException("Connection cannot be null");
+        }        
     }
 
     public Credentials getCreds() {
@@ -84,10 +81,6 @@ public class MusicStudio {
         PreparedStatement prep = this.con.prepareStatement(contributors);
     }
 
-
-
- 
-
     //Inserting the tables (Not Testing bc VPN sucks)
     
     public void insertRecording() throws SQLException{
@@ -95,12 +88,12 @@ public class MusicStudio {
     }
     
     //Testing the Procedures
-    public void createContributor(String name, String lname, String cid, String roleid, String recid) throws SQLException{
+    public void createContributor(Contributor contributor, String roleid, String recid) throws SQLException{
         String callProcedure = "{call addpkg.CREATE_CONTRIBUTOR(?,?,?,?,?)}";
         CallableStatement statementCall = this.con.prepareCall(callProcedure);
-        statementCall.setString(1,name);
-        statementCall.setString(2,lname);
-        statementCall.setString(3, cid);
+        statementCall.setString(1,contributor.getCfirst());
+        statementCall.setString(2,contributor.getcLast());
+        statementCall.setString(3, contributor.getContributorId());
         statementCall.setString(4, roleid);
         statementCall.setString(5, recid);
         statementCall.execute();
@@ -174,4 +167,5 @@ public class MusicStudio {
     public void closeConnection() throws SQLException{
         this.con.close();
     }
+    //Date.valueOf("1997-03-10");
 }
