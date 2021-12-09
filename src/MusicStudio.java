@@ -141,6 +141,31 @@ public class MusicStudio {
         statementCall.execute();
     }
     
+    public void updateTable(String table, String column, String givenId, String newData) throws SQLException{
+        String id= " ";
+        switch(table){
+            case "album":
+            id = "albumid";
+            break;
+            case "collection":
+            id = "collectionid";
+            break;
+            case "recording":
+            id = "recid";
+            break;
+            case "contributor":
+            id = "contributorid";
+            break;
+            case "contributor_role":
+            id = "roleid";
+            break;
+        }
+        String sql = "update "+table + " set " + column + " = ? where " + id + " = ?";
+        PreparedStatement prep = this.con.prepareStatement(sql);
+        prep.setString(1, newData);
+        prep.setString(2, givenId);
+        prep.executeUpdate();
+    }
 
     public void closeConnection() throws SQLException{
         this.con.close();

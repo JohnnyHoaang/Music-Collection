@@ -50,6 +50,10 @@ delete_song
 delete_collection
 
 to do : 
-
+packages,
+unit tests,
+objects (print view)
+UPDATE!!!!!!
+and CREATE!!!!
 
 
