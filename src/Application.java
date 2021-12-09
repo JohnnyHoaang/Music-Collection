@@ -21,6 +21,7 @@ public class Application {
         try
         {
             Credentials creds = new Credentials(user, password);
+            muS = new MusicStudio(creds);
             scanner = new Scanner(System.in);
             boolean open = true;
             while(open){
@@ -34,8 +35,10 @@ public class Application {
                  var result = scanner.next();
                  if(result.equals("1")){
                     //Print all song in the library here
-                    System.out.println("Which song do you want to view?");
-                    var song = scanner.next();
+                    muS.printAllAlbums();
+                    System.out.println("Which song do you want to view? Pick the song id please...");
+                    String songid = scanner.next();
+                    //print song info method
                     System.out.println("Here is the information of the song you chose");
                    //print all informantion of the song here
                     //muS.printAllRecContributors();
@@ -47,6 +50,10 @@ public class Application {
                  else if(result.equals("2")){
                     System.out.println("Please fill all the information of the song you wanna add:");
                     //loop through the song prop arrays here
+                    System.out.println("Creating contributors:");
+                    System.out.println("");
+                    //creates an object contributor
+                    //muS.createContributor(contributor)
                     //muS.createContributor(fname,lname,cid,roleid,recid);
                     //muS.updateRecording(recid,date,duration,offset);
                     
@@ -56,6 +63,7 @@ public class Application {
                     var answer = scanner.next();
                     System.out.println("Which song do you want to update?");
                     var song = scanner.next();
+                    //muS.updateTable(String table, String column, String givenId, String newData)
                     //Log the change here 
 
                  }
@@ -74,15 +82,15 @@ public class Application {
                      open = false;
                 }
             }
-
-            muS = new MusicStudio(creds);
             System.out.println("entered db");
 
             
             //muS.createContributor("NICO", "LAS", "C002", "R004", "RE06");
-            muS.printAllRecContributor();
+            
             //Calling Procedures
             //Getting the contributor object
+            muS.updateTable("contributor", "c_first", "C002", "Dan");
+            muS.printAllRecContributor();
             Logs logs = muS.getUserLogs();
             System.out.println(logs);
         }
