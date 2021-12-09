@@ -20,8 +20,7 @@ CREATE OR REPLACE PROCEDURE UPDATE_ALBUM (valbum_id IN VARCHAR2, vtitle in varch
 AS
 BEGIN
     UPDATE ALBUM
-    SET album_id = valbum_id, 
-    title = vtitle,
+    SET title = vtitle,
     category = vcategory,
     pubdate = vpubdate,
     collectionid = vcollectionid,
