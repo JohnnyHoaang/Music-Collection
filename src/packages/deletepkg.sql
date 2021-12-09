@@ -6,6 +6,7 @@ RETURN NUMBER;
 PROCEDURE DELETE_CONTRIBUTOR(contributor_id IN VARCHAR2);
 PROCEDURE DELETE_SONG(album_id IN VARCHAR2);
 PROCEDURE DELETE_COLLECTION(collection_id IN VARCHAR2);
+PROCEDURE DELETE_RECORDING(recording_id IN VARCHAR2);
 END deletepkg;
 /
 CREATE OR REPLACE PACKAGE BODY deletepkg IS
@@ -59,5 +60,18 @@ begin
       end loop;
     delete from collection where collectionid = collection_id;
 end DELETE_COLLECTION;
+
+--Delete Recordings
+PROCEDURE DELETE_RECORDING (recording_id IN VARCHAR2)AS
+BEGIN
+  for arow in (SELECT * FROM RECORDING JOIN COMPILATION 
+              USING(recid) WHERE recid = recording_id) loop
+      delete from compilation where recid = arow.recid;
+  END LOOP;
+  delete from recording where recid = recording_id;
+END DELETE_RECORDING;
+
+
 END deletepkg;
 
+--test delete_recording

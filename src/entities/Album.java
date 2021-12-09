@@ -4,14 +4,20 @@ public class Album {
     private String albumid;
     private String category;
     private Date pubdate;
-    private String name;
+    private String title;
     private String collectionid;
 
-    public Album(String albumid,String category, Date pubdate, String name, String collectionid){
+    public Album(String albumid, String title){
+        if (albumid == null || title == null){
+            throw new IllegalArgumentException("Album id or title cannot be null");
+        }
         this.albumid = albumid;
+        this.title = title;
+    }
+    public Album(String albumid,String category, Date pubdate, String title, String collectionid){
+        this(albumid, title);
         this.category = category;
         this.pubdate = pubdate;
-        this.name = name;
         this.collectionid = collectionid;
     }
 
@@ -27,11 +33,16 @@ public class Album {
         return pubdate;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
     public String getCollectionid() {
         return collectionid;
+    }
+
+    public String toString(){
+        String printing = "AlbumId: "+this.albumid+" | Category: "+" | PubDate: "+this.pubdate+" | Name: "+this.title+" | CollectionId: "+this.collectionid;
+        return printing;
     }
 }
