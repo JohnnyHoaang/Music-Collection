@@ -34,4 +34,9 @@ public class Album {
     public String getCollectionid() {
         return collectionid;
     }
+
+    public String toString(){
+        String printing = "AlbumId: "+this.albumid+" | Category: "+" | PubDate: "+this.pubdate+" | Name: "+this.name+" | CollectionId: "+this.collectionid;
+        return printing;
+    }
 }

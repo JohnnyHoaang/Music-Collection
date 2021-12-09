@@ -29,4 +29,9 @@ public class Compilation {
     public String getCompilationid(){
         return this.compilationid;
     }
+
+    public String toString(){
+        String printing = "Recording: "+this.rec+" | Album: "+this.album+" | Date: "+this.date+" | CompilationId: "+this.compilationid;
+        return printing;
+    }
 }

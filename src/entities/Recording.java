@@ -36,4 +36,10 @@ public class Recording {
     public Date getDate() {
         return date;
     }
+
+    public String toString(){
+        String printing = "RecordingId: "+this.recordingId+" | Date: "+this.date;
+        return printing;
+    }
+
 }

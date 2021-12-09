@@ -90,10 +90,6 @@ public class MusicStudio {
 
     //Inserting the tables (Not Testing bc VPN sucks)
     
-    public void insertRecording() throws SQLException{
-
-    }
-    
     //Testing the Procedures
     public void createContributor(String name, String lname, String cid, String roleid, String recid) throws SQLException{
         String callProcedure = "{call addpkg.CREATE_CONTRIBUTOR(?,?,?,?,?)}";

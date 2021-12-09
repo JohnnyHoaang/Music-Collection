@@ -16,4 +16,8 @@ public class Role {
         return rolename;
     }
 
+    public String toString(){
+        String printing = "RoleId: "+this.roleId+" | Role name: "+this.rolename;
+        return printing;
+    }
 }
