@@ -164,11 +164,27 @@ public class MusicStudio {
             id = "roleid";
             break;
         }
-        String sql = "update "+table + " set " + column + " = ? where " + id + " = ?";
-        PreparedStatement prep = this.con.prepareStatement(sql);
-        prep.setString(1, newData);
-        prep.setString(2, givenId);
-        prep.executeUpdate();
+        if (column.equals("duration") || column.equals("offset")){
+            String sql = "update "+table + " set " + column + " = ? where " + id + " = ?";
+            PreparedStatement prep = this.con.prepareStatement(sql);
+            prep.setDouble(1, Double.parseDouble(newData));
+            prep.setString(2, givenId);
+            prep.executeUpdate();
+        }
+        else if(column.equals("date") || column.equals("rec_date")){
+            String sql = "update "+table + " set " + column + " = ? where " + id + " = ?";
+            PreparedStatement prep = this.con.prepareStatement(sql);
+            prep.setDate(1, Date.valueOf(newData));
+            prep.setString(2, givenId);
+            prep.executeUpdate();
+        }
+        else {
+            String sql = "update "+table + " set " + column + " = ? where " + id + " = ?";
+            PreparedStatement prep = this.con.prepareStatement(sql);
+            prep.setString(1, newData);
+            prep.setString(2, givenId);
+            prep.executeUpdate();
+        }
     }
 
     public void closeConnection() throws SQLException{
