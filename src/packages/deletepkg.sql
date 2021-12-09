@@ -61,3 +61,12 @@ begin
 end DELETE_COLLECTION;
 END deletepkg;
 
+--test delete_recording
+CREATE OR REPLACE PROCEDURE DELETE_RECORDING (recording_id IN VARCHAR2)AS
+BEGIN
+  for arow in (SELECT * FROM RECORDING JOIN COMPILATION 
+              USING(recid) WHERE recid = recording_id) loop
+      delete from compilation where recid = arow.recid;
+  END LOOP;
+  delete from recording where recid = recording_id;
+END;

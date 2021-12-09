@@ -13,7 +13,7 @@ public class Contributor {
     public String getContributorId() {
         return contributorId;
     }
-    public String getcFirst() {
+    public String getCfirst() {
         return cFirst;
     }
 

@@ -42,7 +42,7 @@ public class Album {
     }
 
     public String toString(){
-        String printing = "AlbumId: "+this.albumid+" | Category: "+" | PubDate: "+this.pubdate+" | Name: "+this.name+" | CollectionId: "+this.collectionid;
+        String printing = "AlbumId: "+this.albumid+" | Category: "+" | PubDate: "+this.pubdate+" | Name: "+this.title+" | CollectionId: "+this.collectionid;
         return printing;
     }
 }
