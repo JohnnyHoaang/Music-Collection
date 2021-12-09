@@ -1,4 +1,4 @@
-package src;
+package src.entities;
 public class Contributor {
     private String contributorId;
     private String cfirst;

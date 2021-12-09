@@ -37,8 +37,12 @@ INSERT INTO COLLECTION
 VALUES('COL02', 'LILMAC');
 INSERT INTO COLLECTION
 VALUES('COL03', 'MEDIUMMAC');
+INSERT INTO COLLECTION
+VALUES ('COL04', 'SUPAHBIG');
 
 
+INSERT INTO ALBUM
+VALUES('MOMMAMOMMA', 'AL004', 'POP', SYSDATE, 'COL04', 'ITALIA', 'SPAGHETTI MAFIA');
 INSERT INTO ALBUM
 VALUES('PAPAJOHNS','AL001', 'ROCK', SYSDATE, 'COL01', 'WORLDWIDE', 'SOMERECORDS');
 INSERT INTO ALBUM
@@ -55,11 +59,29 @@ INSERT INTO COMPILATION
 VALUES('RE003', SYSDATE, 'AL003');
 
 
+INSERT INTO COMPILATION
+VALUES('RE001', SYSDATE, 'AL004');
+INSERT INTO COMPILATION
+VALUES('RE002', SYSDATE, 'AL004');
+INSERT INTO COMPILATION
+VALUES('RE003', SYSDATE, 'AL004');
+
+--select (c_first || ' ' || c_last) AS FULLNAME, title, recid, offset, duration from album JOIN COMPILATION USING(albumid) 
+--JOIN RECORDING USING (recid) JOIN CONTRIBUTOR_REC USING(recid) JOIN CONTRIBUTOR
+--USING(contributorid) where albumid = 'AL004';
+
+select * from album JOIN COMPILATION USING(albumid) 
+JOIN RECORDING USING (recid) JOIN CONTRIBUTOR_REC USING(recid) JOIN CONTRIBUTOR
+USING(contributorid) where albumid = 'AL004';
+
+select * from collection;
+execute delete_collection('COL04');
+
+--execute delete_song('AL004');
+--select * from album;
 --Trigger for User Logs
 
---ON INSERT-
-
-
+--ON INSERT
 
 SELECT * FROM USER_LOGS;
 
@@ -89,4 +111,4 @@ SELECT * FROM USER_LOGS;
 --select c_first, rolename from contributor_role JOIN CONTRIBUTOR_REC 
 --USING(roleid) JOIN CONTRIBUTOR USING(contributorid);
 
-select user from dual;
+

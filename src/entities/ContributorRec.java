@@ -1,4 +1,4 @@
-package src;
+package src.entities;
 
 public class ContributorRec {
     private Contributor con;

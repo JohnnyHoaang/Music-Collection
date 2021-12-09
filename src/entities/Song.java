@@ -1,4 +1,4 @@
-package src;
+package src.entities;
 public class Song {
     private String songId;
     private String name;
