@@ -16,4 +16,10 @@ BEGIN
 END UPDATE_RECORDING;
 END updatepkg;
 
+CREATE OR REPLACE PROCEDURE UPDATE_COLLECTIONID(album_id IN VARCHAR2, collection_id IN VARCHAR2)
+AS
+BEGIN
+    UPDATE FROM ALBUM SET collectionid = collection_id WHERE collectionid = collection_id;
+END;
+
 
