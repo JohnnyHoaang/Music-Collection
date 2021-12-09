@@ -96,7 +96,7 @@ public class MusicStudio {
     
     //Testing the Procedures
     public void createContributor(String name, String lname, String cid, String roleid, String recid) throws SQLException{
-        String callProcedure = "{call CREATE_CONTRIBUTOR(?,?,?,?,?)}";
+        String callProcedure = "{call addpkg.CREATE_CONTRIBUTOR(?,?,?,?,?)}";
         CallableStatement statementCall = this.con.prepareCall(callProcedure);
         statementCall.setString(1,name);
         statementCall.setString(2,lname);
@@ -107,7 +107,7 @@ public class MusicStudio {
     }
 
     public void updateRecording(String recid, Date date, double duration, double offset) throws SQLException{
-        String callProcedure = "{call UPDATE_RECORDING(?,?,?,?)}";
+        String callProcedure = "{call updatepkg.UPDATE_RECORDING(?,?,?,?)}";
         CallableStatement statementCall = this.con.prepareCall(callProcedure);
         statementCall.setString(1,recid);
         statementCall.setDate(2, date);
@@ -127,19 +127,19 @@ public class MusicStudio {
 
     //Delete data from the table
     public void deleteSong(String albumId) throws SQLException{
-        String delSong = "{call DELETE_SONG(?)}";
+        String delSong = "{call deletepkg.DELETE_SONG(?)}";
         CallableStatement statementCall = this.con.prepareCall(delSong);
         statementCall.setString(1, albumId);
         statementCall.execute();
     }
     public void deleteContributor(String contributorId) throws SQLException{
-        String delContr = "{call DELETE_CONTRIBUTOR(?)}";
+        String delContr = "{call deletepkg.DELETE_CONTRIBUTOR(?)}";
         CallableStatement statementCall = this.con.prepareCall(delContr);
         statementCall.setString(1, contributorId);
         statementCall.execute();
     }
     public void deleteCollection(String collectionId) throws SQLException{
-        String delColl = "{call DELETE_COLLECTION(?)}";
+        String delColl = "{call deletepkg.DELETE_COLLECTION(?)}";
         CallableStatement statementCall = this.con.prepareCall(delColl);
         statementCall.setString(1, collectionId);
         statementCall.execute();

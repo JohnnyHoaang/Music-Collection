@@ -1,6 +1,11 @@
-DROP PROCEDURE UPDATE_RECORDING;
-
-CREATE OR REPLACE PROCEDURE UPDATE_RECORDING (rec_id IN VARCHAR2, vdate DATE, vduration IN NUMBER, voffset IN NUMBER)
+DROP PACKAGE updatepkg;
+/
+CREATE OR REPLACE PACKAGE updatepkg AS
+PROCEDURE UPDATE_RECORDING(rec_id IN VARCHAR2, vdate DATE, vduration IN NUMBER, voffset IN NUMBER);
+END updatepkg;
+/
+CREATE OR REPLACE PACKAGE BODY updatepkg IS
+PROCEDURE UPDATE_RECORDING (rec_id IN VARCHAR2, vdate DATE, vduration IN NUMBER, voffset IN NUMBER)
 AS
 BEGIN
     UPDATE RECORDING 
@@ -8,7 +13,7 @@ BEGIN
     duration = vduration,
     offset = voffset
     WHERE recid = rec_id;
-END;
+END UPDATE_RECORDING;
 
 
 CREATE OR REPLACE PROCEDURE UPDATE_ALBUM (valbum_id IN VARCHAR2, vtitle in varchar2, vcategory in varchar2, vpubdate in date, vcollectionid in varchar2, vmarket in varchar2, vlabel in varchar2)
@@ -81,7 +86,11 @@ BEGIN
 END;
 /
 
---Ashley ways of thinking for everything for once
-public static void updateField(param){
+-- --Ashley ways of thinking for everything for once
+-- public static void updateField(param){
 
-}
+-- }
+
+END updatepkg;
+
+
