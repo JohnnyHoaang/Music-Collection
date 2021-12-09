@@ -14,6 +14,83 @@ BEGIN
     offset = voffset
     WHERE recid = rec_id;
 END UPDATE_RECORDING;
+
+
+CREATE OR REPLACE PROCEDURE UPDATE_ALBUM (valbum_id IN VARCHAR2, vtitle in varchar2, vcategory in varchar2, vpubdate in date, vcollectionid in varchar2, vmarket in varchar2, vlabel in varchar2)
+AS
+BEGIN
+    UPDATE ALBUM
+    SET album_id = valbum_id, 
+    title = vtitle,
+    category = vcategory,
+    pubdate = vpubdate,
+    collectionid = vcollectionid,
+    market = vmarket,
+    label = vlabel
+    WHERE albumid = valbum_id;
+END;
+/
+
+
+
+CREATE OR REPLACE PROCEDURE UPDATE_COLLECTION (vcollectionid IN VARCHAR2, vname IN VARCHAR2)
+AS
+BEGIN
+    UPDATE ALBUM
+    SET collection_id = vcollectionid,
+    name = vname
+    WHERE collection_id = vcollectionid;
+END;
+/
+
+CREATE OR REPLACE PROCEDURE UPDATE_CONTRIBUTOR (vcontributorid IN VARCHAR2, vfirst IN VARCHAR2, vlast IN VARCHAR2)
+AS
+BEGIN
+    UPDATE CONTRIBUTOR
+    SET contributorid = vcontributorid, 
+    cfirst = vfirst,
+    clast = vlast
+    WHERE contributorid = vcontributorid;
+END;
+/
+
+CREATE OR REPLACE PROCEDURE UPDATE_CONTRIBUTOR_REC (rec_id IN VARCHAR2, vcontributorid IN VARCHAR2, vroleid in VARCHAR2)
+AS
+BEGIN
+    UPDATE CONTRIBUTOR_REC
+    SET  
+    recId = rec_id,
+    contributorid = vcontributorid
+    roleId = vroleid
+    WHERE recid = rec_id;
+END;
+/
+
+CREATE OR REPLACE PROCEDURE UPDATE_CONTRIBUTOR_ROLE (vroleid IN VARCHAR2, vrolename IN VARCHAR2)
+BEGIN
+    UPDATE CONTRIBUTOR_ROLE
+    SET roleId = vroleid,
+    vrolename = vrolename
+    WHERE roleId = vroleid,
+END;
+/
+
+CREATE OR REPLACE PROCEDURE UPDATE_COMPILATION (rec_id IN VARCHAR2, vdate DATE, valbumid IN VARCHAR2)
+AS
+BEGIN
+    UPDATE ALBUM
+    SET rec_date = vdate, 
+    recId = rec_id,
+    albumId = valbum_id
+    WHERE recid = rec_id;
+END;
+/
+
+-- --Ashley ways of thinking for everything for once
+-- public static void updateField(param){
+
+-- }
+
 END updatepkg;
 
 CREATE OR REPLACE PROCEDURE UPDATE_COLLECTIONID(album_id IN VARCHAR2, collection_id IN VARCHAR2)
