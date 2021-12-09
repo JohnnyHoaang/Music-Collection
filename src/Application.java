@@ -124,12 +124,8 @@ public class Application {
                         System.out.println("Which recording do you want to delete?");
                         String recid = console.readLine("Enter the recid: ");
                         //which collection to delete
-                        muS.deleteCollection(recid);
-
+                        muS.deleteRecording(recid);
                     }
-                   
-                    
-                   
                  }
                  else if(result.equals("5")){
                      //Print all user log 
@@ -170,20 +166,6 @@ public class Application {
     //             if(result == 0){
     //                 throw new SQLException("Did not insert anything");
     //             }
-    // }
-    // public static void addOrder(Order order, Connection conn)throws SQLException {
-    //     if(conn == null|| order == null){
-    //         throw new IllegalArgumentException("cannot be null");
-    //     }
-    //     String insertQuery = "Insert into orders(order#,orderdate) values (?,?)";
-    //     var insertPrep = conn.prepareStatement(insertQuery);
-    //     insertPrep.setInt(1,order.getOrderNumber());
-    //     insertPrep.setDate(2,order.getOrderDate());
-    //     var result = insertPrep.executeUpdate();
-    //     if(result == 0){
-    //         throw new SQLException("Did not insert anything");
-    //     }
-
     // }
   
 }

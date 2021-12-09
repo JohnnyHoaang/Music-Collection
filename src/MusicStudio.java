@@ -133,6 +133,12 @@ public class MusicStudio {
         statementCall.setString(1, collectionId);
         statementCall.execute();
     }
+    public void deleteRecording(String recordingid) throws SQLException{
+        String delColl = "{call deletepkg.DELETE_RECORDING(?)}";
+        CallableStatement statementCall = this.con.prepareCall(delColl);
+        statementCall.setString(1, recordingid);
+        statementCall.execute();
+    }
     
     public void updateTable(String table, String column, String givenId, String newData) throws SQLException{
         String id= " ";
