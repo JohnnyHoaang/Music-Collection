@@ -152,20 +152,4 @@ public class Application {
             muS.closeConnection();
         }
     }
-    // public static void addContributor(Contributor contributor, Connection conn) throws SQLException{
-    //     if(conn == null|| contributor == null){
-    //                 throw new IllegalArgumentException("cannot be null");
-    //             }
-    //             String insertQuery = "Insert into contributor(contributorid,cfirst,clast) values (?,?,?)";
-    //             var insertPrep = conn.prepareStatement(insertQuery);
-    //             insertPrep.setString(1,contributor.getContributorId());
-    //             insertPrep.setString(2,contributor.getCfirst());
-    //             insertPrep.setString(3,contributor.getClast());
-                
-    //             var result = insertPrep.executeUpdate();
-    //             if(result == 0){
-    //                 throw new SQLException("Did not insert anything");
-    //             }
-    // }
-  
 }
