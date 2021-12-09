@@ -1,19 +1,19 @@
 
 INSERT INTO CONTRIBUTOR
-VALUES('C001','ASHLEY','VU');
+VALUES('C004','ASHLEY','VU');
 INSERT INTO CONTRIBUTOR
 VALUES('C002','JOHNNY','HOANG');
 INSERT INTO CONTRIBUTOR
 VALUES('C003','DOMENICO','CUSCUNA');
 
-INSERT INTO CONTRIBUTOR_ROLE 
-VALUES('R001', 'SINGER');
-INSERT INTO CONTRIBUTOR_ROLE
-VALUES('R002', 'DANCER');
-INSERT INTO CONTRIBUTOR_ROLE
-VALUES('R003', 'COMPOSER');
-INSERT INTO CONTRIBUTOR_ROLE
-VALUES('R004', 'DIRECTOR');
+--INSERT INTO CONTRIBUTOR_ROLE 
+--VALUES('R001', 'SINGER');
+--INSERT INTO CONTRIBUTOR_ROLE
+--VALUES('R002', 'DANCER');
+--INSERT INTO CONTRIBUTOR_ROLE
+--VALUES('R003', 'COMPOSER');
+--INSERT INTO CONTRIBUTOR_ROLE
+--VALUES('R004', 'DIRECTOR');
 
 INSERT INTO RECORDING
 VALUES('RE001', SYSDATE, 230, 15);
@@ -23,7 +23,7 @@ INSERT INTO RECORDING
 VALUES('RE003', SYSDATE, 56, 30);
 
 INSERT INTO CONTRIBUTOR_REC
-VALUES('RE001', 'C001', 'R001');
+VALUES('RE001', 'C004', 'R001');
 INSERT INTO CONTRIBUTOR_REC
 VALUES('RE002', 'C002', 'R002');
 INSERT INTO CONTRIBUTOR_REC
@@ -77,13 +77,17 @@ USING(contributorid) where albumid = 'AL004';
 select * from collection;
 execute delete_collection('COL04');
 
---execute delete_song('AL004');
---select * from album;
---Trigger for User Logs
-
---ON INSERT
 
 SELECT * FROM USER_LOGS;
+--they work
+execute deletepkg.delete_contributor('C001');
+execute deletepkg.delete_song('AL004');
+execute deletepkg.delete_collection('COL01');
+execute deletepkg.delete_collection('COL04');
+
+select * from contributor;
+Select * from album;
+select * from collection;
 
 --ON UPDATE--
 --ON DELETE--
