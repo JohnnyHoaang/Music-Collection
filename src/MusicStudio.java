@@ -92,7 +92,11 @@ public class MusicStudio {
         String callProcedure = "{call addpkg.CREATE_CONTRIBUTOR(?,?,?,?,?)}";
         CallableStatement statementCall = this.con.prepareCall(callProcedure);
         statementCall.setString(1,contributor.getCfirst());
+<<<<<<< HEAD
         statementCall.setString(2,contributor.getcLast());
+=======
+        statementCall.setString(2,contributor.getClast());
+>>>>>>> 37e8399c1496d722f04a2a922023ff786eef1b2c
         statementCall.setString(3, contributor.getContributorId());
         statementCall.setString(4, roleid);
         statementCall.setString(5, recid);

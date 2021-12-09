@@ -3,6 +3,7 @@ package src;
 import src.entities.*;
 import java.io.Console;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -33,6 +34,7 @@ public class Application {
                  System.out.println("4) DELETE SONG");
                  System.out.println("5) EXIT");
                  var result = scanner.next();
+                 //View song
                  if(result.equals("1")){
                     //Print all song in the library here
                     muS.printAllAlbums();
@@ -47,16 +49,34 @@ public class Application {
                     //mus.printAllAlbums();
 
                  }
+                 //Add song
                  else if(result.equals("2")){
                     System.out.println("Please fill all the information of the song you wanna add:");
+                    //create contributors and recording
                     //loop through the song prop arrays here
                     System.out.println("Creating contributors:");
+                    String cid = console.readLine("Enter contributor id: ");
+                    String clast = console.readLine("Enter contributor last name: ");
+                    String cfirst = console.readLine("Enter contributor firstname: ");
+                    //Print all the role id right here
+                    String roleid = console.readLine("Enter Role ID: ");
+                    String recid = console.readLine("Enter RECID: ");
+                    Contributor contributor = new Contributor(cid,cfirst,clast);
                     System.out.println("");
                     //creates an object contributor
-                    //muS.createContributor(contributor)
-                    //muS.createContributor(fname,lname,cid,roleid,recid);
-                    //muS.updateRecording(recid,date,duration,offset);
-                    
+                    muS.createContributor(contributor,roleid,recid);
+                    String date = console.readLine("Enter date: ");
+                    System.out.println("Enter duration: ");
+                    double duration = scanner.nextDouble();
+                    System.out.println("Enter offset: ");
+                    double offset = scanner.nextDouble();
+                    muS.updateRecording(recid,Date.valueOf(date),duration,offset);
+                    //2
+                    //create collection
+                    //print all collection id
+                    //3
+                    //create album, to create album you need recordings
+                    //print all recordings, print all collections
                  }
                  else if(result.equals("3")){
                     System.out.println("Which data do you want to update?");
@@ -102,6 +122,34 @@ public class Application {
             muS.closeConnection();
         }
     }
-   
+    // public static void addContributor(Contributor contributor, Connection conn) throws SQLException{
+    //     if(conn == null|| contributor == null){
+    //                 throw new IllegalArgumentException("cannot be null");
+    //             }
+    //             String insertQuery = "Insert into contributor(contributorid,cfirst,clast) values (?,?,?)";
+    //             var insertPrep = conn.prepareStatement(insertQuery);
+    //             insertPrep.setString(1,contributor.getContributorId());
+    //             insertPrep.setString(2,contributor.getCfirst());
+    //             insertPrep.setString(3,contributor.getClast());
+                
+    //             var result = insertPrep.executeUpdate();
+    //             if(result == 0){
+    //                 throw new SQLException("Did not insert anything");
+    //             }
+    // }
+    // public static void addOrder(Order order, Connection conn)throws SQLException {
+    //     if(conn == null|| order == null){
+    //         throw new IllegalArgumentException("cannot be null");
+    //     }
+    //     String insertQuery = "Insert into orders(order#,orderdate) values (?,?)";
+    //     var insertPrep = conn.prepareStatement(insertQuery);
+    //     insertPrep.setInt(1,order.getOrderNumber());
+    //     insertPrep.setDate(2,order.getOrderDate());
+    //     var result = insertPrep.executeUpdate();
+    //     if(result == 0){
+    //         throw new SQLException("Did not insert anything");
+    //     }
+
+    // }
   
 }
