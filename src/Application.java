@@ -43,7 +43,7 @@ public class Application {
                     // print song info method
                     System.out.println("Here is the information of the song you chose");
                     // print all informantion of the song here
-                    // muS.printAllRecContributors();
+                     muS.printAllRecContributor();
                     // muS.printAllRecordings();
                     // muS.printAllCollection();
                     // mus.printAllAlbums();
@@ -88,7 +88,7 @@ public class Application {
                     Role role = muS.getRole(roleid);
                     Contributor con = muS.getContributor(contributorid);
                     ContributorRec contributorRec = new ContributorRec(con, rec, role);
-                    muS.createontributorRec(contributorRec);
+                    muS.createContributorRec(contributorRec);
                     System.out
                             .println("Successfully linked recording and role to contributor!" + '\n' + contributorRec);
                     // 2
@@ -129,8 +129,11 @@ public class Application {
                     if(userResponse.equals("yes") || userResponse.equals("Yes")){
                         //print all songs
                         System.out.println("Choose what songs you want to add to the collection!");
+                        muS.printAllAlbums();
                         String givenAlbumId = console.readLine("Give its id: ");
                         muS.updateTable("album", "collectionid", givenAlbumId, collection.getCollectionId());
+                        System.out.println("COLLECTIONS BELOW!");
+                        muS.printAllCollection();
                     }
                 }
 

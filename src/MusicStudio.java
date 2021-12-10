@@ -44,6 +44,35 @@ public class MusicStudio {
         return logMessage;
     }
 
+    public Album getAlbum(String albumid) throws SQLException{
+        Album alb = null;
+
+        String album = "SELECT * FROM ALBUM WHERE albumid = ?";
+        PreparedStatement prep = this.con.prepareStatement(album);
+        prep.setString(1, albumid);
+
+        ResultSet rs = prep.executeQuery();
+        while(rs.next()){
+            alb = new Album(rs.getString("albumid"), rs.getString("title"), rs.getString("category"), 
+            rs.getDate("pubdate"), rs.getString("collectionid"),rs.getString("market"), rs.getString("label"));
+        }
+        return alb;
+    }
+
+    public Collection getCollection(String collectionid) throws SQLException{
+        Collection col = null;
+
+        String collection = "SELECT * FROM COLLECTION WHERE collectionid = ?";
+        PreparedStatement prep = this.con.prepareStatement(collection);
+        prep.setString(1, collectionid);
+
+        ResultSet rs = prep.executeQuery();
+        while(rs.next()){
+            col = new Collection(rs.getString("collectionid"), rs.getString("name"));
+        }
+        return col;
+    }
+
 
     public Contributor getContributor(String contributorid) throws SQLException{
         Contributor contr = null;
@@ -135,6 +164,7 @@ public class MusicStudio {
     //print all info from (any table), maybe create objects
     //Storing the contributors into an object
     public void printAllRecContributor() throws SQLException{
+        System.out.println("reached prints!");
         String contributor = "SELECT * FROM CONTRIBUTOR";
         PreparedStatement prep = this.con.prepareStatement(contributor);
         ResultSet rs = prep.executeQuery();
@@ -242,7 +272,7 @@ public class MusicStudio {
         statementCall.execute();
     }
 
-    public void createontributorRec(ContributorRec contributorRec) throws SQLException{
+    public void createContributorRec(ContributorRec contributorRec) throws SQLException{
         String callProcedure = "{call addpkg.CREATE_CONTRIBUTOR_REC(?,?,?)}";
         CallableStatement statementCall = this.con.prepareCall(callProcedure);
         statementCall.setString(1,contributorRec.getRec().getRecordingId());
