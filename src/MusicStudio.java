@@ -82,6 +82,7 @@ public class MusicStudio {
     }
 
 
+    
     //print all info from (any table), maybe create objects
     //Storing the contributors into an object
     public void printAllRecContributor() throws SQLException{
@@ -100,14 +101,22 @@ public class MusicStudio {
         }
     }
 
+    //Storing the recordings into an object
     public void printAllRecording() throws SQLException{
         String recording = "SELECT * FROM RECORDING";
         PreparedStatement prep = this.con.prepareStatement(recording);
         ResultSet rs = prep.executeQuery();
 
+        ArrayList<Recording> recordings = new ArrayList<>();
+
         while(rs.next()){
-            ArrayList<Recording> recordings = new ArrayList<>();
-            System.out.println("Rec id:" + rs.getString("recid")+ " date:" + rs.getDate("rec_date") + " duration:" + rs.getString("duration") + " offset:" + rs.getString("offset"));
+            
+            recordings.add(new Recording(rs.getString("recid"), rs.getDate("date"), rs.getDouble("duration"), rs.getDouble("offset")));
+        }
+
+        for(Recording rec : recordings){
+            System.out.println(rec);
+            System.out.println("---------------------------");
         }
     }
 
@@ -116,16 +125,16 @@ public class MusicStudio {
         String collection = "SELECT * FROM COLLECTION";
         PreparedStatement prep = this.con.prepareStatement(collection);
         ResultSet rs = prep.executeQuery();
-        while(rs.next()){
 
-            ArrayList<Collection> collections = new ArrayList<>();
+        ArrayList<Collection> collections = new ArrayList<>();
+
+        while(rs.next()){  
             collections.add(new Collection(rs.getString("collectionid"), rs.getString("name")));
+        }
 
-            for(Collection col : collections){
-                System.out.println(col);
-                System.out.println("---------------------------");
-            }
-   
+        for(Collection col : collections){
+            System.out.println(col);
+            System.out.println("---------------------------");
         }
     }
 
