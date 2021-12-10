@@ -61,4 +61,3 @@ CREATE TABLE USER_LOGS (
     
     
     
-    
