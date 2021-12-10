@@ -182,6 +182,9 @@ public class MusicStudio {
         }
     }
 
+    public Connection getConnection(){
+        return this.con;
+    }
     public void closeConnection() throws SQLException{
         this.con.close();
     }
