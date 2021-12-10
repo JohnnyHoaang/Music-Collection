@@ -111,6 +111,18 @@ public class MusicStudio {
     }
 
 
+
+    //Get RecID
+    public ArrayList<String> getRecid(String albumid) throws SQLException{
+        ArrayList<String> recs = new ArrayList<>();
+        String result = "SELECT * FROM COMPILATION WHERE albumid = ?";
+        PreparedStatement prep = this.con.prepareStatement(result);
+        // prep.
+
+        return recs;
+    }
+
+
     public void printAllIDRowsFromTable(String table) throws SQLException{
         String id = "";
 

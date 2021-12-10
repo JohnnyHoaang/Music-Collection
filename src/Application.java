@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Application {
@@ -44,7 +45,7 @@ public class Application {
                     //print song info method
                     System.out.println("Here is the information of the song you chose");
                    //print all informantion of the song here
-                    //muS.printAllRecContributors();
+                    // muS.printAllRecContributor();
                     //muS.printAllRecordings();
                     // muS.printAllCollection();
                     //mus.printAllAlbums();
@@ -54,6 +55,7 @@ public class Application {
                     //Gets the collection
                     Collection col = muS.getCollection(alb.getCollectionid());
 
+                    // ArrayList<String> recid = muS.getRecid(); afaf afa
 
                     //Gets the recordings
                     // Recording rec = muS.getRecording(recordingid);
