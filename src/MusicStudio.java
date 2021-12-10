@@ -99,10 +99,10 @@ public class MusicStudio {
     }
 
 
-    public void printRecContributor() throws SQLException{
-        String contributors = "SELECT * FROM USER_LOGS WHERE USERNAME = ?";
-        PreparedStatement prep = this.con.prepareStatement(contributors);
-    }
+    // public void printRecContributor() throws SQLException{
+    //     String contributors = "SELECT * FROM USER_LOGS WHERE USERNAME = ?";
+    //     PreparedStatement prep = this.con.prepareStatement(contributors);
+    // }
 
     //Inserting the tables (Not Testing bc VPN sucks)
     
@@ -135,7 +135,7 @@ public class MusicStudio {
         statementCall.execute();
     }
     public void createAlbum(Album album) throws SQLException{
-        String callProcedure = "{call addpkg.CREATE_CONTRIBUTOR_REC(?,?,?)}";
+        String callProcedure = "{call addpkg.CREATE_ALBUM(?,?,?,?,?,?)}";
         CallableStatement statementCall = this.con.prepareCall(callProcedure);
         statementCall.setString(1,album.getAlbumid());
         statementCall.setString(2, album.getTitle());

@@ -4,7 +4,6 @@ import java.sql.Date;
 
 public class Recording {
     private String recordingId;
-    private String contributionId;
     private double rec_offset;
     private double duration_used;
     private Date date;
@@ -17,8 +16,7 @@ public class Recording {
         this.duration_used = duration;
         this.rec_offset = offset;
     }
-    public Recording(String recordingId, Date date,
-    String contributionId, double rec_offset, double duration_used){
+    public Recording(String recordingId, Date date, double rec_offset, double duration_used){
         this(recordingId, duration_used, rec_offset);
         this.duration_used = duration_used;
     }
@@ -27,9 +25,6 @@ public class Recording {
         return recordingId;
     }
 
-    public String getContributionId() {
-        return contributionId;
-    }
 
     public double getRec_offset() {
         return rec_offset;

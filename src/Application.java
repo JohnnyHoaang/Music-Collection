@@ -60,16 +60,29 @@ public class Application {
                     String cfirst = console.readLine("Enter contributor firstname: ");
                     //Print all the role id right here
                     // String roleid = console.readLine("Enter Role ID: ");
-                    // String recid = console.readLine("Enter RECID: ");
+                    
                     Contributor contributor = new Contributor(cid,cfirst,clast);
-                    System.out.println("");
+                    muS.createContributor(contributor);
+                    System.out.println("Create recording:");
+                    String recid = console.readLine("Enter RECID: ");
+                    String date = console.readLine("Enter date: ");
+                    System.out.println("Enter duration: ");
+                    double duration = scanner.nextDouble();
+                    System.out.println("Enter offset: ");
+                    double offset = scanner.nextDouble();
+                    Recording rec = new Recording(recid,Date.valueOf(date), duration, offset);
+                    muS.createRecording(rec);
                     //creates an object contributor
                     muS.createContributor(contributor);
-                    // String date = console.readLine("Enter date: ");
-                    // System.out.println("Enter duration: ");
-                    // double duration = scanner.nextDouble();
-                    // System.out.println("Enter offset: ");
-                    // double offset = scanner.nextDouble();
+                    System.out.println("Do you want to link this recording to an existing contributor");
+                    muS.printAllRecContributor();
+                    System.out.println("Here are your contributor choices!");
+                    String contributorid = console.readLine("Give the contributor id: ")
+                    String role = console.readLine("Give the role id: ");
+                    System.out.println("Here are your role choices!");
+                    Contributor con = muS.getContributor(contributorid);
+                    ContributorRec contributorRec = new ContributorRec(con, rec, role);
+                    muS.createontributorRec(contributorRec);
                     // muS.updateRecording(recid,Date.valueOf(date),duration,offset);
                     //2
                     //create collection
