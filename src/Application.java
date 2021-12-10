@@ -258,10 +258,8 @@ public class Application {
                     open = false;
                 }
             }
-            // create compilation test
-            Recording recording = muS.getRecording("RE002");
-            Album album = muS.getAlbum("AL001");
-            muS.createCompilation(recording, album, Date.valueOf("2020-08-01"));
+            Logs logs = new Logs(creds.getUser());
+            System.out.println(logs);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
