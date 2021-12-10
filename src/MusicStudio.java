@@ -220,7 +220,7 @@ public class MusicStudio {
 
         while(rs.next()){
             
-            recordings.add(new Recording(rs.getString("recid"), rs.getDate("date"), rs.getDouble("duration"), rs.getDouble("offset")));
+            recordings.add(new Recording(rs.getString("recid"), rs.getDate("rec_date"), rs.getDouble("duration"), rs.getDouble("offset")));
         }
 
         for(Recording rec : recordings){

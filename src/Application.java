@@ -43,34 +43,32 @@ public class Application {
                     String songid = scanner.next();
                     // print song info method
                     System.out.println("Here is the information of the song you chose");
-                   //print all informantion of the song here
-                     muS.printAllRecContributor();
-                    //muS.printAllRecordings();
+                    // print all informantion of the song here
+                    muS.printAllRecContributor();
+                    // muS.printAllRecordings();
                     // muS.printAllCollection();
                     // mus.printAllAlbums();
 
                     Album alb = muS.getAlbum(songid);
 
-                    //Gets the collection
-                    //Collection col = muS.getCollection(alb.getCollectionid());
+                    // Gets the collection
+                    // Collection col = muS.getCollection(alb.getCollectionid());
 
-                    //Getss the recordings
+                    // Getss the recordings
                     ArrayList<String> recids = muS.getRecid(alb.getAlbumid());
                     ArrayList<Recording> recording = new ArrayList<>();
 
-                    for(String recid : recids){
+                    for (String recid : recids) {
                         recording.add(muS.getRecording(recid));
 
                         System.out.println(muS.getRecording(recid));
                     }
 
-                    //Gets the contributors
+                    // Gets the contributors
                     // getContributorId
 
-
-                 
-                    //System.out.println(col);
-                    //Collection
+                    // System.out.println(col);
+                    // Collection
                     //
 
                 }
@@ -88,11 +86,12 @@ public class Application {
                     muS.createContributor(contributor);
                     System.out.println("Contributor created: " + contributor);
                     System.out.println("Creating recording:");
-                    String recid = console.readLine("Enter RECID: ");
+                    muS.printAllRecording();
+                    String recid = console.readLine("Enter an UNIQUE RECID: ");
                     String date = console.readLine("Enter date | FORMAT(yyyy-mm-dd): ");
-                    System.out.println("Enter duration: ");
+                    System.out.println("Enter duration(seconds): ");
                     double duration = scanner.nextDouble();
-                    System.out.println("Enter offset: ");
+                    System.out.println("Enter offset(seconds): ");
                     double offset = scanner.nextDouble();
                     Recording rec = new Recording(recid, Date.valueOf(date), duration, offset);
                     muS.createRecording(rec);
@@ -117,6 +116,7 @@ public class Application {
                     // create album, to create album you need recordings
                     // print all recordings, print all collections
                     System.out.println("Creating album");
+                    muS.printAllAlbums();
                     String albumid = console.readLine("Enter an unique album id | FORMAT(AL000): ");
                     String title = console.readLine("Enter the title: ");
                     String category = console.readLine("Enter the category: ");
@@ -150,14 +150,21 @@ public class Application {
                     Collection collection = new Collection(collectionId, name);
                     muS.createCollection(collection);
                     String userResponse = console.readLine("Do you want to add songs to the collection?");
-                    if(userResponse.equals("yes") || userResponse.equals("Yes")){
-                        //print all songs
-                        System.out.println("Choose what songs you want to add to the collection!");
-                        muS.printAllAlbums();
-                        String givenAlbumId = console.readLine("Give its id: ");
-                        muS.updateTable("album", "collectionid", givenAlbumId, collection.getCollectionId());
-                        System.out.println("COLLECTIONS BELOW!");
-                        muS.printAllCollection();
+                    boolean collectionLoop = true;
+                    while (collectionLoop) {
+                        if (userResponse.equals("yes") || userResponse.equals("Yes")) {
+                            // print all songs
+                            System.out.println("Choose what songs you want to add to the collection!");
+                            muS.printAllAlbums();
+                            String givenAlbumId = console.readLine("Give its id: ");
+                            muS.updateTable("album", "collectionid", givenAlbumId, collection.getCollectionId());
+                            System.out.println("COLLECTIONS BELOW!");
+                            muS.printAllCollection();
+                            String answer = console.readLine("Do you want to stop? ");
+                            if (answer.equals("yes") || answer.equals("Yes")) {
+                                collectionLoop = false;
+                            }
+                        }
                     }
                 }
 
@@ -228,7 +235,7 @@ public class Application {
                     open = false;
                 }
             }
-            //create compilation test
+            // create compilation test
             Recording recording = muS.getRecording("RE002");
             Album album = muS.getAlbum("AL001");
             muS.createCompilation(recording, album, Date.valueOf("2020-08-01"));
