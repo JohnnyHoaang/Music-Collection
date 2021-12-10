@@ -20,7 +20,7 @@ public class Logs {
     }
 
     public String toString(){
-
-        return "User: "+this.username +" | Track: "+this.changeTrack;
+        String printing = "User: "+this.username +" | Track: "+this.changeTrack;
+        return printing;
     }
 }

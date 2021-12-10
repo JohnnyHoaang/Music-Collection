@@ -1,8 +1,6 @@
 package src.entities;
 import java.sql.Date;
 
-import src.entities.Album;
-
 public class Compilation {
     
     private Date date;
@@ -28,5 +26,10 @@ public class Compilation {
     }
     public String getCompilationid(){
         return this.compilationid;
+    }
+
+    public String toString(){
+        String printing = "Recording: "+this.rec+" | Album: "+this.album+" | Date: "+this.date+" | CompilationId: "+this.compilationid;
+        return printing;
     }
 }

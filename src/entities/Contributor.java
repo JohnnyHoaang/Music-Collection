@@ -1,12 +1,12 @@
 package src.entities;
 public class Contributor {
     private String contributorId;
-    private String cfirst;
+    private String cFirst;
     private String cLast;
 
-    public Contributor(String contributorId, String cfirst, String cLast){
+    public Contributor(String contributorId, String cFirst, String cLast){
         this.contributorId = contributorId;
-        this.cfirst = cfirst;
+        this.cFirst = cFirst;
         this.cLast = cLast;
     }
 
@@ -14,13 +14,17 @@ public class Contributor {
         return contributorId;
     }
     public String getCfirst() {
-        return cfirst;
+        return cFirst;
     }
 
-    public String getcLast() {
+    public String getClast() {
         return cLast;
     }
 
+    public String toString(){
+        String printing = "ContributorId: "+this.contributorId+" | First Name: "+this.cFirst+" | Last Name: "+this.cLast;
+        return printing;
+    }
 
 
 }

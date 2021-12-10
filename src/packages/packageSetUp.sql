@@ -1,11 +1,40 @@
+DROP PACKAGE addpkg;
 DROP PACKAGE deletepkg;
-
+/
+CREATE OR REPLACE PACKAGE addpkg AS 
+PROCEDURE CREATE_CONTRIBUTOR(firstname IN VARCHAR2, lastname in VARCHAR2,
+contributor_id in VARCHAR2, role_id IN VARCHAR2, rec_id IN VARCHAR2);
+PROCEDURE CREATE_COLLECTION(collection_id IN VARCHAR2, albName IN VARCHAR2);
+END addpkg;
+/
+CREATE OR REPLACE PACKAGE BODY addpkg IS
+--insert contributor 
+PROCEDURE CREATE_CONTRIBUTOR (firstname IN VARCHAR2, lastname in VARCHAR2,
+contributor_id in VARCHAR2, role_id IN VARCHAR2, rec_id IN VARCHAR2)
+AS
+BEGIN
+    INSERT INTO CONTRIBUTOR
+    VALUES(contributor_id, firstname, lastname);
+    INSERT INTO RECORDING
+    VALUES(rec_id, SYSDATE, 0, 0);
+    INSERT INTO CONTRIBUTOR_REC
+    VALUES(rec_id, contributor_id, role_id);
+END CREATE_CONTRIBUTOR;
+PROCEDURE CREATE_COLLECTION(collection_id IN VARCHAR2, albName IN VARCHAR2)
+AS
+BEGIN
+    INSERT INTO COLLECTION 
+    VALUES(collection_id, albName);
+END CREATE_COLLECTION;
+END addpkg;
+/
 CREATE OR REPLACE PACKAGE deletepkg AS 
 FUNCTION COUNT_RECID(contributor_id IN VARCHAR2)
 RETURN NUMBER;
 PROCEDURE DELETE_CONTRIBUTOR(contributor_id IN VARCHAR2);
 PROCEDURE DELETE_SONG(album_id IN VARCHAR2);
 PROCEDURE DELETE_COLLECTION(collection_id IN VARCHAR2);
+PROCEDURE DELETE_RECORDING(recording_id IN VARCHAR2);
 END deletepkg;
 /
 CREATE OR REPLACE PACKAGE BODY deletepkg IS
@@ -59,5 +88,13 @@ begin
       end loop;
     delete from collection where collectionid = collection_id;
 end DELETE_COLLECTION;
+--Delete Recordings
+PROCEDURE DELETE_RECORDING (recording_id IN VARCHAR2)AS
+BEGIN
+  for arow in (SELECT * FROM RECORDING JOIN COMPILATION 
+              USING(recid) WHERE recid = recording_id) loop
+      delete from compilation where recid = arow.recid;
+  END LOOP;
+  delete from recording where recid = recording_id;
+END DELETE_RECORDING;
 END deletepkg;
-

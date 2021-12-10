@@ -4,6 +4,9 @@ public class Role {
     private String rolename;
 
     public Role(String roleId, String rolename){
+        if(roleId == null || rolename == null){
+            throw new IllegalArgumentException("roleid or rolename cannot be null");
+        }
         this.roleId = roleId;
         this.rolename = rolename;
     }
@@ -16,4 +19,8 @@ public class Role {
         return rolename;
     }
 
+    public String toString(){
+        String printing = "RoleId: "+this.roleId+" | Role name: "+this.rolename;
+        return printing;
+    }
 }

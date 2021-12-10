@@ -22,4 +22,8 @@ public class ContributorRec {
     public Role getRole() {
         return role;
     }
+    public String toString(){
+        String printing = this.con+" | "+this.rec+" | "+this.role;
+        return printing;
+    }
 }

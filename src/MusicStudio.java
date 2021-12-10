@@ -6,11 +6,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 
-import javax.naming.spi.DirStateFactory.Result;
-
-import oracle.jdbc.logging.annotations.Log;
-import oracle.jdbc.proxy.annotation.Pre;
-
 public class MusicStudio {
     private Credentials creds;
     private Connection con;
@@ -18,7 +13,9 @@ public class MusicStudio {
     public MusicStudio(Credentials creds) throws SQLException{
         this.creds = creds;
         this.con = connectToDB(creds.getUser(), creds.getPassword());
-        
+        if (this.con == null){
+            throw new IllegalArgumentException("Connection cannot be null");
+        }        
     }
 
     public Credentials getCreds() {
@@ -84,23 +81,15 @@ public class MusicStudio {
         PreparedStatement prep = this.con.prepareStatement(contributors);
     }
 
-
-
- 
-
     //Inserting the tables (Not Testing bc VPN sucks)
     
-    public void insertRecording() throws SQLException{
-
-    }
-    
     //Testing the Procedures
-    public void createContributor(String name, String lname, String cid, String roleid, String recid) throws SQLException{
+    public void createContributor(Contributor contributor, String roleid, String recid) throws SQLException{
         String callProcedure = "{call addpkg.CREATE_CONTRIBUTOR(?,?,?,?,?)}";
         CallableStatement statementCall = this.con.prepareCall(callProcedure);
-        statementCall.setString(1,name);
-        statementCall.setString(2,lname);
-        statementCall.setString(3, cid);
+        statementCall.setString(1,contributor.getCfirst());
+        statementCall.setString(2,contributor.getClast());
+        statementCall.setString(3, contributor.getContributorId());
         statementCall.setString(4, roleid);
         statementCall.setString(5, recid);
         statementCall.execute();
@@ -144,9 +133,60 @@ public class MusicStudio {
         statementCall.setString(1, collectionId);
         statementCall.execute();
     }
+    public void deleteRecording(String recordingid) throws SQLException{
+        String delColl = "{call deletepkg.DELETE_RECORDING(?)}";
+        CallableStatement statementCall = this.con.prepareCall(delColl);
+        statementCall.setString(1, recordingid);
+        statementCall.execute();
+    }
     
+    public void updateTable(String table, String column, String givenId, String newData) throws SQLException{
+        String id= " ";
+        switch(table){
+            case "album":
+            id = "albumid";
+            break;
+            case "collection":
+            id = "collectionid";
+            break;
+            case "recording":
+            id = "recid";
+            break;
+            case "contributor":
+            id = "contributorid";
+            break;
+            case "contributor_role":
+            id = "roleid";
+            break;
+        }
+        if (column.equals("duration") || column.equals("offset")){
+            String sql = "update "+table + " set " + column + " = ? where " + id + " = ?";
+            PreparedStatement prep = this.con.prepareStatement(sql);
+            prep.setDouble(1, Double.parseDouble(newData));
+            prep.setString(2, givenId);
+            prep.executeUpdate();
+        }
+        else if(column.equals("date") || column.equals("rec_date")){
+            String sql = "update "+table + " set " + column + " = ? where " + id + " = ?";
+            PreparedStatement prep = this.con.prepareStatement(sql);
+            prep.setDate(1, Date.valueOf(newData));
+            prep.setString(2, givenId);
+            prep.executeUpdate();
+        }
+        else {
+            String sql = "update "+table + " set " + column + " = ? where " + id + " = ?";
+            PreparedStatement prep = this.con.prepareStatement(sql);
+            prep.setString(1, newData);
+            prep.setString(2, givenId);
+            prep.executeUpdate();
+        }
+    }
 
+    public Connection getConnection(){
+        return this.con;
+    }
     public void closeConnection() throws SQLException{
         this.con.close();
     }
+    //Date.valueOf("1997-03-10");
 }

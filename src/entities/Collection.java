@@ -35,4 +35,10 @@ public class Collection {
     public String getCollectionId() {
         return collectionId;
     }
+
+    public String toString(){
+        String printing = "CollectionId: "+this.collectionId+" | Name: "+this.name+" | Release Date: "+
+            this.releaseDate+" | Label: "+this.label+" | Market: "+this.market;
+        return printing;
+    }
 }
