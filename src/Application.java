@@ -59,15 +59,14 @@ public class Application {
                     //create contributors and recording
                     //loop through the song prop arrays here
                     System.out.println("Creating contributors:");
-                    String cid = console.readLine("Enter contributor id: ");
+                    muS.printAllRecContributor();
+                    String cid = console.readLine("Pick an UNIQUE contributor id not on the list above: ");
                     String clast = console.readLine("Enter contributor last name: ");
                     String cfirst = console.readLine("Enter contributor firstname: ");
-                    //Print all the role id right here
-                    // String roleid = console.readLine("Enter Role ID: ");
-                    
                     Contributor contributor = new Contributor(cid,cfirst,clast);
                     muS.createContributor(contributor);
-                    System.out.println("Create recording:");
+                    System.out.println("Contributor created: " + contributor);
+                    System.out.println("Creating recording:");
                     String recid = console.readLine("Enter RECID: ");
                     String date = console.readLine("Enter date: ");
                     System.out.println("Enter duration: ");
@@ -76,11 +75,13 @@ public class Application {
                     double offset = scanner.nextDouble();
                     Recording rec = new Recording(recid,Date.valueOf(date), duration, offset);
                     muS.createRecording(rec);
+                    System.out.println("Recording created: " + rec);
                     //creates an object contributor
-                    muS.createContributor(contributor);
-                    System.out.println("Do you want to link this recording to an existing contributor");
-                    muS.printAllRecContributor();
+                    System.out.println("Link this recording to an existing contributor");
                     System.out.println("Here are your contributor choices!");
+                    System.out.println("-----------------------------------------------------------------------");
+                    muS.printAllRecContributor();
+                    
                     String contributorid = console.readLine("Give the contributor id: ");
                     System.out.println("Here are your role choices!");
                     String roleid = console.readLine("Give the role id: ");
@@ -88,6 +89,7 @@ public class Application {
                     Contributor con = muS.getContributor(contributorid);
                     ContributorRec contributorRec = new ContributorRec(con, rec, role);
                     muS.createontributorRec(contributorRec);
+                    System.out.println("Successfully linked song and role to contributor!" + '\n' +contributorRec);
                     // muS.updateRecording(recid,Date.valueOf(date),duration,offset);
                     //2
                     //create collection
@@ -99,10 +101,14 @@ public class Application {
 
                  //update song
                  else if(result.equals("3")){
-                    String table = console.readLine("Which data do you want to update?");
-                    String column = console.readLine("Which field do you want to update?");
-                    String newData = console.readLine("Enter new field value: ");
+                     //print all tables
+                    muS.printAllTables();
+                    String table = console.readLine("Which table do you want to update? ");
+                    //print all ids of that table
                     String givenId = console.readLine("Enter id of the row that you want to change: ");
+                    muS.printAllIDRowsFromTable(table);
+                    String column = console.readLine("Which field do you want to update? ");
+                    String newData = console.readLine("Enter new field value: ");
                     muS.updateTable(table,column,givenId,newData);
                     //missing the parse string to double 
                     //Log the change here 
@@ -151,12 +157,6 @@ public class Application {
                 }
             }
             System.out.println("entered db");
-
-            //muS.createContributor("NICO", "LAS", "C002", "R004", "RE06");
-            
-            //Calling Procedures
-            //Getting the contributor object
-            muS.updateTable("contributor", "c_first", "C002", "Dan");
             muS.printAllRecContributor();
             Logs logs = muS.getUserLogs();
             System.out.println(logs);

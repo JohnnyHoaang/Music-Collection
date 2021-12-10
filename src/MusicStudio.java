@@ -60,12 +60,12 @@ public class MusicStudio {
     }
     public Role getRole(String roleid) throws SQLException{
         Role role = null;
-        String contributor = "SELECT * FROM ROLE WHERE roleid = ?";
+        String contributor = "SELECT * FROM CONTRIBUTOR_ROLE WHERE roleid = ?";
         PreparedStatement prep = this.con.prepareStatement(contributor);
         prep.setString(1, roleid);
         ResultSet rs = prep.executeQuery();
         while(rs.next()){
-            role = new Role(rs.getString("roleid"), rs.getString("rolename");
+            role = new Role(rs.getString("roleid"), rs.getString("rolename"));
         }
         return role;
     }
@@ -155,7 +155,13 @@ public class MusicStudio {
             System.out.println("---------------------------");
         }
     }
-
+    
+    public void printAllTables(){
+        System.out.println("\n" + "Here are the tables:");
+        System.out.println("contributor, recording, album, collection");
+        System.out.println("contributor_role, contributor_rec, compilation"); 
+        System.out.println();
+    }
 
     // public void printRecContributor() throws SQLException{
     //     String contributors = "SELECT * FROM USER_LOGS WHERE USERNAME = ?";
