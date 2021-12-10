@@ -71,7 +71,7 @@ public class MusicStudio {
     }
     public Recording getRecording(String recordingid) throws SQLException{
         Recording recording = null;
-        String contributor = "SELECT * FROM RECORDING WHERE recordingid = ?";
+        String contributor = "SELECT * FROM RECORDING WHERE recid = ?";
         PreparedStatement prep = this.con.prepareStatement(contributor);
         prep.setString(1, recordingid);
         ResultSet rs = prep.executeQuery();

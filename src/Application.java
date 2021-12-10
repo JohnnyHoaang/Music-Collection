@@ -56,7 +56,7 @@ public class Application {
                  //Add song
                  else if(result.equals("2")){
                     System.out.println("Please fill all the information of the song you wanna add:");
-                    //create contributors and recording
+                    //1. create contributors and recording
                     //loop through the song prop arrays here
                     System.out.println("Creating contributors:");
                     muS.printAllRecContributor();
@@ -90,10 +90,14 @@ public class Application {
                     Contributor con = muS.getContributor(contributorid);
                     ContributorRec contributorRec = new ContributorRec(con, rec, role);
                     muS.createontributorRec(contributorRec);
-                    System.out.println("Successfully linked song and role to contributor!" + '\n' +contributorRec);
-                    // muS.updateRecording(recid,Date.valueOf(date),duration,offset);
+                    System.out.println("Successfully linked recording and role to contributor!" + '\n' +contributorRec);
                     //2
                     //create collection
+                    System.out.println("Creating collection: ");
+                    String collectionId = console.readLine("Enter an unique collection id: ");
+                    String name = console.readLine("Enter a name for the collection: ");
+                    Collection collection = new Collection(collectionId, name);
+                    muS.createCollection(collection);
                     //print all collection id
                     //3
                     //create album, to create album you need recordings
@@ -106,8 +110,19 @@ public class Application {
                     muS.printAllTables();
                     String table = console.readLine("Which table do you want to update? ");
                     //print all ids of that table
-                    String givenId = console.readLine("Enter id of the row that you want to change: ");
                     muS.printAllIDRowsFromTable(table);
+                    String givenId = console.readLine("Enter id of the row that you want to change: ");
+                    switch(table){
+                        case "role":
+                        System.out.println("Updating: " + muS.getRole(givenId));
+                        break;
+                        case "recording":
+                        System.out.println("Updating: " + muS.getRecording(givenId));
+                        break;
+                        case "contributor":
+                        System.out.println("Updating: " + muS.getContributor(givenId));
+                        break;
+                    }
                     String column = console.readLine("Which field do you want to update? ");
                     String newData = console.readLine("Enter new field value: ");
                     muS.updateTable(table,column,givenId,newData);
