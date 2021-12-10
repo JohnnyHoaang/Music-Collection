@@ -79,7 +79,7 @@ public class Application {
             System.out.println("entered db");
 
             
-            //muS.createContributor("NICO", "LAS", "C002", "R004", "RE06");
+            muS.createContributor("NICO", "LAS", "C008", "R004", "RE06");
             muS.printAllRecContributor();
             //Calling Procedures
             //Getting the contributor object

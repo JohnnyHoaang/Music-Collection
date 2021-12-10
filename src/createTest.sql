@@ -114,5 +114,5 @@ select * from collection;
 --
 --select c_first, rolename from contributor_role JOIN CONTRIBUTOR_REC 
 --USING(roleid) JOIN CONTRIBUTOR USING(contributorid);
-
+COMMIT;
 
