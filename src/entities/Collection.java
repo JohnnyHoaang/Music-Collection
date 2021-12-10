@@ -16,14 +16,6 @@ public class Collection {
         this.market = market;
     }
 
-    public String getMarket() {
-        return market;
-    }
-
-    public String getLabel() {
-        return label;
-    }
-
     public Date getReleaseDate() {
         return releaseDate;
     }

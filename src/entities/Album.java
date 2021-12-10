@@ -6,6 +6,8 @@ public class Album {
     private Date pubdate;
     private String title;
     private String collectionid;
+    private String market;
+    private String label;
 
     public Album(String albumid, String title){
         if (albumid == null || title == null){
@@ -19,6 +21,14 @@ public class Album {
         this.category = category;
         this.pubdate = pubdate;
         this.collectionid = collectionid;
+    }
+
+    public String getMarket() {
+        return market;
+    }
+
+    public String getLabel() {
+        return label;
     }
 
     public String getAlbumid() {

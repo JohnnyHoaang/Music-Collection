@@ -84,14 +84,50 @@ public class MusicStudio {
     //Inserting the tables (Not Testing bc VPN sucks)
     
     //Testing the Procedures
-    public void createContributor(Contributor contributor, String roleid, String recid) throws SQLException{
-        String callProcedure = "{call addpkg.CREATE_CONTRIBUTOR(?,?,?,?,?)}";
+    public void createContributor(Contributor contributor) throws SQLException{
+        String callProcedure = "{call addpkg.CREATE_CONTRIBUTOR(?,?,?)}";
         CallableStatement statementCall = this.con.prepareCall(callProcedure);
         statementCall.setString(1,contributor.getCfirst());
         statementCall.setString(2,contributor.getClast());
         statementCall.setString(3, contributor.getContributorId());
-        statementCall.setString(4, roleid);
-        statementCall.setString(5, recid);
+        statementCall.execute();
+    }
+
+    public void createRecording(Recording recording) throws SQLException{
+        String callProcedure = "{call addpkg.CREATE_RECORDING(?,?,?,?)}";
+        CallableStatement statementCall = this.con.prepareCall(callProcedure);
+        statementCall.setString(1,recording.getRecordingId());
+        statementCall.setDate(2, recording.getDate());;
+        statementCall.setDouble(3, recording.getDuration_used());
+        statementCall.setDouble(4, recording.getRec_offset());
+        statementCall.execute();
+    }
+
+    public void createontributorRec(ContributorRec contributorRec) throws SQLException{
+        String callProcedure = "{call addpkg.CREATE_CONTRIBUTOR_REC(?,?,?)}";
+        CallableStatement statementCall = this.con.prepareCall(callProcedure);
+        statementCall.setString(1,contributorRec.getRec().getRecordingId());
+        statementCall.setString(2, contributorRec.getCon().getContributorId());
+        statementCall.setString(3, contributorRec.getRole().getRoleId());
+        statementCall.execute();
+    }
+    public void createAlbum(Album album) throws SQLException{
+        String callProcedure = "{call addpkg.CREATE_CONTRIBUTOR_REC(?,?,?)}";
+        CallableStatement statementCall = this.con.prepareCall(callProcedure);
+        statementCall.setString(1,album.getAlbumid());
+        statementCall.setString(2, album.getTitle());
+        statementCall.setString(3, album.getCategory());
+        statementCall.setDate(4,album.getPubdate());
+        statementCall.setString(5, album.getMarket());
+        statementCall.setString(6, album.getLabel());
+        statementCall.execute();
+    }
+
+    public void createCollection(Collection collection) throws SQLException{
+        String callProcedure = "{call addpkg.CREATE_COLLECTION(?,?)}";
+        CallableStatement statementCall = this.con.prepareCall(callProcedure);
+        statementCall.setString(1, collection.getCollectionId());
+        statementCall.setString(2, collection.getName());
         statementCall.execute();
     }
 
@@ -105,13 +141,7 @@ public class MusicStudio {
         statementCall.execute();
     }
 
-    public void createCollection(String collectionid, String albumname) throws SQLException{
-        String callProcedure = "{call CREATE_COLLECTION(?,?)}";
-        CallableStatement statementCall = this.con.prepareCall(callProcedure);
-        statementCall.setString(1, collectionid);
-        statementCall.setString(2, albumname);
-        statementCall.execute();
-    }
+    
 
 
     //Delete data from the table

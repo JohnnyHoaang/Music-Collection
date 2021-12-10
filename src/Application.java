@@ -59,18 +59,18 @@ public class Application {
                     String clast = console.readLine("Enter contributor last name: ");
                     String cfirst = console.readLine("Enter contributor firstname: ");
                     //Print all the role id right here
-                    String roleid = console.readLine("Enter Role ID: ");
-                    String recid = console.readLine("Enter RECID: ");
+                    // String roleid = console.readLine("Enter Role ID: ");
+                    // String recid = console.readLine("Enter RECID: ");
                     Contributor contributor = new Contributor(cid,cfirst,clast);
                     System.out.println("");
                     //creates an object contributor
-                    muS.createContributor(contributor,roleid,recid);
-                    String date = console.readLine("Enter date: ");
-                    System.out.println("Enter duration: ");
-                    double duration = scanner.nextDouble();
-                    System.out.println("Enter offset: ");
-                    double offset = scanner.nextDouble();
-                    muS.updateRecording(recid,Date.valueOf(date),duration,offset);
+                    muS.createContributor(contributor);
+                    // String date = console.readLine("Enter date: ");
+                    // System.out.println("Enter duration: ");
+                    // double duration = scanner.nextDouble();
+                    // System.out.println("Enter offset: ");
+                    // double offset = scanner.nextDouble();
+                    // muS.updateRecording(recid,Date.valueOf(date),duration,offset);
                     //2
                     //create collection
                     //print all collection id
