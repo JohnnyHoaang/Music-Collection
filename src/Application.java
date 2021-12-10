@@ -64,8 +64,18 @@ public class Application {
                         System.out.println(muS.getRecording(recid));
                     }
 
-                    // Gets the contributors
-                    // getContributorId
+                    // System.out.println("MY REC ID IS "+recording.get(1));
+                    //Gets the contributors
+                    ArrayList<String> contributorsid= muS.getContributorid(recording.get(1).getRecordingId());
+                    
+                    System.out.println("CONTIBUTOR ID WORK PLEASE");
+                    
+                    for(String cid : contributorsid){
+                        System.out.println("HELLO?");
+                        // recording.add(muS.getRecording(cid));
+                        System.out.println(muS.getContributor(cid));
+                    }
+
 
                     // System.out.println(col);
                     // Collection
@@ -193,9 +203,9 @@ public class Application {
                     // missing the parse string to double
                     // Log the change here
 
-                }
-                // delete dsta
-                else if (result.equals("4")) {
+                 }
+                 //delete data
+                 else if(result.equals("4")){
                     System.out.println("What data do you wish to delete? Here are the choices");
                     System.out.println("1) DELETE THE WHOLE SONG");
                     System.out.println("2) DELETE CONTRIBUTOR");
@@ -222,6 +232,7 @@ public class Application {
                             String collectionid = console.readLine("Enter the collection id: ");
                             // which collection to delete
                             muS.deleteCollection(collectionid);
+                            break;
 
                         case "4":
                             // case 4: delete recording
@@ -229,6 +240,7 @@ public class Application {
                             String recid = console.readLine("Enter the recid: ");
                             // which collection to delete
                             muS.deleteRecording(recid);
+                            break;
                     }
                 } else if (result.equals("5")) {
                     // Print all user log

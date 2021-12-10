@@ -134,7 +134,7 @@ public class MusicStudio {
         ResultSet rs = prep.executeQuery();
 
         while(rs.next()){
-            contrs.add(rs.getString(1));
+            contrs.add(rs.getString(2));
         }
         return contrs;
     }

@@ -44,3 +44,6 @@ objects (print view)
 and CREATE recording compilation album collection!!!!
 
 
+
+--> AFTER CREATING RECORDING (OPTION 2) PRINT ALL THE RECORDINGS
+--> AFTER CREATING AN ALBUM PRINT ALL THE ALBUMS DANG NABBIT!
