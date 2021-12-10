@@ -92,16 +92,27 @@ public class Application {
                     muS.createontributorRec(contributorRec);
                     System.out.println("Successfully linked recording and role to contributor!" + '\n' +contributorRec);
                     //2
+                    //create album, to create album you need recordings
+                    //print all recordings, print all collections
+                    System.out.println("Creating album");
+                    String albumid = console.readLine("Enter an unique album id: ");
+                    String title = console.readLine("Enter the title: ");
+                    String category = console.readLine("Enter the category: ");
+                    String pubdate = console.readLine("Enter an unique album id: ");
+                    String market = console.readLine("Enter the market: ");
+                    String label = console.readLine("Enter the label: ");
+                    Album album = new Album(albumid, title, category, Date.valueOf(pubdate), "", market, label);
+                    muS.createAlbum(album);
+                    //while loop to add recordings
+                    muS.c;
+                    //3
                     //create collection
                     System.out.println("Creating collection: ");
+                    muS.printAllCollection();
                     String collectionId = console.readLine("Enter an unique collection id: ");
                     String name = console.readLine("Enter a name for the collection: ");
                     Collection collection = new Collection(collectionId, name);
                     muS.createCollection(collection);
-                    //print all collection id
-                    //3
-                    //create album, to create album you need recordings
-                    //print all recordings, print all collections
                  }
 
                  //update song
