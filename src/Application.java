@@ -186,27 +186,16 @@ public class Application {
                     // missing the parse string to double
                     // Log the change here
 
-<<<<<<< HEAD
                  }
                  //delete data
                  else if(result.equals("4")){
-=======
-                }
-                // delete dsta
-                else if (result.equals("4")) {
->>>>>>> 1854a58de9700c46c52dabb8c519e6ad7723702a
                     System.out.println("What data do you wish to delete? Here are the choices");
                     System.out.println("1) DELETE THE WHOLE SONG");
                     System.out.println("2) DELETE CONTRIBUTOR");
                     System.out.println("3) DELETE COLLECTION");
                     System.out.println("4) DELETE RECORDING");
-<<<<<<< HEAD
                     String answer = console.readLine();
                     switch(answer){
-=======
-                    String answer = scanner.nextLine();
-                    switch (answer) {
->>>>>>> 1854a58de9700c46c52dabb8c519e6ad7723702a
                         case "1":
                             System.out.println("Which song do you want to delete : ");
                             String albumid = console.readLine("Enter the albumd id: ");
