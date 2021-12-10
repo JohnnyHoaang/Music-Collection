@@ -44,24 +44,74 @@ public class MusicStudio {
         return logMessage;
     }
 
-    //print all info from (any table), maybe create objects 
-    public void printAllRecContributor() throws SQLException{
-        String contributors = "SELECT * FROM CONTRIBUTOR";
-        PreparedStatement prep = this.con.prepareStatement(contributors);
-        var rs = prep.executeQuery();
+
+    public Contributor getContributor(String contributorid) throws SQLException{
+        Contributor contr = null;
+        String contributor = "SELECT * FROM CONTRIBUTOR WHERE contributorid = ?";
+        PreparedStatement prep = this.con.prepareStatement(contributor);
+        prep.setString(1, contributorid);
+        ResultSet rs = prep.executeQuery();
+
+
         while(rs.next()){
-            System.out.println("Contributor id: " + rs.getString("contributorid")+ " Fullname: " + rs.getString("c_first") + " " + rs.getString("c_last"));
+            contr = new Contributor(rs.getString("contributorid"), rs.getString("c_first"), rs.getString("c_last"));
         }
+        return contr;
     }
-    public void printAllRecording() throws SQLException{
-        String recordings = "SELECT * FROM RECORDING";
-        PreparedStatement prep = this.con.prepareStatement(recordings);
+    public Role getRole(String roleid) throws SQLException{
+        Role role = null;
+        String contributor = "SELECT * FROM ROLE WHERE roleid = ?";
+        PreparedStatement prep = this.con.prepareStatement(contributor);
+        prep.setString(1, roleid);
         ResultSet rs = prep.executeQuery();
         while(rs.next()){
+            role = new Role(rs.getString("roleid"), rs.getString("rolename");
+        }
+        return role;
+    }
+    public Recording getRecording(String recordingid) throws SQLException{
+        Recording recording = null;
+        String contributor = "SELECT * FROM RECORDING WHERE recordingid = ?";
+        PreparedStatement prep = this.con.prepareStatement(contributor);
+        prep.setString(1, recordingid);
+        ResultSet rs = prep.executeQuery();
+        while(rs.next()){
+            recording = new Recording(rs.getString("recid"), rs.getDate("date"), rs.getDouble("duration"), rs.getDouble("offset"));
+        }
+        return recording;
+    }
+
+
+    //print all info from (any table), maybe create objects
+    //Storing the contributors into an object
+    public void printAllRecContributor() throws SQLException{
+        String contributor = "SELECT * FROM CONTRIBUTOR";
+        PreparedStatement prep = this.con.prepareStatement(contributor);
+        ResultSet rs = prep.executeQuery();
+
+        while(rs.next()){
+            ArrayList<Contributor> contributors = new ArrayList<>();
+            contributors.add(new Contributor(rs.getString("contributorid"), rs.getString("c_first"), rs.getString("c_last")));
+            
+            for(Contributor contr : contributors){
+                System.out.println(contr);
+                System.out.println("---------------------------");
+            }
+        }
+    }
+
+    public void printAllRecording() throws SQLException{
+        String recording = "SELECT * FROM RECORDING";
+        PreparedStatement prep = this.con.prepareStatement(recording);
+        ResultSet rs = prep.executeQuery();
+
+        while(rs.next()){
+            ArrayList<Recording> recordings = new ArrayList<>();
             System.out.println("Rec id:" + rs.getString("recid")+ " date:" + rs.getDate("rec_date") + " duration:" + rs.getString("duration") + " offset:" + rs.getString("offset"));
         }
     }
 
+    //Storing the collections into an object
     public void printAllCollection() throws SQLException{
         String collection = "SELECT * FROM COLLECTION";
         PreparedStatement prep = this.con.prepareStatement(collection);
@@ -85,16 +135,15 @@ public class MusicStudio {
         PreparedStatement prep = this.con.prepareStatement(album);
         ResultSet rs = prep.executeQuery();
 
+        ArrayList<Album> albums = new ArrayList<>();
+
         while(rs.next()){
-        
-            ArrayList<Album> albums = new ArrayList<>();
             albums.add(new Album(rs.getString("albumid"), rs.getString("title"), rs.getString("category"), 
                 rs.getDate("pubdate"), rs.getString("collectionid"),rs.getString("market"), rs.getString("label")));
-
-            for(Album alb : albums){
-                System.out.println(alb);
-                System.out.println("---------------------------");
-            }
+        }
+        for(Album alb : albums){
+            System.out.println(alb);
+            System.out.println("---------------------------");
         }
     }
 
@@ -104,7 +153,9 @@ public class MusicStudio {
     //     PreparedStatement prep = this.con.prepareStatement(contributors);
     // }
 
-    //Inserting the tables (Not Testing bc VPN sucks)
+
+
+
     
     //Testing the Procedures
     public void createContributor(Contributor contributor) throws SQLException{

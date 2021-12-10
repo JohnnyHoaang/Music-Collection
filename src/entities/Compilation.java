@@ -2,34 +2,29 @@ package src.entities;
 import java.sql.Date;
 
 public class Compilation {
-    
-    private Date date;
     private Recording rec;
+    private Date date;
     private Album album;
-    private String compilationid;
 
-    public Compilation(Recording rec, Album album, Date date, String compilationid){
+    public Compilation(Recording rec, Date date, Album album){
         this.rec = rec;
+        this.date = date; 
         this.album = album;
-        this.date = date;  
-        this.compilationid = compilationid;
     }
-
+   
+    public Recording getRecording() {
+        return this.rec;
+    }
     public Date getDate() {
-        return date;
-    }
-    public Recording getRec() {
-        return rec;
+        return this.date;
     }
     public Album getAlbum() {
-        return album;
+        return this.album;
     }
-    public String getCompilationid(){
-        return this.compilationid;
-    }
+ 
 
     public String toString(){
-        String printing = "Recording: "+this.rec+" | Album: "+this.album+" | Date: "+this.date+" | CompilationId: "+this.compilationid;
+        String printing = "Recording: "+this.rec+" | Album: "+this.album+" | Date: "+this.date;
         return printing;
     }
 }

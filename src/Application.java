@@ -77,9 +77,10 @@ public class Application {
                     System.out.println("Do you want to link this recording to an existing contributor");
                     muS.printAllRecContributor();
                     System.out.println("Here are your contributor choices!");
-                    String contributorid = console.readLine("Give the contributor id: ")
-                    String role = console.readLine("Give the role id: ");
+                    String contributorid = console.readLine("Give the contributor id: ");
                     System.out.println("Here are your role choices!");
+                    String roleid = console.readLine("Give the role id: ");
+                    Role role = muS.getRole(roleid);
                     Contributor con = muS.getContributor(contributorid);
                     ContributorRec contributorRec = new ContributorRec(con, rec, role);
                     muS.createontributorRec(contributorRec);
@@ -147,7 +148,6 @@ public class Application {
             }
             System.out.println("entered db");
 
-            
             //muS.createContributor("NICO", "LAS", "C002", "R004", "RE06");
             
             //Calling Procedures
