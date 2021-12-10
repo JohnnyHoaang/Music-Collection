@@ -82,7 +82,56 @@ public class MusicStudio {
     }
 
 
-    
+    public void printAllIDRowsFromTable(String table) throws SQLException{
+        String id = "";
+
+        //Refactor into method
+        switch(table){
+            case "album":
+            id = "albumid";
+            break;
+            case "collection":
+            id = "collectionid";
+            break;
+            case "recording":
+            id = "recid";
+            break;
+            case "contributor":
+            id = "contributorid";
+            break;
+            case "contributor_role":
+            id = "roleid";
+            break;
+        }
+
+        String printID = "SELECT "+id+" FROM "+table;
+        PreparedStatement prep = this.con.prepareStatement(printID);
+        ResultSet rs = prep.executeQuery();
+
+        while(rs.next()){
+            System.out.println(rs.getString(1));
+        }
+
+    }
+
+
+    public void printAllRoles() throws SQLException{
+        String role = "SELECT * FROM CONTRIBUTOR_ROLE";
+        PreparedStatement prep = this.con.prepareStatement(role);
+        ResultSet rs = prep.executeQuery();
+
+        ArrayList<Role> roles = new ArrayList<>();
+
+        while(rs.next()){
+            roles.add(new Role(rs.getString("roleid"), rs.getString("rolename")));         
+        }
+        
+        for(Role rol : roles){
+            System.out.println(rol);
+            System.out.println("---------------------------");
+        }
+    }
+
     //print all info from (any table), maybe create objects
     //Storing the contributors into an object
     public void printAllRecContributor() throws SQLException{
@@ -90,14 +139,15 @@ public class MusicStudio {
         PreparedStatement prep = this.con.prepareStatement(contributor);
         ResultSet rs = prep.executeQuery();
 
+        ArrayList<Contributor> contributors = new ArrayList<>();
+
         while(rs.next()){
-            ArrayList<Contributor> contributors = new ArrayList<>();
-            contributors.add(new Contributor(rs.getString("contributorid"), rs.getString("c_first"), rs.getString("c_last")));
-            
-            for(Contributor contr : contributors){
-                System.out.println(contr);
-                System.out.println("---------------------------");
-            }
+            contributors.add(new Contributor(rs.getString("contributorid"), rs.getString("c_first"), rs.getString("c_last")));  
+        }
+
+        for(Contributor contr : contributors){
+            System.out.println(contr);
+            System.out.println("---------------------------");
         }
     }
 
