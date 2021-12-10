@@ -5,6 +5,7 @@ import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class MusicStudio {
     private Credentials creds;
@@ -60,22 +61,44 @@ public class MusicStudio {
             System.out.println("Rec id:" + rs.getString("recid")+ " date:" + rs.getDate("rec_date") + " duration:" + rs.getString("duration") + " offset:" + rs.getString("offset"));
         }
     }
+
     public void printAllCollection() throws SQLException{
         String collection = "SELECT * FROM COLLECTION";
         PreparedStatement prep = this.con.prepareStatement(collection);
         ResultSet rs = prep.executeQuery();
         while(rs.next()){
-            System.out.println("Collection Id: " + rs.getString("collectionid")+ " Name: " + rs.getString("name"));
+
+            ArrayList<Collection> collections = new ArrayList<>();
+            collections.add(new Collection(rs.getString("collectionid"), rs.getString("name")));
+
+            for(Collection col : collections){
+                System.out.println(col);
+                System.out.println("---------------------------");
+            }
+   
         }
     }
+
+    //Storing the songs into an object
     public void printAllAlbums() throws SQLException{
         String album = "SELECT * FROM ALBUM";
         PreparedStatement prep = this.con.prepareStatement(album);
         ResultSet rs = prep.executeQuery();
+
         while(rs.next()){
-            System.out.println("Album Id: " + rs.getString("albumid")+ "Name: " + rs.getString("name") +" Category: " + rs.getString("category") + " pubdate: " + rs.getDate("pubdate") + " collection ID: " + rs.getString("collectionid"));
+        
+            ArrayList<Album> albums = new ArrayList<>();
+            albums.add(new Album(rs.getString("albumid"), rs.getString("title"), rs.getString("category"), 
+                rs.getDate("pubdate"), rs.getString("collectionid"),rs.getString("market"), rs.getString("label")));
+
+            for(Album alb : albums){
+                System.out.println(alb);
+                System.out.println("---------------------------");
+            }
         }
     }
+
+
     public void printRecContributor() throws SQLException{
         String contributors = "SELECT * FROM USER_LOGS WHERE USERNAME = ?";
         PreparedStatement prep = this.con.prepareStatement(contributors);

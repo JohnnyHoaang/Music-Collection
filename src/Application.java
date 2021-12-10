@@ -45,7 +45,7 @@ public class Application {
                    //print all informantion of the song here
                     //muS.printAllRecContributors();
                     //muS.printAllRecordings();
-                    //muS.printAllCollection();
+                    // muS.printAllCollection();
                     //mus.printAllAlbums();
 
                  }
