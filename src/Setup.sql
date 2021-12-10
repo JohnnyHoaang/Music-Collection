@@ -59,5 +59,7 @@ CREATE TABLE USER_LOGS (
     changes VARCHAR2(100)
     );
     
+COMMIT;
+    
     
     

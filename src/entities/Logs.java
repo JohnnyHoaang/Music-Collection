@@ -1,4 +1,4 @@
-package src;
+package src.entities;
 
 public class Logs {
     private String username;
@@ -10,17 +10,17 @@ public class Logs {
     }
 
     public String getUsername() {
-        return username;
+        return this.username;
     }
     public void addTrack(String log){
         this.changeTrack += log + '\n';
     }
     public String getChangeTrack() {
-        return changeTrack;
+        return this.changeTrack;
     }
 
     public String toString(){
-
-        return "User: "+this.username +" | Track: "+this.changeTrack;
+        String printing = "User: "+this.username +" | Track: "+this.changeTrack;
+        return printing;
     }
 }
