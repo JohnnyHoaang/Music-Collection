@@ -82,7 +82,39 @@ public class MusicStudio {
     }
 
 
-    
+    public void printAllIDRowsFromTable(String table) throws SQLException{
+        String id = "";
+
+        //Refactor into method
+        switch(table){
+            case "album":
+            id = "albumid";
+            break;
+            case "collection":
+            id = "collectionid";
+            break;
+            case "recording":
+            id = "recid";
+            break;
+            case "contributor":
+            id = "contributorid";
+            break;
+            case "contributor_role":
+            id = "roleid";
+            break;
+        }
+
+        String printID = "SELECT "+id+" FROM "+table;
+        PreparedStatement prep = this.con.prepareStatement(printID);
+        ResultSet rs = prep.executeQuery();
+
+        while(rs.next()){
+            System.out.println(rs.getString(1));
+        }
+
+    }
+
+
     public void printAllRoles() throws SQLException{
         String role = "SELECT * FROM CONTRIBUTOR_ROLE";
         PreparedStatement prep = this.con.prepareStatement(role);
