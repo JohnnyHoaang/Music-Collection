@@ -15,10 +15,6 @@ AS
 BEGIN
     INSERT INTO CONTRIBUTOR
     VALUES(contributor_id, firstname, lastname);
-    INSERT INTO RECORDING
-    VALUES(rec_id, SYSDATE, 0, 0);
-    INSERT INTO CONTRIBUTOR_REC
-    VALUES(rec_id, contributor_id, role_id);
 END CREATE_CONTRIBUTOR;
 PROCEDURE CREATE_COLLECTION(collection_id IN VARCHAR2, albName IN VARCHAR2)
 AS

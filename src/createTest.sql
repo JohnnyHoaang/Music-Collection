@@ -89,6 +89,10 @@ select * from contributor;
 Select * from album;
 select * from collection;
 
+INSERT INTO ALBUM (albumid,title,category)
+VALUES('AL009', 'RANDOM SONG', 'TESTER');
+select * from album where collectionid IS NULL;
+SELECT * FROM ALBUM;
 --ON UPDATE--
 --ON DELETE--
 
