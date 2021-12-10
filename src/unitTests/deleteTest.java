@@ -29,7 +29,7 @@ public class deleteTest {
         //uncomment if you want to run test again
         // m.deleteContributor(c.getContributorId());
         // m.deleteRecording("RE0000");
-        m.createContributor(c, "R001", "RE0000");
+        //m.createContributor(c, "R001", "RE0000");
         m.deleteContributor(c.getContributorId());
         String contributorName ="";
         String sql = "SELECT C_FIRST FROM CONTRIBUTOR WHERE CONTRIBUTORID = ?";

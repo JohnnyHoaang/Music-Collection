@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Application {
@@ -42,13 +43,24 @@ public class Application {
                     String songid = scanner.next();
                     // print song info method
                     System.out.println("Here is the information of the song you chose");
-                    // print all informantion of the song here
+                   //print all informantion of the song here
                      muS.printAllRecContributor();
-                    // muS.printAllRecordings();
+                    //muS.printAllRecordings();
                     // muS.printAllCollection();
                     // mus.printAllAlbums();
 
-                    // Collection
+                    //Album alb = muS.getAlbum(songid);
+
+                    //Gets the collection
+                    //Collection col = muS.getCollection(alb.getCollectionid());
+
+                    // ArrayList<String> recid = muS.getRecid(); afaf afa
+
+                    //Gets the recordings
+                    // Recording rec = muS.getRecording(recordingid);
+
+                    //System.out.println(col);
+                    //Collection
                     //
 
                 }
@@ -67,7 +79,7 @@ public class Application {
                     System.out.println("Contributor created: " + contributor);
                     System.out.println("Creating recording:");
                     String recid = console.readLine("Enter RECID: ");
-                    String date = console.readLine("Enter date: ");
+                    String date = console.readLine("Enter date | FORMAT(yyyy-mm-dd): ");
                     System.out.println("Enter duration: ");
                     double duration = scanner.nextDouble();
                     System.out.println("Enter offset: ");
@@ -95,10 +107,10 @@ public class Application {
                     // create album, to create album you need recordings
                     // print all recordings, print all collections
                     System.out.println("Creating album");
-                    String albumid = console.readLine("Enter an unique album id: ");
+                    String albumid = console.readLine("Enter an unique album id | FORMAT(AL000): ");
                     String title = console.readLine("Enter the title: ");
                     String category = console.readLine("Enter the category: ");
-                    String pubdate = console.readLine("Enter an unique album id: ");
+                    String pubdate = console.readLine("Enter the pubdate | FORMAT(yyyy-mm-dd): ");
                     String market = console.readLine("Enter the market: ");
                     String label = console.readLine("Enter the label: ");
                     Album album = new Album(albumid, title, category, Date.valueOf(pubdate), "", market, label);
@@ -106,6 +118,7 @@ public class Application {
                     // while loop to add recordings to song
                     boolean createCompilationsLoop = true;
                     while (createCompilationsLoop) {
+                        muS.printAllRecording();
                         String recordingid = console.readLine("Give recording ids to make song: ");
                         String vdate = console.readLine("Give a date to the compilation: ");
                         muS.createCompilation(muS.getRecording(recordingid), album, Date.valueOf(vdate));
@@ -117,6 +130,7 @@ public class Application {
                             System.out.println("Keep mixing your song!");
                         }
                     }
+                    System.out.println(muS.getAlbum(album.getAlbumid()));
                     // 3
                     // create collection
                     System.out.println("Creating collection: ");
@@ -204,10 +218,10 @@ public class Application {
                     open = false;
                 }
             }
-            System.out.println("entered db");
-            muS.printAllRecContributor();
-            Logs logs = muS.getUserLogs();
-            System.out.println(logs);
+            //create compilation test
+            Recording recording = muS.getRecording("RE002");
+            Album album = muS.getAlbum("AL001");
+            muS.createCompilation(recording, album, Date.valueOf("2020-08-01"));
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
