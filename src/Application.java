@@ -49,7 +49,7 @@ public class Application {
                     // muS.printAllCollection();
                     // mus.printAllAlbums();
 
-                    //Album alb = muS.getAlbum(songid);
+                    Album alb = muS.getAlbum(songid);
 
                     //Gets the collection
                     //Collection col = muS.getCollection(alb.getCollectionid());
@@ -64,8 +64,18 @@ public class Application {
                         System.out.println(muS.getRecording(recid));
                     }
 
+                    // System.out.println("MY REC ID IS "+recording.get(1));
                     //Gets the contributors
-                    // getContributorId
+                    ArrayList<String> contributorsid= muS.getContributorid(recording.get(1).getRecordingId());
+                    
+                    System.out.println("CONTIBUTOR ID WORK PLEASE");
+                    
+                    for(String cid : contributorsid){
+                        System.out.println("HELLO?");
+                        // recording.add(muS.getRecording(cid));
+                        System.out.println(muS.getContributor(cid));
+                    }
+
 
 
                  
@@ -194,8 +204,8 @@ public class Application {
                     System.out.println("2) DELETE CONTRIBUTOR");
                     System.out.println("3) DELETE COLLECTION");
                     System.out.println("4) DELETE RECORDING");
-                    String answer = console.readLine();
-                    switch(answer){
+                    String answer = console.readLine("Pick your choice: ");
+                    switch (answer) {
                         case "1":
                             System.out.println("Which song do you want to delete : ");
                             String albumid = console.readLine("Enter the albumd id: ");
@@ -215,6 +225,7 @@ public class Application {
                             String collectionid = console.readLine("Enter the collection id: ");
                             // which collection to delete
                             muS.deleteCollection(collectionid);
+                            break;
 
                         case "4":
                             // case 4: delete recording
@@ -222,6 +233,7 @@ public class Application {
                             String recid = console.readLine("Enter the recid: ");
                             // which collection to delete
                             muS.deleteRecording(recid);
+                            break;
                     }
                 } else if (result.equals("5")) {
                     // Print all user log
