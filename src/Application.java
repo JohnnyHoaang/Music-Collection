@@ -34,6 +34,7 @@ public class Application {
                  System.out.println("4) DELETE DATA");
                  System.out.println("5) EXIT");
                  var result = scanner.next();
+
                  //View song
                  if(result.equals("1")){
                     //Print all song in the library here
@@ -47,6 +48,9 @@ public class Application {
                     //muS.printAllRecordings();
                     // muS.printAllCollection();
                     //mus.printAllAlbums();
+
+                    //Collection
+                    //
 
                  }
                  //Add song
