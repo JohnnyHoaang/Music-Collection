@@ -134,7 +134,6 @@ public class Application {
             }
             System.out.println("entered db");
 
-            
             //muS.createContributor("NICO", "LAS", "C002", "R004", "RE06");
             
             //Calling Procedures

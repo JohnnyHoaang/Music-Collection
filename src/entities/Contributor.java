@@ -11,14 +11,14 @@ public class Contributor {
     }
 
     public String getContributorId() {
-        return contributorId;
+        return this.contributorId;
     }
     public String getCfirst() {
-        return cFirst;
+        return this.cFirst;
     }
 
     public String getClast() {
-        return cLast;
+        return this.cLast;
     }
 
     public String toString(){

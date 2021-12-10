@@ -10,13 +10,13 @@ public class Logs {
     }
 
     public String getUsername() {
-        return username;
+        return this.username;
     }
     public void addTrack(String log){
         this.changeTrack += log + '\n';
     }
     public String getChangeTrack() {
-        return changeTrack;
+        return this.changeTrack;
     }
 
     public String toString(){

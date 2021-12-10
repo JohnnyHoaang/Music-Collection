@@ -12,10 +12,10 @@ public class Collection {
 
     //Get Methods
     public String getCollectionId() {
-        return collectionId;
+        return this.collectionId;
     }
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public String toString(){

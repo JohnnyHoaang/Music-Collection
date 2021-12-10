@@ -12,15 +12,15 @@ public class ContributorRec {
     }
 
     public Contributor getCon() {
-        return con;
+        return this.con;
     }
 
     public Recording getRec() {
-        return rec;
+        return this.rec;
     }
 
     public Role getRole() {
-        return role;
+        return this.role;
     }
     public String toString(){
         String printing = this.con+" | "+this.rec+" | "+this.role;
