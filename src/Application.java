@@ -55,14 +55,21 @@ public class Application {
                     //Gets the collection
                     Collection col = muS.getCollection(alb.getCollectionid());
 
-                    // ArrayList<String> recid = muS.getRecid(); afaf afa
+                    //Getss the recordings
+                    ArrayList<String> recids = muS.getRecid(alb.getAlbumid());
+                    ArrayList<Recording> recording = new ArrayList<>();
 
-                    //Gets the recordings
-                    // Recording rec = muS.getRecording(recordingid);
+                    for(String recid : recids){
+                        recording.add(muS.getRecording(recid));
 
-                    System.out.println(col);
-                    //Collection
-                    //
+                        System.out.println(muS.getRecording(recid));
+                    }
+
+                    //Gets the contributors
+                    // getContributorId
+
+
+                 
 
                  }
                  //Add song
@@ -142,14 +149,14 @@ public class Application {
                     //Log the change here 
 
                  }
-                 //delete dsta
+                 //delete data
                  else if(result.equals("4")){
                     System.out.println("What data do you wish to delete? Here are the choices");
                     System.out.println("1) DELETE THE WHOLE SONG");
                     System.out.println("2) DELETE CONTRIBUTOR");
                     System.out.println("3) DELETE COLLECTION");
                     System.out.println("4) DELETE RECORDING");
-                    String answer = scanner.nextLine();
+                    String answer = console.readLine();
                     switch(answer){
                         case "1":
                         System.out.println("Which song do you want to delete : ");

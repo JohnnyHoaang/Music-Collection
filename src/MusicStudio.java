@@ -105,7 +105,7 @@ public class MusicStudio {
         prep.setString(1, recordingid);
         ResultSet rs = prep.executeQuery();
         while(rs.next()){
-            recording = new Recording(rs.getString("recid"), rs.getDate("date"), rs.getDouble("duration"), rs.getDouble("offset"));
+            recording = new Recording(rs.getString("recid"), rs.getDate("rec_date"), rs.getDouble("duration"), rs.getDouble("offset"));
         }
         return recording;
     }
@@ -117,9 +117,26 @@ public class MusicStudio {
         ArrayList<String> recs = new ArrayList<>();
         String result = "SELECT * FROM COMPILATION WHERE albumid = ?";
         PreparedStatement prep = this.con.prepareStatement(result);
-        // prep.
+        prep.setString(1, albumid);
+        ResultSet rs = prep.executeQuery();
 
+        while(rs.next()){
+            recs.add(rs.getString(1));
+        }
         return recs;
+    }
+    //Get ContributorID
+    public ArrayList<String> getContributorid(String recid) throws SQLException{
+        ArrayList<String> contrs = new ArrayList<>();
+        String result = "SELECT * FROM CONTRIBUTOR_REC WHERE recid = ?";
+        PreparedStatement prep = this.con.prepareStatement(result);
+        prep.setString(1, recid);
+        ResultSet rs = prep.executeQuery();
+
+        while(rs.next()){
+            contrs.add(rs.getString(1));
+        }
+        return contrs;
     }
 
 
