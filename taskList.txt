@@ -47,3 +47,9 @@ and CREATE recording compilation album collection!!!!
 
 --> AFTER CREATING RECORDING (OPTION 2) PRINT ALL THE RECORDINGS
 --> AFTER CREATING AN ALBUM PRINT ALL THE ALBUMS DANG NABBIT!
+
+
+1. Unit tests
+2. Refactor to make cleaner
+3. Separate add data in 3 parts - create contributor, create recording and recordingrec, create song, create collection
+4. Creta 

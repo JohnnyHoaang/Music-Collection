@@ -65,17 +65,16 @@ public class Application {
                     }
 
                     // System.out.println("MY REC ID IS "+recording.get(1));
-                    //Gets the contributors
-                    ArrayList<String> contributorsid= muS.getContributorid(recording.get(1).getRecordingId());
-                    
+                    // Gets the contributors
+                    ArrayList<String> contributorsid = muS.getContributorid(recording.get(1).getRecordingId());
+
                     System.out.println("CONTIBUTOR ID WORK PLEASE");
-                    
-                    for(String cid : contributorsid){
+
+                    for (String cid : contributorsid) {
                         System.out.println("HELLO?");
                         // recording.add(muS.getRecording(cid));
                         System.out.println(muS.getContributor(cid));
                     }
-
 
                     // System.out.println(col);
                     // Collection
@@ -84,97 +83,109 @@ public class Application {
                 }
                 // Add song
                 else if (result.equals("2")) {
-                    System.out.println("Please fill all the information of the song you wanna add:");
+                    System.out.println("1) CREATE CONTRIBUTOR");
+                    System.out.println("2) CREATE RECORDING AND ASSIGN TO CONTRIBUTOR");
+                    System.out.println("3) CREATE SONG");
+                    System.out.println("4) CREATE COLLECTION");
+                    String choice = console.readLine("Enter you choice: ");
                     // 1. create contributors and recording
                     // loop through the song prop arrays here
-                    System.out.println("Creating contributors:");
-                    muS.printAllRecContributor();
-                    String cid = console.readLine("Pick an UNIQUE contributor id not on the list above: ");
-                    String clast = console.readLine("Enter contributor last name: ");
-                    String cfirst = console.readLine("Enter contributor firstname: ");
-                    Contributor contributor = new Contributor(cid, cfirst, clast);
-                    muS.createContributor(contributor);
-                    System.out.println("Contributor created: " + contributor);
-                    System.out.println("Creating recording:");
-                    muS.printAllRecording();
-                    String recid = console.readLine("Enter an UNIQUE RECID: ");
-                    String date = console.readLine("Enter date | FORMAT(yyyy-mm-dd): ");
-                    System.out.println("Enter duration(seconds): ");
-                    double duration = scanner.nextDouble();
-                    System.out.println("Enter offset(seconds): ");
-                    double offset = scanner.nextDouble();
-                    Recording rec = new Recording(recid, Date.valueOf(date), duration, offset);
-                    muS.createRecording(rec);
-                    System.out.println("Recording created: " + rec);
-                    // creates an object contributor
-                    System.out.println("Link this recording to an existing contributor");
-                    System.out.println("Here are your contributor choices!");
-                    System.out.println("-----------------------------------------------------------------------");
-                    muS.printAllRecContributor();
+                    switch (choice) {
+                        case "1":
+                            System.out.println("Creating contributors:");
+                            muS.printAllRecContributor();
+                            String cid = console.readLine("Pick an UNIQUE contributor id not on the list above: ");
+                            String clast = console.readLine("Enter contributor last name: ");
+                            String cfirst = console.readLine("Enter contributor firstname: ");
+                            Contributor contributor = new Contributor(cid, cfirst, clast);
+                            muS.createContributor(contributor);
+                            System.out.println("Contributor created: " + contributor);
+                            break;
+                        case "2":
+                            System.out.println("Creating recording:");
+                            muS.printAllRecording();
+                            String recid = console.readLine("Enter an UNIQUE RECID: ");
+                            String date = console.readLine("Enter date | FORMAT(yyyy-mm-dd): ");
+                            System.out.println("Enter duration(seconds): ");
+                            double duration = scanner.nextDouble();
+                            System.out.println("Enter offset(seconds): ");
+                            double offset = scanner.nextDouble();
+                            Recording rec = new Recording(recid, Date.valueOf(date), duration, offset);
+                            muS.createRecording(rec);
+                            System.out.println("Recording created: " + rec);
+                            // creates an object contributor
+                            System.out.println("Link this recording to an existing contributor");
+                            System.out.println("Here are your contributor choices!");
+                            System.out
+                                    .println("-----------------------------------------------------------------------");
+                            muS.printAllRecContributor();
 
-                    String contributorid = console.readLine("Give the contributor id: ");
-                    System.out.println("Here are your role choices!");
-                    muS.printAllRoles();
-                    String roleid = console.readLine("Give the role id: ");
-                    Role role = muS.getRole(roleid);
-                    Contributor con = muS.getContributor(contributorid);
-                    ContributorRec contributorRec = new ContributorRec(con, rec, role);
-                    muS.createContributorRec(contributorRec);
-                    System.out
-                            .println("Successfully linked recording and role to contributor!" + '\n' + contributorRec);
-                    // 2
-                    // create album, to create album you need recordings
-                    // print all recordings, print all collections
-                    System.out.println("Creating album");
-                    muS.printAllAlbums();
-                    String albumid = console.readLine("Enter an unique album id | FORMAT(AL000): ");
-                    String title = console.readLine("Enter the title: ");
-                    String category = console.readLine("Enter the category: ");
-                    String pubdate = console.readLine("Enter the pubdate | FORMAT(yyyy-mm-dd): ");
-                    String market = console.readLine("Enter the market: ");
-                    String label = console.readLine("Enter the label: ");
-                    Album album = new Album(albumid, title, category, Date.valueOf(pubdate), "", market, label);
-                    muS.createAlbum(album);
-                    // while loop to add recordings to song
-                    boolean createCompilationsLoop = true;
-                    while (createCompilationsLoop) {
-                        muS.printAllRecording();
-                        String recordingid = console.readLine("Give recording ids to make song: ");
-                        String vdate = console.readLine("Give a date to the compilation: ");
-                        muS.createCompilation(muS.getRecording(recordingid), album, Date.valueOf(vdate));
-                        String answer = console
-                                .readLine("Do you want to stop adding compilations to this specific song? ");
-                        if (answer.equals("yes") || answer.equals("Yes")) {
-                            createCompilationsLoop = false;
-                        } else {
-                            System.out.println("Keep mixing your song!");
-                        }
-                    }
-                    System.out.println(muS.getAlbum(album.getAlbumid()));
-                    // 3
-                    // create collection
-                    System.out.println("Creating collection: ");
-                    muS.printAllCollection();
-                    String collectionId = console.readLine("Enter an unique collection id: ");
-                    String name = console.readLine("Enter a name for the collection: ");
-                    Collection collection = new Collection(collectionId, name);
-                    muS.createCollection(collection);
-                    String userResponse = console.readLine("Do you want to add songs to the collection?");
-                    boolean collectionLoop = true;
-                    while (collectionLoop) {
-                        if (userResponse.equals("yes") || userResponse.equals("Yes")) {
-                            // print all songs
-                            System.out.println("Choose what songs you want to add to the collection!");
+                            String contributorid = console.readLine("Give the contributor id: ");
+                            System.out.println("Here are your role choices!");
+                            muS.printAllRoles();
+                            String roleid = console.readLine("Give the role id: ");
+                            Role role = muS.getRole(roleid);
+                            Contributor con = muS.getContributor(contributorid);
+                            ContributorRec contributorRec = new ContributorRec(con, rec, role);
+                            muS.createContributorRec(contributorRec);
+                            System.out.println(
+                                    "Successfully linked recording and role to contributor!" + '\n' + contributorRec);
+                            break;
+                        case "3":
+                            System.out.println("Creating album");
                             muS.printAllAlbums();
-                            String givenAlbumId = console.readLine("Give its id: ");
-                            muS.updateTable("album", "collectionid", givenAlbumId, collection.getCollectionId());
-                            System.out.println("COLLECTIONS BELOW!");
-                            muS.printAllCollection();
-                            String answer = console.readLine("Do you want to stop? ");
-                            if (answer.equals("yes") || answer.equals("Yes")) {
-                                collectionLoop = false;
+                            String albumid = console.readLine("Enter an unique album id | FORMAT(AL000): ");
+                            String title = console.readLine("Enter the title: ");
+                            String category = console.readLine("Enter the category: ");
+                            String pubdate = console.readLine("Enter the pubdate | FORMAT(yyyy-mm-dd): ");
+                            String market = console.readLine("Enter the market: ");
+                            String label = console.readLine("Enter the label: ");
+                            Album album = new Album(albumid, title, category, Date.valueOf(pubdate), "", market, label);
+                            muS.createAlbum(album);
+                            // while loop to add recordings to song
+                            boolean createCompilationsLoop = true;
+                            while (createCompilationsLoop) {
+                                muS.printAllRecording();
+                                String recordingid = console.readLine("Give recording ids to make song: ");
+                                String vdate = console.readLine("Give a date to the compilation: ");
+                                muS.createCompilation(muS.getRecording(recordingid), album, Date.valueOf(vdate));
+                                String answer = console
+                                        .readLine("Do you want to stop adding compilations to this specific song? ");
+                                if (answer.equals("yes") || answer.equals("Yes")) {
+                                    createCompilationsLoop = false;
+                                } else {
+                                    System.out.println("Keep mixing your song!");
+                                }
                             }
-                        }
+                            System.out.println(muS.getAlbum(album.getAlbumid()));
+                            break;
+                        case "4":
+                            System.out.println("Creating collection: ");
+                            muS.printAllCollection();
+                            String collectionId = console.readLine("Enter an unique collection id: ");
+                            String name = console.readLine("Enter a name for the collection: ");
+                            Collection collection = new Collection(collectionId, name);
+                            muS.createCollection(collection);
+                            String userResponse = console.readLine("Do you want to add songs to the collection?");
+                            boolean collectionLoop = true;
+                            while (collectionLoop) {
+                                if (userResponse.equals("yes") || userResponse.equals("Yes")) {
+                                    // print all songs
+                                    System.out.println("Choose what songs you want to add to the collection!");
+                                    muS.printAllAlbums();
+                                    String givenAlbumId = console.readLine("Give its id: ");
+                                    muS.updateTable("album", "collectionid", givenAlbumId,
+                                            collection.getCollectionId());
+                                    System.out.println("COLLECTIONS BELOW!");
+                                    muS.printAllCollection();
+                                    String answer = console.readLine("Do you want to stop? ");
+                                    if (answer.equals("yes") || answer.equals("Yes")) {
+                                        collectionLoop = false;
+                                    }
+                                }
+                            }
+                            break;
+
                     }
                 }
 
@@ -203,9 +214,9 @@ public class Application {
                     // missing the parse string to double
                     // Log the change here
 
-                 }
-                 //delete data
-                 else if(result.equals("4")){
+                }
+                // delete data
+                else if (result.equals("4")) {
                     System.out.println("What data do you wish to delete? Here are the choices");
                     System.out.println("1) DELETE THE WHOLE SONG");
                     System.out.println("2) DELETE CONTRIBUTOR");
