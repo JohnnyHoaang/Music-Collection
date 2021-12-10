@@ -49,6 +49,16 @@ public class Application {
                     // muS.printAllCollection();
                     //mus.printAllAlbums();
 
+                    Album alb = muS.getAlbum(songid);
+
+                    //Gets the collection
+                    Collection col = muS.getCollection(alb.getCollectionid());
+
+
+                    //Gets the recordings
+                    // Recording rec = muS.getRecording(recordingid);
+
+                    System.out.println(col);
                     //Collection
                     //
 
@@ -89,7 +99,7 @@ public class Application {
                     Role role = muS.getRole(roleid);
                     Contributor con = muS.getContributor(contributorid);
                     ContributorRec contributorRec = new ContributorRec(con, rec, role);
-                    muS.createontributorRec(contributorRec);
+                    muS.createContributorRec(contributorRec);
                     System.out.println("Successfully linked recording and role to contributor!" + '\n' +contributorRec);
                     //2
                     //create collection
