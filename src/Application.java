@@ -83,6 +83,7 @@ public class Application {
                     System.out.println("Here are your contributor choices!");
                     String contributorid = console.readLine("Give the contributor id: ");
                     System.out.println("Here are your role choices!");
+                    muS.printAllRoles();
                     String roleid = console.readLine("Give the role id: ");
                     Role role = muS.getRole(roleid);
                     Contributor con = muS.getContributor(contributorid);

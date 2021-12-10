@@ -65,7 +65,7 @@ public class MusicStudio {
         prep.setString(1, roleid);
         ResultSet rs = prep.executeQuery();
         while(rs.next()){
-            role = new Role(rs.getString("roleid"), rs.getString("rolename");
+            role = new Role(rs.getString("roleid"), rs.getString("rolename"));
         }
         return role;
     }
@@ -83,6 +83,23 @@ public class MusicStudio {
 
 
     
+    public void printAllRoles() throws SQLException{
+        String role = "SELECT * FROM CONTRIBUTOR_ROLE";
+        PreparedStatement prep = this.con.prepareStatement(role);
+        ResultSet rs = prep.executeQuery();
+
+        ArrayList<Role> roles = new ArrayList<>();
+
+        while(rs.next()){
+            roles.add(new Role(rs.getString("roleid"), rs.getString("rolename")));         
+        }
+        
+        for(Role rol : roles){
+            System.out.println(rol);
+            System.out.println("---------------------------");
+        }
+    }
+
     //print all info from (any table), maybe create objects
     //Storing the contributors into an object
     public void printAllRecContributor() throws SQLException{
@@ -90,14 +107,15 @@ public class MusicStudio {
         PreparedStatement prep = this.con.prepareStatement(contributor);
         ResultSet rs = prep.executeQuery();
 
+        ArrayList<Contributor> contributors = new ArrayList<>();
+
         while(rs.next()){
-            ArrayList<Contributor> contributors = new ArrayList<>();
-            contributors.add(new Contributor(rs.getString("contributorid"), rs.getString("c_first"), rs.getString("c_last")));
-            
-            for(Contributor contr : contributors){
-                System.out.println(contr);
-                System.out.println("---------------------------");
-            }
+            contributors.add(new Contributor(rs.getString("contributorid"), rs.getString("c_first"), rs.getString("c_last")));  
+        }
+
+        for(Contributor contr : contributors){
+            System.out.println(contr);
+            System.out.println("---------------------------");
         }
     }
 
