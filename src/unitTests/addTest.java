@@ -26,9 +26,8 @@ public class addTest {
         // if you want to run this unit test again, delete row by calling these methods
         // below
         // m.deleteContributor("C00001");
-        // m.deleteRecording("RE0001");
         Contributor c = new Contributor("C00001", "BOT1", "TEST");
-        m.createContributor(c, "R001", "RE0001");
+        m.createContributor(c);
         String contributorName = "";
         String sql = "SELECT C_FIRST FROM CONTRIBUTOR WHERE CONTRIBUTORID = ?";
         PreparedStatement prep = m.getConnection().prepareStatement(sql);
@@ -46,37 +45,22 @@ public class addTest {
         try {
 
             Contributor c = new Contributor("C00002", "BOT1", "TEST");
-            m.createContributor(c, "R001", "RE0002");
-            m.createContributor(c, "R001", "RE0004");
+            m.createContributor(c);
+            m.createContributor(c);
             fail();
         } catch (Exception e) {
             e.printStackTrace();
             m.deleteContributor("C00002");
-            m.deleteRecording("RE0002");
         }
     }
 
-    @Test
-    public void createContributorWithSameRecordTest() throws SQLException {
-        MusicStudio m = new MusicStudio(credentials);
-        try {
-            Contributor c = new Contributor("C00003", "BOT3", "TEST");
-            m.createContributor(c, "R001", "RE0003");
-            m.createContributor(c, "R004", "RE0003");
-            fail();
-        } catch (Exception e) {
-            e.printStackTrace();
-            m.deleteContributor("C00003");
-            m.deleteRecording("RE0003");
-        }
-    }
 
     @Test
     public void createContributorWithNonExistentRoleTest() throws SQLException {
         MusicStudio m = new MusicStudio(credentials);
         try {
             Contributor c = new Contributor("C00003", "BOT3", "TEST");
-            m.createContributor(c, "R00232", "RE0003");
+            m.createContributor(c);
             fail();
         } catch (Exception e) {
             e.printStackTrace();

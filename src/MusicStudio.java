@@ -193,6 +193,7 @@ public class MusicStudio {
     //print all info from (any table), maybe create objects
     //Storing the contributors into an object
     public void printAllRecContributor() throws SQLException{
+        System.out.println("reached prints!");
         String contributor = "SELECT * FROM CONTRIBUTOR";
         PreparedStatement prep = this.con.prepareStatement(contributor);
         ResultSet rs = prep.executeQuery();
@@ -328,6 +329,15 @@ public class MusicStudio {
         statementCall.execute();
     }
 
+    public void createCompilation(Recording recording, Album album, Date vdate) throws SQLException{
+        String callProcedure = "{call addpkg.CREATE_COMPILATION(?,?,?)}";
+        CallableStatement statementCall = this.con.prepareCall(callProcedure);
+        statementCall.setString(1,recording.getRecordingId());
+        statementCall.setDate(2, vdate);
+        statementCall.setString(3, album.getAlbumid());
+        statementCall.execute();
+    }
+
     public void updateRecording(String recid, Date date, double duration, double offset) throws SQLException{
         String callProcedure = "{call updatepkg.UPDATE_RECORDING(?,?,?,?)}";
         CallableStatement statementCall = this.con.prepareCall(callProcedure);
@@ -337,9 +347,6 @@ public class MusicStudio {
         statementCall.setDouble(4, offset);
         statementCall.execute();
     }
-
-    
-
 
     //Delete data from the table
     public void deleteSong(String albumId) throws SQLException{
