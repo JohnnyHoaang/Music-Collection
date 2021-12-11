@@ -16,12 +16,6 @@ public class Album {
         this.albumid = albumid;
         this.title = title;
     }
-    // public Album(String albumid, String category, Date pubdate, String title, String collectionid){
-    //     this(albumid, title);
-    //     this.category = category;
-    //     this.pubdate = pubdate;
-    //     this.collectionid = collectionid;
-    // }
 
     public Album(String albumid, String title, String category, Date pubdate, String collectionid, String market, String label){
         this(albumid, title);

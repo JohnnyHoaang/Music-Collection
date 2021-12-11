@@ -7,8 +7,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import javax.naming.spi.DirStateFactory.Result;
-
 public class MusicStudio {
     private Credentials creds;
     private Connection con;
@@ -24,18 +22,27 @@ public class MusicStudio {
     public Credentials getCreds() {
         return creds;
     }
-
+    /**
+     * 
+     * @param username
+     * @param password
+     * @return
+     * @throws SQLException
+     */
     public Connection connectToDB(String username, String password) throws SQLException {
         return DriverManager.getConnection("jdbc:oracle:thin:@198.168.52.211:1521/pdbora19c.dawsoncollege.qc.ca",
                 username, password );
     }
-    //PLEASE FIX THAT DOMENICO OR ASHLEY IM TOO LAZY AND DONE WITH LIFE
+    /**
+     * 
+     * @return logs object filled with all the logs of current user
+     * @throws SQLException
+     */
     public Logs getUserLogs() throws SQLException{
         Logs logMessage = new Logs(this.creds.getUser());
         
         String retrieveLogs = "SELECT * FROM USER_LOGS WHERE USERNAME = ?";
         PreparedStatement prep = this.con.prepareStatement(retrieveLogs);
-        // System.out.println(this.creds.getUser());
         prep.setString(1, this.creds.getUser());
 
         ResultSet rs = prep.executeQuery();
@@ -45,7 +52,12 @@ public class MusicStudio {
         }
         return logMessage;
     }
-
+    /**
+     * 
+     * @param albumid
+     * @return returns an album object filled with data from albumid
+     * @throws SQLException
+     */
     public Album getAlbum(String albumid) throws SQLException{
         Album alb = null;
 
@@ -60,7 +72,12 @@ public class MusicStudio {
         }
         return alb;
     }
-
+    /**
+     * 
+     * @param collectionid
+     * @return returns a collection object filled with data from collectionid
+     * @throws SQLException
+     */
     public Collection getCollection(String collectionid) throws SQLException{
         Collection col = null;
 
@@ -74,8 +91,12 @@ public class MusicStudio {
         }
         return col;
     }
-
-
+    /**
+     * 
+     * @param contributorid
+     * @return returns a contributor object filled with data from contributorid
+     * @throws SQLException
+     */
     public Contributor getContributor(String contributorid) throws SQLException{
         Contributor contr = null;
         String contributor = "SELECT * FROM CONTRIBUTOR WHERE contributorid = ?";
@@ -89,6 +110,12 @@ public class MusicStudio {
         }
         return contr;
     }
+    /**
+     * 
+     * @param roleid
+     * @return returns a role object filled with data from roleid
+     * @throws SQLException
+     */
     public Role getRole(String roleid) throws SQLException{
         Role role = null;
         String contributor = "SELECT * FROM CONTRIBUTOR_ROLE WHERE roleid = ?";
@@ -100,6 +127,12 @@ public class MusicStudio {
         }
         return role;
     }
+    /**
+     * 
+     * @param recordingid
+     * @return returns an recording object filled with data from recording id
+     * @throws SQLException
+     */
     public Recording getRecording(String recordingid) throws SQLException{
         Recording recording = null;
         String contributor = "SELECT * FROM RECORDING WHERE recid = ?";
@@ -111,9 +144,12 @@ public class MusicStudio {
         }
         return recording;
     }
-
-
-    
+    /**
+     * 
+     * @param albumid
+     * @return returns all contributors from an album
+     * @throws SQLException
+     */
     public ArrayList<Contributor> contributorsFromAlbum(String albumid) throws SQLException{
         String query = "SELECT UNIQUE contributorid, c_first, c_last from compilation JOIN RECORDING USING(recid) JOIN CONTRIBUTOR_REC USING(recid)"+
                             "JOIN CONTRIBUTOR USING (contributorid) WHERE albumid = ?";
@@ -131,6 +167,12 @@ public class MusicStudio {
 
         return contributors;
     }
+    /**
+     * 
+     * @param albumid
+     * @return retuns all roles from album id
+     * @throws SQLException
+     */
     public ArrayList<Role> rolesFromAlbum(String albumid) throws SQLException{
         String query = "SELECT UNIQUE roleid, rolename from compilation JOIN RECORDING USING(recid) JOIN CONTRIBUTOR_REC USING(recid)"+
                             "JOIN CONTRIBUTOR_ROLE using(roleid) WHERE albumid = ?";
@@ -147,6 +189,12 @@ public class MusicStudio {
 
         return roles;
     }
+    /**
+     * 
+     * @param albumid
+     * @return returns a list of recordings from albumid
+     * @throws SQLException
+     */
     public ArrayList<Recording> recordingsFromAlbum(String albumid) throws SQLException{
         String query = "SELECT UNIQUE recid,rec_date,duration,offset from compilation JOIN RECORDING USING(recid) WHERE albumid = ?";
         
@@ -162,7 +210,12 @@ public class MusicStudio {
 
         return recordings;
     }
-
+    /**
+     * 
+     * @param albumid
+     * @return returns collection from an albumid
+     * @throws SQLException
+     */
     public Collection collectionFromAlbum(String albumid) throws SQLException{
         Collection collection = null;
 
@@ -179,8 +232,12 @@ public class MusicStudio {
 
         return collection;
     }
-
-
+    /**
+     * 
+     * @param collectionid
+     * @return returns all albums within a collection
+      * @throws SQLException
+     */
     public ArrayList<Album> albumsInCollection(String collectionid) throws SQLException{
         String query = "SELECT albumid,title,category,pubdate,collectionid,market,label "+
                             "FROM ALBUM JOIN COLLECTION using(collectionid) WHERE collectionid = ?";
@@ -199,74 +256,81 @@ public class MusicStudio {
         
     }
 
-
-
-
-    //Code Duplication, can fix it
-    //Get RoleID
-    public ArrayList<String> getRoleid(String recid) throws SQLException{
-        ArrayList<String> contrs = new ArrayList<>();
-        String result = "SELECT * FROM CONTRIBUTOR_REC WHERE recid = ?";
-        PreparedStatement prep = this.con.prepareStatement(result);
-        prep.setString(1, recid);
-        ResultSet rs = prep.executeQuery();
-
-        while(rs.next()){
-            contrs.add(rs.getString(3));
+    /**
+     * prints all field of a table
+     * @param table
+     * @throws SQLException
+     */
+    public void printAllFieldsFromTable(String table) throws SQLException{
+        switch(table){
+            case "album":
+            System.out.println("title, category, pubdate, collectionid, market, label");
+            break;
+            case "collection":
+            System.out.println("name");
+            break;
+            case "recording" :
+            System.out.println("date, duration, offset");
+            break;
+            case "contributor":
+            System.out.println("c_first, c_last");
+            break;
+            case "contributor_role":
+            System.out.println("rolename");
+            break;
         }
-        return contrs;
     }
-
-
+    /**
+     * prints all id rows given a table name
+     * @param table
+     * @throws SQLException
+     */
     public void printAllIDRowsFromTable(String table) throws SQLException{
         String id = "";
-
+        String name = "";
         //Refactor into method
         switch(table){
             case "album":
             id = "albumid";
+            name = "title,";
             break;
             case "collection":
             id = "collectionid";
+            name = "name,";
             break;
             case "recording":
             id = "recid";
             break;
             case "contributor":
             id = "contributorid";
+            name = "(c_first ||' '|| c_last),";
             break;
             case "contributor_role":
             id = "roleid";
+            name = "rolename,";
             break;
         }
 
-        String printID = "SELECT "+id+" FROM "+table;
+        String printID = "SELECT "+name+id+" FROM "+table;
         PreparedStatement prep = this.con.prepareStatement(printID);
         ResultSet rs = prep.executeQuery();
 
-        while(rs.next()){
-            System.out.println(rs.getString(1));
-        }
-
-    }
-
-    public void printAllLogs() throws SQLException{
-        String role = "SELECT * FROM Logs";
-        PreparedStatement prep = this.con.prepareStatement(role);
-        ResultSet rs = prep.executeQuery();
-
-        ArrayList<Role> roles = new ArrayList<>();
+        if(table.equals("recording")){
+            while(rs.next()){
+                System.out.println("ID:" + rs.getString(1));
+            }
+        } else {
 
         while(rs.next()){
-            roles.add(new Role(rs.getString("roleid"), rs.getString("rolename")));         
+            System.out.println("Name: "+rs.getString(1) + ", ID:" + rs.getString(2));
         }
-        
-        for(Role rol : roles){
-            System.out.println(rol);
-            System.out.println("---------------------------");
-        }
-    }
+     }
 
+    }
+    /**
+     * prints all roles
+     * @throws SQLException
+     */
     public void printAllRoles() throws SQLException{
         String role = "SELECT * FROM CONTRIBUTOR_ROLE";
         PreparedStatement prep = this.con.prepareStatement(role);
@@ -304,7 +368,10 @@ public class MusicStudio {
         }
     }
 
-    //Storing the recordings into an object
+    /**
+     * Storing the recordings into an object
+     * @throws SQLException
+     */
     public void printAllRecording() throws SQLException{
         String recording = "SELECT * FROM RECORDING";
         PreparedStatement prep = this.con.prepareStatement(recording);
@@ -323,7 +390,10 @@ public class MusicStudio {
         }
     }
 
-    //Storing the collections into an object
+    /**
+     * Storing the collections into an object
+     * @throws SQLException
+     */
     public void printAllCollection() throws SQLException{
         String collection = "SELECT * FROM COLLECTION";
         PreparedStatement prep = this.con.prepareStatement(collection);
@@ -341,7 +411,10 @@ public class MusicStudio {
         }
     }
 
-    //Storing the songs into an object
+    /**
+     * Storing the songs into an object
+     * @throws SQLException
+     */
     public void printAllAlbums() throws SQLException{
         String album = "SELECT * FROM ALBUM";
         PreparedStatement prep = this.con.prepareStatement(album);
@@ -358,7 +431,9 @@ public class MusicStudio {
             System.out.println("---------------------------");
         }
     }
-    
+    /**
+     * prints all existing tables
+     */
     public void printAllTables(){
         System.out.println("\n" + "Here are the tables:");
         System.out.println("contributor, recording, album, collection");
@@ -366,16 +441,12 @@ public class MusicStudio {
         System.out.println();
     }
 
-    // public void printRecContributor() throws SQLException{
-    //     String contributors = "SELECT * FROM USER_LOGS WHERE USERNAME = ?";
-    //     PreparedStatement prep = this.con.prepareStatement(contributors);
-    // }
-
-
-
-
-    
-    //Testing the Procedures
+    //adds data by calling the procedures from the package addpkg
+    /**
+     * creates contributor given a contributor object
+     * @param contributor
+     * @throws SQLException
+     */
     public void createContributor(Contributor contributor) throws SQLException{
         String callProcedure = "{call addpkg.CREATE_CONTRIBUTOR(?,?,?)}";
         CallableStatement statementCall = this.con.prepareCall(callProcedure);
@@ -384,7 +455,11 @@ public class MusicStudio {
         statementCall.setString(3, contributor.getContributorId());
         statementCall.execute();
     }
-
+    /**
+     * creates a recording given a recording object
+     * @param recording
+     * @throws SQLException
+     */
     public void createRecording(Recording recording) throws SQLException{
         String callProcedure = "{call addpkg.CREATE_RECORDING(?,?,?,?)}";
         CallableStatement statementCall = this.con.prepareCall(callProcedure);
@@ -394,7 +469,11 @@ public class MusicStudio {
         statementCall.setDouble(4, recording.getRec_offset());
         statementCall.execute();
     }
-
+    /**
+     * creates a contributor rec given a contributor rec object
+     * @param contributorRec
+     * @throws SQLException
+     */
     public void createContributorRec(ContributorRec contributorRec) throws SQLException{
         String callProcedure = "{call addpkg.CREATE_CONTRIBUTOR_REC(?,?,?)}";
         CallableStatement statementCall = this.con.prepareCall(callProcedure);
@@ -403,6 +482,11 @@ public class MusicStudio {
         statementCall.setString(3, contributorRec.getRole().getRoleId());
         statementCall.execute();
     }
+    /**
+     * creates album given album object
+     * @param album
+     * @throws SQLException
+     */
     public void createAlbum(Album album) throws SQLException{
         String callProcedure = "{call addpkg.CREATE_ALBUM(?,?,?,?,?,?)}";
         CallableStatement statementCall = this.con.prepareCall(callProcedure);
@@ -414,7 +498,11 @@ public class MusicStudio {
         statementCall.setString(6, album.getLabel());
         statementCall.execute();
     }
-
+    /**
+     * creates collection given collection id
+     * @param collection
+     * @throws SQLException
+     */
     public void createCollection(Collection collection) throws SQLException{
         String callProcedure = "{call addpkg.CREATE_COLLECTION(?,?)}";
         CallableStatement statementCall = this.con.prepareCall(callProcedure);
@@ -422,7 +510,13 @@ public class MusicStudio {
         statementCall.setString(2, collection.getName());
         statementCall.execute();
     }
-
+    /**
+     * creates compilation given a compilation id
+     * @param recording
+     * @param album
+     * @param vdate
+     * @throws SQLException
+     */
     public void createCompilation(Recording recording, Album album, Date vdate) throws SQLException{
         String callProcedure = "{call addpkg.CREATE_COMPILATION(?,?,?)}";
         CallableStatement statementCall = this.con.prepareCall(callProcedure);
@@ -432,42 +526,59 @@ public class MusicStudio {
         statementCall.execute();
     }
 
-    public void updateRecording(String recid, Date date, double duration, double offset) throws SQLException{
-        String callProcedure = "{call updatepkg.UPDATE_RECORDING(?,?,?,?)}";
-        CallableStatement statementCall = this.con.prepareCall(callProcedure);
-        statementCall.setString(1,recid);
-        statementCall.setDate(2, date);
-        statementCall.setDouble(3, duration);
-        statementCall.setDouble(4, offset);
-        statementCall.execute();
-    }
-
-    //Delete data from the table
+    //Delete data from the table by calling procedures from the package deletepkg
+    /**
+     * deletes song given a given albumid
+     * @param albumId
+     * @throws SQLException
+     */
     public void deleteSong(String albumId) throws SQLException{
         String delSong = "{call deletepkg.DELETE_SONG(?)}";
         CallableStatement statementCall = this.con.prepareCall(delSong);
         statementCall.setString(1, albumId);
         statementCall.execute();
     }
+    /**
+     * deletes a contributor given a contributor id
+     * @param contributorId
+     * @throws SQLException
+     */
     public void deleteContributor(String contributorId) throws SQLException{
         String delContr = "{call deletepkg.DELETE_CONTRIBUTOR(?)}";
         CallableStatement statementCall = this.con.prepareCall(delContr);
         statementCall.setString(1, contributorId);
         statementCall.execute();
     }
+    /**
+     * deletes collection given a collection id
+     * @param collectionId
+     * @throws SQLException
+     */
     public void deleteCollection(String collectionId) throws SQLException{
         String delColl = "{call deletepkg.DELETE_COLLECTION(?)}";
         CallableStatement statementCall = this.con.prepareCall(delColl);
         statementCall.setString(1, collectionId);
         statementCall.execute();
     }
+    /**
+     * deletes recording given a recording id
+     * @param recordingid
+     * @throws SQLException
+     */
     public void deleteRecording(String recordingid) throws SQLException{
         String delColl = "{call deletepkg.DELETE_RECORDING(?)}";
         CallableStatement statementCall = this.con.prepareCall(delColl);
         statementCall.setString(1, recordingid);
         statementCall.execute();
     }
-    
+    /**
+     * updates table depending on data given
+     * @param table
+     * @param column
+     * @param givenId
+     * @param newData
+     * @throws SQLException
+     */
     public void updateTable(String table, String column, String givenId, String newData) throws SQLException{
         String id= " ";
         switch(table){
@@ -513,12 +624,18 @@ public class MusicStudio {
             prep.executeUpdate();
         }
     }
-
+    /**
+     * 
+     * @return returns current connection 
+     */
     public Connection getConnection(){
         return this.con;
     }
+    /**
+     * closes current connection
+     * @throws SQLException
+     */
     public void closeConnection() throws SQLException{
         this.con.close();
     }
-    //Date.valueOf("1997-03-10");
 }
