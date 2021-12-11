@@ -16,6 +16,10 @@ BEGIN
     VALUES(rec_id, SYSDATE, 0, 0);
     INSERT INTO CONTRIBUTOR_REC
     VALUES(rec_id, contributor_id, role_id);
+
+    EXCEPTION
+    WHEN DUP_VAL_ON_INDEX THEN 
+    DBMS_OUTPUT.PUT_LINE('THE CONTRIBUTOR ALREADY EXISTS');
 END;
 /
 
@@ -36,6 +40,9 @@ AS
 BEGIN
     INSERT INTO COLLECTION 
     VALUES(collection_id, albName);
+     EXCEPTION
+    WHEN DUP_VAL_ON_INDEX THEN 
+    DBMS_OUTPUT.PUT_LINE('THE COLLECTION ALREADY EXISTS');
 END;
 /
 -- create albums 
@@ -45,6 +52,9 @@ AS
 BEGIN
     INSERT INTO ALBUM 
     VALUES (vtitle, album_id, vcategory, vpubdate, collection_id, vmarket, vlabel);
+     EXCEPTION
+    WHEN DUP_VAL_ON_INDEX THEN 
+    DBMS_OUTPUT.PUT_LINE('THE ALBUM ALREADY EXISTS');
 END;
 /
 -- creating compilation with existing fk
@@ -52,6 +62,9 @@ CREATE OR REPLACE PROCEDURE CREATE_COMPILATION(rec_id IN VARCHAR2, vdate IN DATE
 AS
 BEGIN
     INSERT INTO COMPILATION VALUES (rec_id,vdate, album_id);   
+     EXCEPTION
+    WHEN DUP_VAL_ON_INDEX THEN 
+    DBMS_OUTPUT.PUT_LINE('THE COMPILATION ALREADY EXISTS');
 END;
 
 -- Use cursors to retrive data
