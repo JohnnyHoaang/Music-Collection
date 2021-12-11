@@ -45,44 +45,70 @@ public class Application {
                     // print song info method
                     System.out.println("Here is the information of the song you chose");
                     // print all informantion of the song here
-                    muS.printAllRecContributor();
+                    // muS.printAllRecContributor();
                     // muS.printAllRecordings();
                     // muS.printAllCollection();
                     // mus.printAllAlbums();
 
+
+
                     Album alb = muS.getAlbum(songid);
 
-                    // Gets the collection
+                    // Gets the collection from albumid
                     // Collection col = muS.getCollection(alb.getCollectionid());
-
-                    // Getss the recordings
-                    ArrayList<String> recids = muS.getRecid(alb.getAlbumid());
-                    ArrayList<Recording> recording = new ArrayList<>();
-
-                    for (String recid : recids) {
-                        recording.add(muS.getRecording(recid));
-
-                        System.out.println(muS.getRecording(recid));
-                    }
-
-                    // System.out.println("MY REC ID IS "+recording.get(1));
-                    // Gets the contributors
-                    ArrayList<String> contributorsid = muS.getContributorid(recording.get(1).getRecordingId());
-
-                    System.out.println("CONTIBUTOR ID WORK PLEASE");
-
-                    for (String cid : contributorsid) {
-                        System.out.println("HELLO?");
-                        // recording.add(muS.getRecording(cid));
-                        System.out.println(muS.getContributor(cid));
-                    }
-
                     // System.out.println(col);
-                    // Collection
-                    //
-                    Album album = muS.getAlbum("AL001");
-                    ArrayList<String> recidss = muS.getRecid(album.getAlbumid());
 
+
+                    System.out.println("1) VIEW CONTRIBUTORS");
+                    System.out.println("2) VIEW ROLES");
+                    System.out.println("3) VIEW RECORDING");
+                    System.out.println("4) VIEW THE COLLECTION");
+
+                    String choice = console.readLine("Enter your choice: ");
+                    switch (choice) {
+                        case "1":
+                            //GETS THE CONTRIBUTORS
+                            ArrayList<Contributor> contributors = muS.contributorsFromAlbum(alb.getAlbumid());
+
+                            System.out.println("CONTRIBUTORS");
+
+                            for(int i=0; i<contributors.size(); i++){
+                                System.out.println(contributors.get(i));
+                            }
+
+                            break;
+                        
+                        case "2":
+                             //GETS THE ROLES
+                            System.out.println("ROLES");
+                            ArrayList<Role> roles = muS.rolesFromAlbum(alb.getAlbumid());
+
+                            for(int i=0; i<roles.size(); i++){
+                                System.out.println(roles.get(i));
+                            }
+                        
+                            break;
+                        case "3":
+                            //GETS THE RECORDINGS
+                            System.out.println("RECORDINGS");
+                            ArrayList<Recording> recordings = muS.recordingsFromAlbum(alb.getAlbumid());
+
+                            for(int i=0; i<recordings.size(); i++){
+                                System.out.println(recordings.get(i));
+                            }
+                            break;
+                        case "4":
+                            ///Gets the collections from the ALBUM
+                            Collection coll = muS.collectionFromAlbum(alb.getAlbumid());
+                            System.out.println("COLLECTION");
+
+                            ArrayList<Album> albums = muS.albumsInCollection(coll.getCollectionId());
+
+                            System.out.println("ALBUMS");
+                            for(int i=0; i<albums.size(); i++){
+                                System.out.println(albums.get(i));
+                            }
+                    }
 
                 }
                 // Add song
