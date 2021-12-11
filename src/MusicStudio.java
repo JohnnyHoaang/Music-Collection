@@ -7,6 +7,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import javax.naming.spi.DirStateFactory.Result;
+
 public class MusicStudio {
     private Credentials creds;
     private Connection con;
@@ -111,22 +113,98 @@ public class MusicStudio {
     }
 
 
+    
+    public ArrayList<Contributor> contributorsFromAlbum(String albumid) throws SQLException{
+        String query = "SELECT UNIQUE contributorid, c_first, c_last from compilation JOIN RECORDING USING(recid) JOIN CONTRIBUTOR_REC USING(recid)"+
+                            "JOIN CONTRIBUTOR USING (contributorid) WHERE albumid = ?";
 
-    //Get RecID
-    public ArrayList<String> getRecid(String albumid) throws SQLException{
-        ArrayList<String> recs = new ArrayList<>();
-        String result = "SELECT * FROM COMPILATION WHERE albumid = ?";
-        PreparedStatement prep = this.con.prepareStatement(result);
-        prep.setString(1, albumid);
+        
+        ArrayList<Contributor> contributors = new ArrayList<>();            
+        PreparedStatement prep = this.con.prepareStatement(query);
+        prep.setString(1,albumid);
+
         ResultSet rs = prep.executeQuery();
 
         while(rs.next()){
-            recs.add(rs.getString(1));
+            contributors.add(new Contributor(rs.getString(1),rs.getString(2),rs.getString(3)));
         }
-        return recs;
+
+        return contributors;
     }
-    //Get ContributorID
-    public ArrayList<String> getContributorid(String recid) throws SQLException{
+    public ArrayList<Role> rolesFromAlbum(String albumid) throws SQLException{
+        String query = "SELECT UNIQUE roleid, rolename from compilation JOIN RECORDING USING(recid) JOIN CONTRIBUTOR_REC USING(recid)"+
+                            "JOIN CONTRIBUTOR_ROLE using(roleid) WHERE albumid = ?";
+        
+        ArrayList<Role> roles = new ArrayList<>();            
+        PreparedStatement prep = this.con.prepareStatement(query);
+        prep.setString(1,albumid);
+
+        ResultSet rs = prep.executeQuery();
+
+        while(rs.next()){
+            roles.add(new Role(rs.getString(1),rs.getString(2)));
+        }
+
+        return roles;
+    }
+    public ArrayList<Recording> recordingsFromAlbum(String albumid) throws SQLException{
+        String query = "SELECT UNIQUE recid,rec_date,duration,offset from compilation JOIN RECORDING USING(recid) WHERE albumid = ?";
+        
+        ArrayList<Recording> recordings = new ArrayList<>();            
+        PreparedStatement prep = this.con.prepareStatement(query);
+        prep.setString(1,albumid);
+
+        ResultSet rs = prep.executeQuery();
+
+        while(rs.next()){
+            recordings.add(new Recording(rs.getString(1),rs.getDate(2),rs.getDouble(3),rs.getDouble(4)));
+        }
+
+        return recordings;
+    }
+
+    public Collection collectionFromAlbum(String albumid) throws SQLException{
+        Collection collection = null;
+
+        String query = "SELECT collectionid,name FROM COLLECTION JOIN ALBUM using(collectionid) WHERE albumid = ?";
+        
+        PreparedStatement prep = this.con.prepareStatement(query);
+        prep.setString(1,albumid);
+
+        ResultSet rs = prep.executeQuery();
+
+        while(rs.next()){
+            collection = new Collection(rs.getString(1),rs.getString(2));
+        }
+
+        return collection;
+    }
+
+
+    public ArrayList<Album> albumsInCollection(String collectionid) throws SQLException{
+        String query = "SELECT albumid,title,category,pubdate,collectionid,market,label "+
+                            "FROM ALBUM JOIN COLLECTION using(collectionid) WHERE collectionid = ?";
+        
+        ArrayList<Album> albums = new ArrayList<>();  
+        PreparedStatement prep = this.con.prepareStatement(query);
+        prep.setString(1,collectionid);
+
+        ResultSet rs = prep.executeQuery();
+
+        while(rs.next()){
+            albums.add(new Album(rs.getString(1), rs.getString(2),rs.getString(3),rs.getDate(4),rs.getString(5),rs.getString(6),rs.getString(7)));
+        }
+
+        return albums;
+        
+    }
+
+
+
+
+    //Code Duplication, can fix it
+    //Get RoleID
+    public ArrayList<String> getRoleid(String recid) throws SQLException{
         ArrayList<String> contrs = new ArrayList<>();
         String result = "SELECT * FROM CONTRIBUTOR_REC WHERE recid = ?";
         PreparedStatement prep = this.con.prepareStatement(result);
@@ -134,40 +212,62 @@ public class MusicStudio {
         ResultSet rs = prep.executeQuery();
 
         while(rs.next()){
-            contrs.add(rs.getString(2));
+            contrs.add(rs.getString(3));
         }
         return contrs;
     }
 
-
+    public void printAllFieldsFromTable(String table) throws SQLException{
+        switch(table){
+            case "album":
+            System.out.println("title, category, pubdate, collectionid, market, label");
+            break;
+            case "collection":
+            System.out.println("name");
+            break;
+            case "recording" :
+            System.out.println("date, duration, offset");
+            break;
+            case "contributor":
+            System.out.println("c_first, c_last");
+            break;
+            case "contributor_role":
+            System.out.println("rolename");
+            break;
+        }
+    }
     public void printAllIDRowsFromTable(String table) throws SQLException{
         String id = "";
-
+        String name = "";
         //Refactor into method
         switch(table){
             case "album":
             id = "albumid";
+            name = "title";
             break;
             case "collection":
             id = "collectionid";
+            name = "name";
             break;
             case "recording":
             id = "recid";
             break;
             case "contributor":
             id = "contributorid";
+            name = "(c_first ||' '|| c_last)";
             break;
             case "contributor_role":
             id = "roleid";
+            name = "rolename";
             break;
         }
 
-        String printID = "SELECT "+id+" FROM "+table;
+        String printID = "SELECT "+name+ ","+id+" FROM "+table;
         PreparedStatement prep = this.con.prepareStatement(printID);
         ResultSet rs = prep.executeQuery();
 
         while(rs.next()){
-            System.out.println(rs.getString(1));
+            System.out.println("Name: "+rs.getString(1) + ", ID:" + rs.getString(2));
         }
 
     }
