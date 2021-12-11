@@ -47,16 +47,24 @@ public class Application {
 
                     System.out.println("Here is the information of the song you chose: ");
                     Album alb = muS.getAlbum(songid);
+<<<<<<< HEAD
                     //Print out the options for the user, specifying which field in the table that they would like to add
                     System.out.println("1) VIEW CONTRIBUTORS");
                     System.out.println("2) VIEW ROLES");
                     System.out.println("3) VIEW RECORDING");
                     System.out.println("4) VIEW THE COLLECTION");
+=======
+                    System.out.println("1) VIEW CONTRIBUTORS AND ROLES");
+                    System.out.println("2) VIEW RECORDING");
+                    System.out.println("3) VIEW THE COLLECTION");
+
+>>>>>>> 307e6432a47d444ed7231db8b8bd41936a386761
                     String choice = console.readLine("Enter your choice: ");
                     //Break down cases of user choices
                     switch (choice) {
                         //if the user chooses to view contributor
                         case "1":
+<<<<<<< HEAD
                             //GETS THE CONTRIBUTORS by declaring an arraylist of contributors and print each element
                             ArrayList<Contributor> contributors = muS.contributorsFromAlbum(alb.getAlbumid());
                             System.out.println("CONTRIBUTORS");
@@ -76,6 +84,13 @@ public class Application {
                             break;
                         //if the user chooses to view the recordings available in the library
                         case "3":
+=======
+                            //GETS THE CONTRIBUTORS AND ROLES
+                            muS.rolesFromContributors(alb.getAlbumid());
+
+                            break;
+                        case "2":
+>>>>>>> 307e6432a47d444ed7231db8b8bd41936a386761
                             //GETS THE RECORDINGS
                             System.out.println("RECORDINGS");
                             ArrayList<Recording> recordings = muS.recordingsFromAlbum(alb.getAlbumid());
@@ -84,7 +99,7 @@ public class Application {
                                 System.out.println(recordings.get(i));
                             }
                             break;
-                        case "4":
+                        case "3":
                             ///Gets the collections from the ALBUM
                             Collection coll = muS.collectionFromAlbum(alb.getAlbumid());
                             System.out.println("COLLECTION");

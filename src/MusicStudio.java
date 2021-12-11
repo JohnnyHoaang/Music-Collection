@@ -30,6 +30,7 @@ public class MusicStudio {
      * @param password
      * @return returns the connection from DB
      * @throws SQLException
+     * @author Domenico Cuscuna, Johnny Hoang, Ashley Vu
      */
     public Connection connectToDB(String username, String password) throws SQLException {
         return DriverManager.getConnection("jdbc:oracle:thin:@198.168.52.211:1521/pdbora19c.dawsoncollege.qc.ca",
@@ -39,6 +40,7 @@ public class MusicStudio {
      * 
      * @return logs object filled with all the logs of current user
      * @throws SQLException
+     * @author Domenico Cuscuna, Johnny Hoang, Ashley Vu
      */
     public Logs getUserLogs() throws SQLException{
         Logs logMessage = new Logs(this.creds.getUser());
@@ -59,6 +61,7 @@ public class MusicStudio {
      * @param albumid
      * @return returns an album object filled with data from albumid
      * @throws SQLException
+     * @author Domenico Cuscuna, Johnny Hoang, Ashley Vu
      */
     public Album getAlbum(String albumid) throws SQLException{
         Album alb = null;
@@ -79,6 +82,7 @@ public class MusicStudio {
      * @param collectionid
      * @return returns a collection object filled with data from collectionid
      * @throws SQLException
+     * @author Domenico Cuscuna, Johnny Hoang, Ashley Vu
      */
     public Collection getCollection(String collectionid) throws SQLException{
         Collection col = null;
@@ -98,6 +102,7 @@ public class MusicStudio {
      * @param contributorid
      * @return returns a contributor object filled with data from contributorid
      * @throws SQLException
+     * @author Domenico Cuscuna, Johnny Hoang, Ashley Vu
      */
     public Contributor getContributor(String contributorid) throws SQLException{
         Contributor contr = null;
@@ -115,6 +120,7 @@ public class MusicStudio {
      * @param roleid
      * @return returns a role object filled with data from roleid
      * @throws SQLException
+     * @author Domenico Cuscuna, Johnny Hoang, Ashley Vu
      */
     public Role getRole(String roleid) throws SQLException{
         Role role = null;
@@ -132,6 +138,7 @@ public class MusicStudio {
      * @param recordingid
      * @return returns an recording object filled with data from recording id
      * @throws SQLException
+     * @author Domenico Cuscuna, Johnny Hoang, Ashley Vu
      */
     public Recording getRecording(String recordingid) throws SQLException{
         Recording recording = null;
@@ -144,54 +151,39 @@ public class MusicStudio {
         }
         return recording;
     }
+
+
     /**
      * 
-     * @param albumid
-     * @return returns all contributors from an album
-     * @throws SQLException
-     */
-    public ArrayList<Contributor> contributorsFromAlbum(String albumid) throws SQLException{
-        String query = "SELECT UNIQUE contributorid, c_first, c_last from compilation JOIN RECORDING USING(recid) JOIN CONTRIBUTOR_REC USING(recid)"+
-                            "JOIN CONTRIBUTOR USING (contributorid) WHERE albumid = ?";        
-        ArrayList<Contributor> contributors = new ArrayList<>();            
-        PreparedStatement prep = this.con.prepareStatement(query);
-        prep.setString(1,albumid);
-
-        ResultSet rs = prep.executeQuery();
-
-        while(rs.next()){
-            contributors.add(new Contributor(rs.getString(1),rs.getString(2),rs.getString(3)));
-        }
-
-        return contributors;
-    }
-    /**
+     * returns the contributors and roles based on the albumid
      * 
      * @param albumid
-     * @return retuns all roles from album id
      * @throws SQLException
+     * @author Domenico Cuscuna, Johnny Hoang, Ashley Vu
      */
-    public ArrayList<Role> rolesFromAlbum(String albumid) throws SQLException{
-        String query = "SELECT UNIQUE roleid, rolename from compilation JOIN RECORDING USING(recid) JOIN CONTRIBUTOR_REC USING(recid)"+
+    public void rolesFromContributors(String albumid) throws SQLException{
+
+        String query = "SELECT UNIQUE contributorid, roleid, rolename from compilation JOIN RECORDING USING(recid) JOIN CONTRIBUTOR_REC USING(recid)"+
                             "JOIN CONTRIBUTOR_ROLE using(roleid) WHERE albumid = ?";
-        
-        ArrayList<Role> roles = new ArrayList<>();            
         PreparedStatement prep = this.con.prepareStatement(query);
-        prep.setString(1,albumid);
-
+        prep.setString(1, albumid);
+        
         ResultSet rs = prep.executeQuery();
 
         while(rs.next()){
-            roles.add(new Role(rs.getString(1),rs.getString(2)));
-        }
+            Contributor contributor = this.getContributor(rs.getString(1));
+            Role role = new Role(rs.getString(2),rs.getString(3));
 
-        return roles;
+            System.out.println(contributor + " ... " + role);
+        }
     }
+
     /**
      * 
      * @param albumid
      * @return returns a list of recordings from albumid
      * @throws SQLException
+     * @author Domenico Cuscuna, Johnny Hoang, Ashley Vu
      */
     public ArrayList<Recording> recordingsFromAlbum(String albumid) throws SQLException{
         String query = "SELECT UNIQUE recid,rec_date,duration,offset from compilation JOIN RECORDING USING(recid) WHERE albumid = ?";
@@ -213,6 +205,7 @@ public class MusicStudio {
      * @param albumid
      * @return returns collection from an albumid
      * @throws SQLException
+     * @author Domenico Cuscuna, Johnny Hoang, Ashley Vu
      */
     public Collection collectionFromAlbum(String albumid) throws SQLException{
         Collection collection = null;
@@ -234,7 +227,8 @@ public class MusicStudio {
      * 
      * @param collectionid
      * @return returns all albums within a collection
-      * @throws SQLException
+     * @throws SQLException 
+     * @author Domenico Cuscuna, Johnny Hoang, Ashley Vu
      */
     public ArrayList<Album> albumsInCollection(String collectionid) throws SQLException{
         String query = "SELECT albumid,title,category,pubdate,collectionid,market,label "+
@@ -258,6 +252,7 @@ public class MusicStudio {
      * prints all field of a table
      * @param table
      * @throws SQLException
+     * @author Domenico Cuscuna, Johnny Hoang, Ashley Vu
      */
     public void printAllFieldsFromTable(String table) throws SQLException{
         switch(table){
@@ -282,6 +277,7 @@ public class MusicStudio {
      * prints all id rows given a table name
      * @param table
      * @throws SQLException
+     * @author Domenico Cuscuna, Johnny Hoang, Ashley Vu
      */
     public void printAllIDRowsFromTable(String table) throws SQLException{
         String id = "";
@@ -328,6 +324,7 @@ public class MusicStudio {
     /**
      * prints all roles
      * @throws SQLException
+     * @author Domenico Cuscuna, Johnny Hoang, Ashley Vu
      */
     public void printAllRoles() throws SQLException{
         String role = "SELECT * FROM CONTRIBUTOR_ROLE";
@@ -368,6 +365,7 @@ public class MusicStudio {
     /**
      * Storing the recordings into an object
      * @throws SQLException
+     * @author Domenico Cuscuna, Johnny Hoang, Ashley Vu
      */
     public void printAllRecording() throws SQLException{
         String recording = "SELECT * FROM RECORDING";
@@ -390,6 +388,7 @@ public class MusicStudio {
     /**
      * Storing the collections into an object
      * @throws SQLException
+     * @author Domenico Cuscuna, Johnny Hoang, Ashley Vu
      */
     public void printAllCollection() throws SQLException{
         String collection = "SELECT * FROM COLLECTION";
@@ -411,6 +410,7 @@ public class MusicStudio {
     /**
      * Storing the songs into an object
      * @throws SQLException
+     * @author Domenico Cuscuna, Johnny Hoang, Ashley Vu
      */
     public void printAllAlbums() throws SQLException{
         String album = "SELECT * FROM ALBUM";
@@ -443,6 +443,7 @@ public class MusicStudio {
      * creates contributor given a contributor object
      * @param contributor
      * @throws SQLException
+     * @author Domenico Cuscuna, Johnny Hoang, Ashley Vu
      */
     public void createContributor(Contributor contributor) throws SQLException{
         String callProcedure = "{call addpkg.CREATE_CONTRIBUTOR(?,?,?)}";
@@ -456,6 +457,7 @@ public class MusicStudio {
      * creates a recording given a recording object
      * @param recording
      * @throws SQLException
+     * @author Domenico Cuscuna, Johnny Hoang, Ashley Vu
      */
     public void createRecording(Recording recording) throws SQLException{
         String callProcedure = "{call addpkg.CREATE_RECORDING(?,?,?,?)}";
@@ -470,6 +472,7 @@ public class MusicStudio {
      * creates a contributor rec given a contributor rec object
      * @param contributorRec
      * @throws SQLException
+     * @author Domenico Cuscuna, Johnny Hoang, Ashley Vu
      */
     public void createContributorRec(ContributorRec contributorRec) throws SQLException{
         String callProcedure = "{call addpkg.CREATE_CONTRIBUTOR_REC(?,?,?)}";
@@ -483,6 +486,7 @@ public class MusicStudio {
      * creates album given album object
      * @param album
      * @throws SQLException
+     * @author Domenico Cuscuna, Johnny Hoang, Ashley Vu
      */
     public void createAlbum(Album album) throws SQLException{
         String callProcedure = "{call addpkg.CREATE_ALBUM(?,?,?,?,?,?)}";
@@ -499,6 +503,7 @@ public class MusicStudio {
      * creates collection given collection id
      * @param collection
      * @throws SQLException
+     * @author Domenico Cuscuna, Johnny Hoang, Ashley Vu
      */
     public void createCollection(Collection collection) throws SQLException{
         String callProcedure = "{call addpkg.CREATE_COLLECTION(?,?)}";
@@ -513,6 +518,7 @@ public class MusicStudio {
      * @param album
      * @param vdate
      * @throws SQLException
+     * @author Domenico Cuscuna, Johnny Hoang, Ashley Vu
      */
     public void createCompilation(Recording recording, Album album, Date vdate) throws SQLException{
         String callProcedure = "{call addpkg.CREATE_COMPILATION(?,?,?)}";
@@ -528,6 +534,7 @@ public class MusicStudio {
      * deletes song given a given albumid
      * @param albumId
      * @throws SQLException
+     * @author Domenico Cuscuna, Johnny Hoang, Ashley Vu
      */
     public void deleteSong(String albumId) throws SQLException{
         String delSong = "{call deletepkg.DELETE_SONG(?)}";
@@ -539,6 +546,7 @@ public class MusicStudio {
      * deletes a contributor given a contributor id
      * @param contributorId
      * @throws SQLException
+     * @author Domenico Cuscuna, Johnny Hoang, Ashley Vu
      */
     public void deleteContributor(String contributorId) throws SQLException{
         String delContr = "{call deletepkg.DELETE_CONTRIBUTOR(?)}";
@@ -550,6 +558,7 @@ public class MusicStudio {
      * deletes collection given a collection id
      * @param collectionId
      * @throws SQLException
+     * @author Domenico Cuscuna, Johnny Hoang, Ashley Vu
      */
     public void deleteCollection(String collectionId) throws SQLException{
         String delColl = "{call deletepkg.DELETE_COLLECTION(?)}";
@@ -561,6 +570,7 @@ public class MusicStudio {
      * deletes recording given a recording id
      * @param recordingid
      * @throws SQLException
+     * @author Domenico Cuscuna, Johnny Hoang, Ashley Vu
      */
     public void deleteRecording(String recordingid) throws SQLException{
         String delColl = "{call deletepkg.DELETE_RECORDING(?)}";
@@ -575,6 +585,7 @@ public class MusicStudio {
      * @param givenId
      * @param newData
      * @throws SQLException
+     * @author Domenico Cuscuna, Johnny Hoang, Ashley Vu
      */
     public void updateTable(String table, String column, String givenId, String newData) throws SQLException{
         String id= " ";
@@ -624,6 +635,7 @@ public class MusicStudio {
     /**
      * 
      * @return returns current connection 
+     * @author Domenico Cuscuna, Johnny Hoang, Ashley Vu
      */
     public Connection getConnection(){
         return this.con;
