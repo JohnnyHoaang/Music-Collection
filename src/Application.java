@@ -291,11 +291,7 @@ public class Application {
                     //end loop
                 }
             }
-<<<<<<< HEAD
-            
-=======
             //After the loop closes, all of the users activities will be printed
->>>>>>> c735b0bebd72bb097c99ffdceddefcdb5e7efdef
             Logs logs = muS.getUserLogs();
             System.out.println(logs);
         } catch (Exception e) {
