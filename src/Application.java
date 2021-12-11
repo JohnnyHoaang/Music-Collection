@@ -67,11 +67,8 @@ public class Application {
                             Collection coll = muS.collectionFromAlbum(alb.getAlbumid());
                             System.out.println("COLLECTION");
                             System.out.println(coll);
-                            
                             System.out.println();
-
                             ArrayList<Album> albums = muS.albumsInCollection(coll.getCollectionId());
-
                             System.out.println("ALBUMS");
                             for(int i=0; i<albums.size(); i++){
                                 System.out.println(albums.get(i));
@@ -147,8 +144,7 @@ public class Application {
                                 String recordingid = console.readLine("Give recording ids from list above to make song: ");
                                 String vdate = console.readLine("Give a date to the compilation | FORMAT(yyyy-mm-dd): ");
                                 muS.createCompilation(muS.getRecording(recordingid), album, Date.valueOf(vdate));
-                                String answer = console
-                                        .readLine("Do you want to stop adding compilations to this specific song? (yes/no)");
+                                String answer = console.readLine("Do you want to stop adding compilations to this specific song? (yes/no)");
                                 if (answer.equals("yes") || answer.equals("Yes")) {
                                     createCompilationsLoop = false;
                                 } else {
@@ -276,6 +272,7 @@ public class Application {
                     //end loop
                 }
             }
+            
             Logs logs = muS.getUserLogs();
             System.out.println(logs);
         } catch (Exception e) {
