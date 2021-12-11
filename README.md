@@ -3,7 +3,8 @@
 
 ## Getting started
 
--Open the src folder and run the SQL queries to create the tables and data.
+-Open the src folder and run the setup, as well as everything in the packages folder to create the tables and data.
+
 -Open the Application class and run that. Once ran, you should enter the values of your choice,
 such as creating data, deleting data, updating data or viewing data.
 
@@ -53,7 +54,7 @@ Database Project
 
 ## Description
 
-Views, Creates, Deletes, or Updates a song. The user will be asked information about if they want to create a song.
+Views, Creates, Deletes, or Updates a song. The user will be asked information about if they want to create, delete, update or view a song. Once the choices are completed, the program will then log all the information that the user has chosen.
 
 ## Badges
 On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
