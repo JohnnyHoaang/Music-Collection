@@ -101,6 +101,9 @@ public class Application {
                             ///Gets the collections from the ALBUM
                             Collection coll = muS.collectionFromAlbum(alb.getAlbumid());
                             System.out.println("COLLECTION");
+                            System.out.println(coll);
+                            
+                            System.out.println();
 
                             ArrayList<Album> albums = muS.albumsInCollection(coll.getCollectionId());
 
