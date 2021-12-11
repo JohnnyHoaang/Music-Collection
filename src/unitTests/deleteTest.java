@@ -12,6 +12,8 @@ import org.junit.Test;
 
 import src.Credentials;
 import src.MusicStudio;
+import src.entities.Album;
+import src.entities.Collection;
 import src.entities.Contributor;
 
 
@@ -27,9 +29,8 @@ public class deleteTest {
         MusicStudio m = new MusicStudio(credentials);
         Contributor c = new Contributor("C000011", "BOBBY", "JUNIOR");
         //uncomment if you want to run test again
-        // m.deleteContributor(c.getContributorId());
-        // m.deleteRecording("RE0000");
-        m.createContributor(c, "R001", "RE0000");
+        //m.deleteContributor(c.getContributorId());
+        m.createContributor(c);
         m.deleteContributor(c.getContributorId());
         String contributorName ="";
         String sql = "SELECT C_FIRST FROM CONTRIBUTOR WHERE CONTRIBUTORID = ?";
@@ -40,19 +41,48 @@ public class deleteTest {
             contributorName = rs.getString(1);
         }
         assertEquals("", contributorName);
-        m.deleteRecording("RE0000");
     }
     @Test 
-    public void deleteSongTest(){
-
+    public void deleteSongTest() throws SQLException{
+        MusicStudio m = new MusicStudio(credentials);
+        Album album = new Album("AL00021", "WOW", "CINEMA", Date.valueOf("2021-12-10"), "", "MONEY", "STARS");
+        //uncomment if you want to run test again
+        //m.deleteSong(album.getAlbumid());
+        m.createAlbum(album);
+        m.deleteSong(album.getAlbumid());
+        String title ="";
+        String sql = "SELECT title FROM ALBUM WHERE albumid = ?";
+        PreparedStatement prep = m.getConnection().prepareStatement(sql);
+        prep.setString(1, album.getAlbumid());
+        ResultSet rs = prep.executeQuery();
+        if(rs.next()){
+            title = rs.getString(1);
+        }
+        assertEquals("", title);
     }
     @Test
-    public void deleteCollectionTest(){
-
+    public void deleteCollectionTest() throws SQLException{
+        MusicStudio m = new MusicStudio(credentials);
+        Collection collection = new Collection("COL042", "DELTE");
+        //uncomment if you want to run test again
+        //m.deleteCollection(collection.getCollectionId());
+        m.createCollection(collection);
+        m.deleteCollection(collection.getCollectionId());
+        String name ="";
+        String sql = "SELECT name FROM collection WHERE collectionid = ?";
+        PreparedStatement prep = m.getConnection().prepareStatement(sql);
+        prep.setString(1, collection.getCollectionId());
+        ResultSet rs = prep.executeQuery();
+        if(rs.next()){
+            name = rs.getString(1);
+        }
+        assertEquals("", name);
     }
     @Test
     public void deleteRecordingTest() throws SQLException{
         MusicStudio m = new MusicStudio(credentials);
+        //uncomment if you want to run test again
+        //m.deleteRecording("RE0123");
         String vrecid ="";
         String sqlUpdate = "INSERT INTO RECORDING VALUES(?,?,?,?)";
         PreparedStatement prepUpdate = m.getConnection().prepareStatement(sqlUpdate);

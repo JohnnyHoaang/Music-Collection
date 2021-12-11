@@ -4,10 +4,11 @@ import java.sql.Date;
 
 public class Recording {
     private String recordingId;
-    private String contributionId;
-    private double rec_offset;
-    private double duration_used;
     private Date date;
+    private double duration_used;
+    private double rec_offset;
+   
+   //Declare constructor Recording with recid, duration and offset as inputs
 
     public Recording(String recid, double duration, double offset){
         if(recid==null){
@@ -17,34 +18,34 @@ public class Recording {
         this.duration_used = duration;
         this.rec_offset = offset;
     }
-    public Recording(String recordingId, Date date,
-    String contributionId, double rec_offset, double duration_used){
+    //Declare overloaded constructor Recording with recid, date, duration and offset as inputs full fields
+    public Recording(String recordingId, Date date, 
+        double duration_used, double rec_offset){
+
         this(recordingId, duration_used, rec_offset);
-        this.duration_used = duration_used;
+        this.date = date;
     }
 
+    //Getter for the recid 
     public String getRecordingId() {
-        return recordingId;
+        return this.recordingId;
     }
-
-    public String getContributionId() {
-        return contributionId;
-    }
-
-    public double getRec_offset() {
-        return rec_offset;
-    }
-
-    public double getDuration_used() {
-        return duration_used;
-    }
-
+    //Getter for the date
     public Date getDate() {
-        return date;
+        return this.date;
     }
-
+    //Getter for the duration 
+    public double getDuration_used() {
+        return this.duration_used;
+    }
+    //Getter for the offset
+    public double getRec_offset() {
+        return this.rec_offset;
+    }
+    //toString method 
     public String toString(){
-        String printing = "RecordingId: "+this.recordingId+" | Date: "+this.date;
+        String printing = "RecordingId: "+this.recordingId+" | Date: "+this.date+
+            " | Duration: "+this.duration_used+" | Offset: "+this.rec_offset;
         return printing;
     }
 

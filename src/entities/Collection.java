@@ -1,44 +1,29 @@
 package src.entities;
-import java.sql.Date;
+
 
 public class Collection {
     private String collectionId;
     private String name;
-    private Date releaseDate;
-    private String label;
-    private String market;
-  
-    public Collection(String collectionId, String name, Date releaseDate, String label, String market){
+  //Declare constructor Collection  with Collectionid and ita name as inputs 
+    public Collection(String collectionId, String name){
+        if(collectionId == null || name == null){
+            throw new IllegalArgumentException("Collection id or name cannot be null!");
+        }
         this.collectionId = collectionId;
         this.name = name;
-        this.releaseDate = releaseDate;
-        this.label = label;
-        this.market = market;
     }
 
-    public String getMarket() {
-        return market;
-    }
-
-    public String getLabel() {
-        return label;
-    }
-
-    public Date getReleaseDate() {
-        return releaseDate;
-    }
-
-    public String getName() {
-        return name;
-    }
-
+    //Getter method to get collectionid
     public String getCollectionId() {
-        return collectionId;
+        return this.collectionId;
     }
-
+    //getter method to get collection name
+    public String getName() {
+        return this.name;
+    }
+//toString method 
     public String toString(){
-        String printing = "CollectionId: "+this.collectionId+" | Name: "+this.name+" | Release Date: "+
-            this.releaseDate+" | Label: "+this.label+" | Market: "+this.market;
+        String printing = "CollectionId: "+this.collectionId+" | Name: "+this.name;
         return printing;
     }
 }

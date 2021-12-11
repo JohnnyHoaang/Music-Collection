@@ -4,6 +4,11 @@ DROP PACKAGE deletepkg;
 CREATE OR REPLACE PACKAGE addpkg AS 
 PROCEDURE CREATE_CONTRIBUTOR(firstname IN VARCHAR2, lastname in VARCHAR2,
 contributor_id in VARCHAR2, role_id IN VARCHAR2, rec_id IN VARCHAR2);
+PROCEDURE CREATE_RECORDING(rec_id IN VARCHAR2, vdate IN DATE, vduration IN NUMBER,
+voffset IN NUMBER);
+PROCEDURE CREATE_CONTRIBUTOR_REC(rec_id IN VARCHAR2, contributor_id IN VARCHAR2, role_id IN VARCHAR2);
+PROCEDURE CREATE_ALBUM(album_id IN VARCHAR2, vtitle IN VARCHAR2, vcategory IN VARCHAR2, vpubdate IN DATE,
+vmarket IN VARCHAR2, vlabel IN VARCHAR2);
 PROCEDURE CREATE_COLLECTION(collection_id IN VARCHAR2, albName IN VARCHAR2);
 END addpkg;
 /
@@ -15,11 +20,33 @@ AS
 BEGIN
     INSERT INTO CONTRIBUTOR
     VALUES(contributor_id, firstname, lastname);
+END CREATE_CONTRIBUTOR;
+PROCEDURE CREATE_RECORDING(rec_id IN VARCHAR2, vdate IN DATE,
+vduration IN NUMBER, voffset IN NUMBER)
+AS
+BEGIN
     INSERT INTO RECORDING
-    VALUES(rec_id, SYSDATE, 0, 0);
+    VALUES(rec_id, vdate,vduration,voffset);
+END CREATE_RECORDING;
+PROCEDURE CREATE_CONTRIBUTOR_REC(rec_id IN VARCHAR2, contributor_id IN VARCHAR2, role_id IN VARCHAR2)
+AS
+BEGIN
     INSERT INTO CONTRIBUTOR_REC
     VALUES(rec_id, contributor_id, role_id);
-END CREATE_CONTRIBUTOR;
+END CREATE_CONTRIBUTOR_REC;
+PROCEDURE CREATE_ALBUM(album_id IN VARCHAR2, vtitle IN VARCHAR2, vcategory IN VARCHAR2, vpubdate IN DATE,
+vmarket IN VARCHAR2, vlabel IN VARCHAR2)
+AS
+BEGIN
+    INSERT INTO ALBUM (albumid, title, category, pubdate, market, label)
+    VALUES(album_id, vtitle, vcategory, vpubdate, vmarket, vlabel);
+END CREATE_ALBUM;
+PROCEDURE CREATE_COMPILATION(rec_id IN VARCHAR2, vdate IN DATE, album_id IN VARCHAR2)
+AS
+BEGIN
+    INSERT INTO COMPILATION
+    VALUES(rec_id, vdate, album_id);
+END CREATE_COMPILATION;
 PROCEDURE CREATE_COLLECTION(collection_id IN VARCHAR2, albName IN VARCHAR2)
 AS
 BEGIN
