@@ -123,6 +123,7 @@ public class MusicStudio {
         while(rs.next()){
             recs.add(rs.getString(1));
         }
+        
         return recs;
     }
     //Get ContributorID
@@ -135,6 +136,21 @@ public class MusicStudio {
 
         while(rs.next()){
             contrs.add(rs.getString(2));
+        }
+        return contrs;
+    }
+
+    //Code Duplication, can fix it
+    //Get RoleID
+    public ArrayList<String> getRoleid(String recid) throws SQLException{
+        ArrayList<String> contrs = new ArrayList<>();
+        String result = "SELECT * FROM CONTRIBUTOR_REC WHERE recid = ?";
+        PreparedStatement prep = this.con.prepareStatement(result);
+        prep.setString(1, recid);
+        ResultSet rs = prep.executeQuery();
+
+        while(rs.next()){
+            contrs.add(rs.getString(3));
         }
         return contrs;
     }

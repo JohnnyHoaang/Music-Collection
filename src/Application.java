@@ -44,42 +44,77 @@ public class Application {
                     // print song info method
                     System.out.println("Here is the information of the song you chose");
                     // print all informantion of the song here
-                    muS.printAllRecContributor();
+                    // muS.printAllRecContributor();
                     // muS.printAllRecordings();
                     // muS.printAllCollection();
                     // mus.printAllAlbums();
 
+
+
                     Album alb = muS.getAlbum(songid);
 
-                    // Gets the collection
-                    // Collection col = muS.getCollection(alb.getCollectionid());
+                    // Gets the collection from albumid
+                    Collection col = muS.getCollection(alb.getCollectionid());
+                    System.out.println(col);
 
-                    // Getss the recordings
+
+                    // Gets the recordings
                     ArrayList<String> recids = muS.getRecid(alb.getAlbumid());
+                    //AL001
+
+                    System.out.println(recids.get(0));
+
+
+
+
                     ArrayList<Recording> recording = new ArrayList<>();
 
+                    
                     for (String recid : recids) {
                         recording.add(muS.getRecording(recid));
-
-                        System.out.println(muS.getRecording(recid));
+                        // System.out.println("RECORDINGS ID");
+                        // System.out.println(muS.getRecording(recid));
                     }
 
-                    // System.out.println("MY REC ID IS "+recording.get(1));
-                    //Gets the contributors
-                    ArrayList<String> contributorsid= muS.getContributorid(recording.get(1).getRecordingId());
-                    
-                    System.out.println("CONTIBUTOR ID WORK PLEASE");
-                    
+                    //Gets the contributors for each song
+                    ArrayList<String> contributorsid = null;
+
+
+
+                    //GETS CONTRIBUTOR IDS
+                    for(int i = 0; i<recording.size(); i++){
+                        System.out.println("CONTRIBUTORS");
+                        System.out.println(muS.getContributorid(recording.get(i).getRecordingId()));
+
+                        contributorsid = muS.getContributorid(recording.get(i).getRecordingId());
+                    }
+
+                    System.out.println("COOOOME OOONRE");
+                    System.out.println(contributorsid.get(1));
+                   
+
+                    ArrayList<Contributor> contributor = new ArrayList<>();
+
                     for(String cid : contributorsid){
-                        System.out.println("HELLO?");
-                        // recording.add(muS.getRecording(cid));
+                        // contributor.add(muS.getContributor(cid));
                         System.out.println(muS.getContributor(cid));
                     }
 
 
-                    // System.out.println(col);
-                    // Collection
-                    //
+                    //Gets the roles
+                    ArrayList<String> rolesid= muS.getRoleid(recording.get(1).getRecordingId());
+                    ArrayList<Role> role = new ArrayList<>();
+
+
+                    for(String rl : rolesid){
+                        // role.add(muS.getRole(rl));
+                        System.out.println(muS.getRole(rl));
+                    }
+
+
+                    
+
+                  
 
                 }
                 // Add song
