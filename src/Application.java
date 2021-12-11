@@ -33,6 +33,7 @@ public class Application {
                 System.out.println("3) UPDATE DATA");
                 System.out.println("4) DELETE DATA");
                 System.out.println("5) EXIT");
+                System.out.println("Enter your choice: ");
                 var result = scanner.next();
 
                 // View song
@@ -87,7 +88,7 @@ public class Application {
                     System.out.println("2) CREATE RECORDING AND ASSIGN TO CONTRIBUTOR");
                     System.out.println("3) CREATE SONG");
                     System.out.println("4) CREATE COLLECTION");
-                    String choice = console.readLine("Enter you choice: ");
+                    String choice = console.readLine("Enter your choice: ");
                     // 1. create contributors and recording
                     // loop through the song prop arrays here
                     switch (choice) {
@@ -182,6 +183,12 @@ public class Application {
                                     if (answer.equals("yes") || answer.equals("Yes")) {
                                         collectionLoop = false;
                                     }
+                                    else {
+                                        System.out.println("Keep addings songs");
+                                    }
+                                }
+                                else {
+                                    collectionLoop= false;
                                 }
                             }
                             break;
@@ -258,7 +265,7 @@ public class Application {
                     open = false;
                 }
             }
-            Logs logs = new Logs(creds.getUser());
+            Logs logs = muS.getUserLogs();
             System.out.println(logs);
         } catch (Exception e) {
             e.printStackTrace();
