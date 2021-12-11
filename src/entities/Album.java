@@ -16,13 +16,8 @@ public class Album {
         this.albumid = albumid;
         this.title = title;
     }
-    // public Album(String albumid, String category, Date pubdate, String title, String collectionid){
-    //     this(albumid, title);
-    //     this.category = category;
-    //     this.pubdate = pubdate;
-    //     this.collectionid = collectionid;
-    // }
 
+//Declare constructor Album with albumid, title, category, pubdate, collectionid,market and label as the inputs 
     public Album(String albumid, String title, String category, Date pubdate, String collectionid, String market, String label){
         this(albumid, title);
         this.category = category;
@@ -32,29 +27,36 @@ public class Album {
         this.label = label;
     }
 
-    //Getters
+    //Getter method for the albumid
     public String getAlbumid() {
         return this.albumid;
     }
+    //getter methodfor the title
     public String getTitle() {
         return this.title;
     }
+    //getter method for the category 
     public String getCategory() {
         return this.category;
     }
+    //getter method for the pubdate 
     public Date getPubdate() {
         return this.pubdate;
     }
+    //getter method for the collectionid
     public String getCollectionid() {
         return this.collectionid;
     }
+    //getter method for the category 
     public String getMarket(){
         return this.market;
     }
+    //getter method for the label
     public String getLabel(){
         return this.label;
     }
-
+    
+//toString method 
     public String toString(){
         String printing = "AlbumId: "+this.albumid+" | Title: "+this.title+ " | Category: "+this.category+
             " | PubDate: "+this.pubdate+" | CollectionId: "+this.collectionid+" | Market: "+this.market+" | Label: "+this.label;
