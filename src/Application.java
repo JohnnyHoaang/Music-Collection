@@ -98,7 +98,7 @@ public class Application {
                         case "1":
                             System.out.println("Creating contributors:");
                             muS.printAllRecContributor();
-                            String cid = console.readLine("Pick an UNIQUE contributor id not on the list above: ");
+                            String cid = console.readLine("Pick an UNIQUE contributor id not on the list above | FORMAT (C0xxx): ");
                             String clast = console.readLine("Enter contributor last name: ");
                             String cfirst = console.readLine("Enter contributor firstname: ");
                             Contributor contributor = new Contributor(cid, cfirst, clast);
@@ -108,7 +108,7 @@ public class Application {
                         case "2":
                             System.out.println("Creating recording:");
                             muS.printAllRecording();
-                            String recid = console.readLine("Enter an UNIQUE RECID: ");
+                            String recid = console.readLine("Enter an UNIQUE RECID not on the list above | FORMAT(RExxx): ");
                             String date = console.readLine("Enter date | FORMAT(yyyy-mm-dd): ");
                             System.out.println("Enter duration(seconds): ");
                             double duration = scanner.nextDouble();
@@ -138,7 +138,7 @@ public class Application {
                         case "3":
                             System.out.println("Creating album");
                             muS.printAllAlbums();
-                            String albumid = console.readLine("Enter an unique album id | FORMAT(AL000): ");
+                            String albumid = console.readLine("Enter an unique album id | FORMAT (ALxxx)): ");
                             String title = console.readLine("Enter the title: ");
                             String category = console.readLine("Enter the category: ");
                             String pubdate = console.readLine("Enter the pubdate | FORMAT(yyyy-mm-dd): ");
@@ -150,11 +150,11 @@ public class Application {
                             boolean createCompilationsLoop = true;
                             while (createCompilationsLoop) {
                                 muS.printAllRecording();
-                                String recordingid = console.readLine("Give recording ids to make song: ");
-                                String vdate = console.readLine("Give a date to the compilation: ");
+                                String recordingid = console.readLine("Give recording ids from list above to make song: ");
+                                String vdate = console.readLine("Give a date to the compilation | FORMAT(yyyy-mm-dd): ");
                                 muS.createCompilation(muS.getRecording(recordingid), album, Date.valueOf(vdate));
                                 String answer = console
-                                        .readLine("Do you want to stop adding compilations to this specific song? ");
+                                        .readLine("Do you want to stop adding compilations to this specific song? (yes/no)");
                                 if (answer.equals("yes") || answer.equals("Yes")) {
                                     createCompilationsLoop = false;
                                 } else {
@@ -180,9 +180,9 @@ public class Application {
                                     String givenAlbumId = console.readLine("Give its id: ");
                                     muS.updateTable("album", "collectionid", givenAlbumId,
                                             collection.getCollectionId());
-                                    System.out.println("COLLECTIONS BELOW!");
+                                    System.out.println("Here are all the collections");
                                     muS.printAllCollection();
-                                    String answer = console.readLine("Do you want to stop? ");
+                                    String answer = console.readLine("Do you want to stop? (yes/no) ");
                                     if (answer.equals("yes") || answer.equals("Yes")) {
                                         collectionLoop = false;
                                     }
@@ -218,9 +218,22 @@ public class Application {
                             System.out.println("Updating: " + muS.getContributor(givenId));
                             break;
                     }
+                    System.out.println("here are the fields available:");
+                    muS.printAllFieldsFromTable(table);
                     String column = console.readLine("Which field do you want to update? ");
                     String newData = console.readLine("Enter new field value: ");
                     muS.updateTable(table, column, givenId, newData);
+                    switch (table) {
+                        case "role":
+                            System.out.println("Updated to : " + muS.getRole(givenId));
+                            break;
+                        case "recording":
+                            System.out.println("Updated to: " + muS.getRecording(givenId));
+                            break;
+                        case "contributor":
+                            System.out.println("Updated to: " + muS.getContributor(givenId));
+                            break;
+                    }
                     // missing the parse string to double
                     // Log the change here
 

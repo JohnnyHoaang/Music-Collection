@@ -139,35 +139,57 @@ public class MusicStudio {
         return contrs;
     }
 
-
+    public void printAllFieldsFromTable(String table) throws SQLException{
+        switch(table){
+            case "album":
+            System.out.println("title, category, pubdate, collectionid, market, label");
+            break;
+            case "collection":
+            System.out.println("name");
+            break;
+            case "recording" :
+            System.out.println("date, duration, offset");
+            break;
+            case "contributor":
+            System.out.println("c_first, c_last");
+            break;
+            case "contributor_role":
+            System.out.println("rolename");
+            break;
+        }
+    }
     public void printAllIDRowsFromTable(String table) throws SQLException{
         String id = "";
-
+        String name = "";
         //Refactor into method
         switch(table){
             case "album":
             id = "albumid";
+            name = "title";
             break;
             case "collection":
             id = "collectionid";
+            name = "name";
             break;
             case "recording":
             id = "recid";
             break;
             case "contributor":
             id = "contributorid";
+            name = "(c_first ||' '|| c_last)";
             break;
             case "contributor_role":
             id = "roleid";
+            name = "rolename";
             break;
         }
 
-        String printID = "SELECT "+id+" FROM "+table;
+        String printID = "SELECT "+name+ ","+id+" FROM "+table;
         PreparedStatement prep = this.con.prepareStatement(printID);
         ResultSet rs = prep.executeQuery();
 
         while(rs.next()){
-            System.out.println(rs.getString(1));
+            System.out.println("Name: "+rs.getString(1) + ", ID:" + rs.getString(2));
         }
 
     }
