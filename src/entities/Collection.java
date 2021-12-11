@@ -6,6 +6,9 @@ public class Collection {
     private String name;
   //Declare constructor Collection  with Collectionid and ita name as inputs 
     public Collection(String collectionId, String name){
+        if(collectionId == null || name == null){
+            throw new IllegalArgumentException("Collection id or name cannot be null!");
+        }
         this.collectionId = collectionId;
         this.name = name;
     }

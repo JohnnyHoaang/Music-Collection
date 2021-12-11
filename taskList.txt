@@ -56,3 +56,5 @@ and CREATE recording compilation album collection!!!!
 
 select UNIQUE contributorid, c_first, c_last from compilation JOIN RECORDING USING(recid) JOIN CONTRIBUTOR_REC USING(recid) 
 JOIN CONTRIBUTOR USING (contributorid) WHERE albumid = 'AL005';
+
+NULL CHECKS

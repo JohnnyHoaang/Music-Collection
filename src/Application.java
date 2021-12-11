@@ -2,9 +2,7 @@ package src;
 
 import src.entities.*;
 import java.io.Console;
-import java.sql.Connection;
 import java.sql.Date;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -15,9 +13,6 @@ public class Application {
 
         String user = console.readLine("Username: ");
         String password = new String(console.readPassword("Password: "));
-        // sample to use your password /username, DONT GIVE it TO DIRK
-        // String user ="";
-        // String password = "";
         MusicStudio muS = null;
         Scanner scanner = null;
         try {
@@ -26,6 +21,7 @@ public class Application {
             scanner = new Scanner(System.in);
             boolean open = true;
             while (open) {
+                //printing all choices
                 System.out.println("Welcome to our program");
                 System.out.println("Select from the following options:");
                 System.out.println("1) VIEW SONG");
@@ -44,22 +40,8 @@ public class Application {
                     String songid = scanner.next();
                     // print song info method
                     System.out.println("Here is the information of the song you chose");
-                    // print all informantion of the song here
-                    // muS.printAllRecContributor();
-                    // muS.printAllRecordings();
-                    // muS.printAllCollection();
-                    // mus.printAllAlbums();
-
-
-
                     Album alb = muS.getAlbum(songid);
-
-                    // Gets the collection from albumid
-                    // Collection col = muS.getCollection(alb.getCollectionid());
-                    // System.out.println(col);
-
-
-                    System.out.println("1) VIEW CONTRIBUTORS");
+                System.out.println("1) VIEW CONTRIBUTORS");
                     System.out.println("2) VIEW ROLES");
                     System.out.println("3) VIEW RECORDING");
                     System.out.println("4) VIEW THE COLLECTION");
@@ -69,15 +51,11 @@ public class Application {
                         case "1":
                             //GETS THE CONTRIBUTORS
                             ArrayList<Contributor> contributors = muS.contributorsFromAlbum(alb.getAlbumid());
-
                             System.out.println("CONTRIBUTORS");
-
                             for(int i=0; i<contributors.size(); i++){
                                 System.out.println(contributors.get(i));
                             }
-
                             break;
-                        
                         case "2":
                              //GETS THE ROLES
                             System.out.println("ROLES");
@@ -101,6 +79,9 @@ public class Application {
                             ///Gets the collections from the ALBUM
                             Collection coll = muS.collectionFromAlbum(alb.getAlbumid());
                             System.out.println("COLLECTION");
+                            System.out.println(coll);
+                            
+                            System.out.println();
 
                             ArrayList<Album> albums = muS.albumsInCollection(coll.getCollectionId());
 
@@ -111,15 +92,14 @@ public class Application {
                     }
 
                 }
-                // Add song
+                // option to add data
                 else if (result.equals("2")) {
                     System.out.println("1) CREATE CONTRIBUTOR");
                     System.out.println("2) CREATE RECORDING AND ASSIGN TO CONTRIBUTOR");
                     System.out.println("3) CREATE SONG");
                     System.out.println("4) CREATE COLLECTION");
                     String choice = console.readLine("Enter your choice: ");
-                    // 1. create contributors and recording
-                    // loop through the song prop arrays here
+                    // 1. create contributors
                     switch (choice) {
                         case "1":
                             System.out.println("Creating contributors:");
@@ -132,6 +112,7 @@ public class Application {
                             System.out.println("Contributor created: " + contributor);
                             break;
                         case "2":
+                        //2. create recordings
                             System.out.println("Creating recording:");
                             muS.printAllRecording();
                             String recid = console.readLine("Enter an UNIQUE RECID not on the list above | FORMAT(RExxx): ");
@@ -149,7 +130,6 @@ public class Application {
                             System.out
                                     .println("-----------------------------------------------------------------------");
                             muS.printAllRecContributor();
-
                             String contributorid = console.readLine("Give the contributor id: ");
                             System.out.println("Here are your role choices!");
                             muS.printAllRoles();
@@ -162,6 +142,7 @@ public class Application {
                                     "Successfully linked recording and role to contributor!" + '\n' + contributorRec);
                             break;
                         case "3":
+                        //3. create album
                             System.out.println("Creating album");
                             muS.printAllAlbums();
                             String albumid = console.readLine("Enter an unique album id | FORMAT (ALxxx)): ");
@@ -190,8 +171,10 @@ public class Application {
                             System.out.println(muS.getAlbum(album.getAlbumid()));
                             break;
                         case "4":
+                        //create collection
                             System.out.println("Creating collection: ");
                             muS.printAllCollection();
+                            //ask for user data to create object
                             String collectionId = console.readLine("Enter an unique collection id: ");
                             String name = console.readLine("Enter a name for the collection: ");
                             Collection collection = new Collection(collectionId, name);

@@ -7,6 +7,9 @@ public class Compilation {
     private Album album;
 //Declare constructor Compilation with recording, rec date and the album as inputs 
     public Compilation(Recording rec, Date date, Album album){
+        if(rec == null || album == null){
+            throw new IllegalArgumentException("Recording or album object cannot be null");
+        }
         this.rec = rec;
         this.date = date; 
         this.album = album;
