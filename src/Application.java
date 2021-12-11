@@ -80,6 +80,9 @@ public class Application {
                     // System.out.println(col);
                     // Collection
                     //
+                    Album album = muS.getAlbum("AL001");
+                    ArrayList<String> recidss = muS.getRecid(album.getAlbumid());
+
 
                 }
                 // Add song
