@@ -19,6 +19,7 @@ public class Application {
             Credentials creds = new Credentials(user, password);
             muS = new MusicStudio(creds);
             scanner = new Scanner(System.in);
+            //this is the loop for menu
             boolean open = true;
             while (open) {
                 //printing all choices
@@ -281,13 +282,12 @@ public class Application {
                             // case 4: delete recording
                             System.out.println("Which recording do you want to delete?");
                             String recid = console.readLine("Enter the recid: ");
-                            // which collection to delete
                             muS.deleteRecording(recid);
                             break;
                     }
                 } else if (result.equals("5")) {
-                    // Print all user log
                     open = false;
+                    //end loop
                 }
             }
             Logs logs = muS.getUserLogs();

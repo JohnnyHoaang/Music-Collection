@@ -18,7 +18,9 @@ public class MusicStudio {
             throw new IllegalArgumentException("Connection cannot be null");
         }        
     }
-
+    /**
+     * returns the credentials object of user
+     */
     public Credentials getCreds() {
         return creds;
     }
@@ -26,7 +28,7 @@ public class MusicStudio {
      * 
      * @param username
      * @param password
-     * @return
+     * @return returns the connection from DB
      * @throws SQLException
      */
     public Connection connectToDB(String username, String password) throws SQLException {
@@ -102,9 +104,7 @@ public class MusicStudio {
         String contributor = "SELECT * FROM CONTRIBUTOR WHERE contributorid = ?";
         PreparedStatement prep = this.con.prepareStatement(contributor);
         prep.setString(1, contributorid);
-        ResultSet rs = prep.executeQuery();
-
-
+        ResultSet rs = prep.executeQuery(); 
         while(rs.next()){
             contr = new Contributor(rs.getString("contributorid"), rs.getString("c_first"), rs.getString("c_last"));
         }
@@ -152,9 +152,7 @@ public class MusicStudio {
      */
     public ArrayList<Contributor> contributorsFromAlbum(String albumid) throws SQLException{
         String query = "SELECT UNIQUE contributorid, c_first, c_last from compilation JOIN RECORDING USING(recid) JOIN CONTRIBUTOR_REC USING(recid)"+
-                            "JOIN CONTRIBUTOR USING (contributorid) WHERE albumid = ?";
-
-        
+                            "JOIN CONTRIBUTOR USING (contributorid) WHERE albumid = ?";        
         ArrayList<Contributor> contributors = new ArrayList<>();            
         PreparedStatement prep = this.con.prepareStatement(query);
         prep.setString(1,albumid);
@@ -351,7 +349,6 @@ public class MusicStudio {
     //print all info from (any table), maybe create objects
     //Storing the contributors into an object
     public void printAllRecContributor() throws SQLException{
-        System.out.println("reached prints!");
         String contributor = "SELECT * FROM CONTRIBUTOR";
         PreparedStatement prep = this.con.prepareStatement(contributor);
         ResultSet rs = prep.executeQuery();
