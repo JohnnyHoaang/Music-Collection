@@ -243,32 +243,39 @@ public class MusicStudio {
         switch(table){
             case "album":
             id = "albumid";
-            name = "title";
+            name = "title,";
             break;
             case "collection":
             id = "collectionid";
-            name = "name";
+            name = "name,";
             break;
             case "recording":
             id = "recid";
             break;
             case "contributor":
             id = "contributorid";
-            name = "(c_first ||' '|| c_last)";
+            name = "(c_first ||' '|| c_last),";
             break;
             case "contributor_role":
             id = "roleid";
-            name = "rolename";
+            name = "rolename,";
             break;
         }
 
-        String printID = "SELECT "+name+ ","+id+" FROM "+table;
+        String printID = "SELECT "+name+id+" FROM "+table;
         PreparedStatement prep = this.con.prepareStatement(printID);
         ResultSet rs = prep.executeQuery();
+
+        if(table.equals("recording")){
+            while(rs.next()){
+                System.out.println("ID:" + rs.getString(1));
+            }
+        } else {
 
         while(rs.next()){
             System.out.println("Name: "+rs.getString(1) + ", ID:" + rs.getString(2));
         }
+     }
 
     }
 

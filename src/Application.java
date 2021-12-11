@@ -44,22 +44,8 @@ public class Application {
                     String songid = scanner.next();
                     // print song info method
                     System.out.println("Here is the information of the song you chose");
-                    // print all informantion of the song here
-                    // muS.printAllRecContributor();
-                    // muS.printAllRecordings();
-                    // muS.printAllCollection();
-                    // mus.printAllAlbums();
-
-
-
                     Album alb = muS.getAlbum(songid);
-
-                    // Gets the collection from albumid
-                    // Collection col = muS.getCollection(alb.getCollectionid());
-                    // System.out.println(col);
-
-
-                    System.out.println("1) VIEW CONTRIBUTORS");
+                System.out.println("1) VIEW CONTRIBUTORS");
                     System.out.println("2) VIEW ROLES");
                     System.out.println("3) VIEW RECORDING");
                     System.out.println("4) VIEW THE COLLECTION");
