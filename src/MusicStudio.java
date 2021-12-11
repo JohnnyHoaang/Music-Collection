@@ -172,6 +172,22 @@ public class MusicStudio {
 
     }
 
+    public void printAllLogs() throws SQLException{
+        String role = "SELECT * FROM Logs";
+        PreparedStatement prep = this.con.prepareStatement(role);
+        ResultSet rs = prep.executeQuery();
+
+        ArrayList<Role> roles = new ArrayList<>();
+
+        while(rs.next()){
+            roles.add(new Role(rs.getString("roleid"), rs.getString("rolename")));         
+        }
+        
+        for(Role rol : roles){
+            System.out.println(rol);
+            System.out.println("---------------------------");
+        }
+    }
 
     public void printAllRoles() throws SQLException{
         String role = "SELECT * FROM CONTRIBUTOR_ROLE";
