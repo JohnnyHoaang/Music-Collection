@@ -149,6 +149,7 @@ VALUES('COL01', 'MY MIX');
 INSERT INTO COLLECTION
 VALUES('COL02', 'MY JAM');
 
+select * from contributor;
 
 --Album -> Song
 --User enters Song Name
