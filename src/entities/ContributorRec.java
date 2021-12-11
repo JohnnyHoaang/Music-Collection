@@ -6,6 +6,9 @@ public class ContributorRec {
     private Role role;
 
     public ContributorRec(Contributor con, Recording rec, Role role){
+        if(con == null || rec == null || role == null){
+            throw new IllegalArgumentException("Contributor or recording or role objects cannot be null!");
+        }
         this.con = con;
         this.rec = rec;
         this.role = role;

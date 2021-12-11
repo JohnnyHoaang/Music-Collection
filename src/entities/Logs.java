@@ -5,6 +5,9 @@ public class Logs {
     private String changeTrack;
 
     public Logs(String username){
+        if(username == null){
+            throw new IllegalArgumentException("username cannot be null!");
+        }
         this.username = username;
         this.changeTrack = "";
     }
