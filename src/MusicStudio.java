@@ -487,6 +487,10 @@ public class MusicStudio {
             id = "roleid";
             break;
         }
+        if(column.equals("recid")||column.equals("collectionid")||column.equals("contributorid")||column.equals("roleid")||column.equals("albumid")){
+            throw new IllegalArgumentException("you cannot change primary keys!");
+
+        }
         if (column.equals("duration") || column.equals("offset")){
             String sql = "update "+table + " set " + column + " = ? where " + id + " = ?";
             PreparedStatement prep = this.con.prepareStatement(sql);
